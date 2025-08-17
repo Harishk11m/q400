@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Q400 SDS</title>
+  <style>
+    body  {
+            display: flex;
+            font-family: sans-serif;
+            margin: 0;
+            background-color: #f9f9f9; /* Light background for the whole page */
+        }
+
+        #sidebar {
+            width: 200px; /* Slightly wider sidebar */
+            border-right: 1px solid #e0e0e0;
+            padding: 25px;
+            box-sizing: border-box;
+            overflow-y: auto;
+            height: 100vh;
+            background-color: #fff; /* White background for sidebar */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Subtle shadow for sidebar */
+        }
+
+        #sidebar h2 {
+            margin-top: 0;
+            font-size: 1.5rem; /* Larger heading */
+            color: #2c3e50; /* Darker heading color */
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        #sidebar ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column; /* Stack items vertically */
+            gap: 10px;
+        }
+
+        #sidebar ul li {
+            margin-bottom: 0; /* Removed bottom margin from list items */
+        }
+
+        #sidebar ul li a {
+            text-decoration: none;
+            color: #34495e; /* Darker link color */
+            display: block;
+            padding: 12px 15px; /* Increased padding */
+            border-radius: 8px; /* Rounded corners for links */
+            background-color: #f0f0f0; /* Lighter background for links */
+            transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+            cursor: pointer;
+            border: 1px solid transparent; /* Transparent border */
+        }
+
+        #sidebar ul li a:hover {
+            background-color: #4299e1; /* Blue hover background */
+            color: white; /* White hover text color */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Add shadow on hover */
+            border-color: #4299e1;  /* Change border color on hover */
+        }
+
+        #sidebar ul li a.active {
+            background-color: #1a5283;
+            color: white;
+            border-color: #1a5283;
+        }
+    #pdf-container { flex-grow: 1; padding: 2px; box-sizing: border-box; }
+    #pdf-embed {
+      width: 100%;
+      height: 100vh; /* Adjust as needed */
+      border: 1px solid #aaa;
+    }
+   
+  </style>
+</head>
+<body>
+  <div id="sidebar">
+    <h2>ATA</h2>
+    <ul>
+      
+ 
+      <li><a data-pdf-url="21.pdf">21</a></li>
+      <li><a data-pdf-url="22.pdf">22</a></li>
+      <li><a data-pdf-url="23.pdf">23</a></li>
+      <li><a data-pdf-url="24.pdf">24</a></li>
+      <li><a data-pdf-url="25.pdf">25</a></li>
+      <li><a data-pdf-url="26.pdf">26</a></li>
+      <li><a data-pdf-url="27.pdf">27</a></li>
+      <li><a data-pdf-url="28.pdf">28</a></li>
+      <li><a data-pdf-url="29.pdf">29</a></li>
+      <li><a data-pdf-url="30.pdf">30</a></li>
+      <li><a data-pdf-url="31.pdf">31</a></li>
+      <li><a data-pdf-url="32.pdf">32</a></li>
+      <li><a data-pdf-url="33.pdf">33</a></li>
+      <li><a data-pdf-url="34.pdf">34</a></li>
+      <li><a data-pdf-url="35.pdf">35</a></li>
+      <li><a data-pdf-url="36.pdf">36</a></li>
+      <li><a data-pdf-url="38.pdf">38</a></li>
+      <li><a data-pdf-url="45.pdf">45</a></li>
+      <li><a data-pdf-url="49.pdf">49</a></li>
+      <li><a data-pdf-url="51.pdf">51</a></li>
+      <li><a data-pdf-url="52.pdf">52</a></li>
+      <li><a data-pdf-url="53.pdf">53</a></li>
+      <li><a data-pdf-url="54.pdf">54</a></li>
+      <li><a data-pdf-url="55.pdf">55</a></li>
+      <li><a data-pdf-url="56.pdf">56</a></li>
+      <li><a data-pdf-url="57.pdf">57</a></li>
+      <li><a data-pdf-url="61.pdf">61</a></li>
+      <li><a data-pdf-url="70.pdf">70</a></li>
+      <li><a data-pdf-url="71.pdf">71</a></li>
+      <li><a data-pdf-url="72.pdf">72</a></li>
+      <li><a data-pdf-url="73.pdf">73</a></li>
+      <li><a data-pdf-url="74.pdf">74</a></li>
+      <li><a data-pdf-url="75.pdf">75</a></li>
+      <li><a data-pdf-url="76.pdf">76</a></li>
+      <li><a data-pdf-url="77.pdf">77</a></li>
+      <li><a data-pdf-url="78.pdf">78</a></li>
+      <li><a data-pdf-url="79.pdf">79</a></li>
+      <li><a data-pdf-url="80.pdf">80</a></li>
+    
+     
+    </ul>
+  </div>
+  <div id="pdf-container">
+    <embed id="pdf-embed" src="" type="application/pdf">
+  </div>
+
+  <script>
+    const pdfEmbed = document.getElementById('pdf-embed');
+    const pdfLinkFallback = document.getElementById('pdf-link-fallback');
+    const indexLinks = document.querySelectorAll('#sidebar ul li a');
+
+    indexLinks.forEach(link => {
+      link.addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent the default link behavior
+
+        const pdfUrl = this.getAttribute('data-pdf-url');
+
+        if (pdfUrl) {
+          pdfEmbed.setAttribute('src', pdfUrl);
+          pdfLinkFallback.innerHTML = `<a href="${pdfUrl}" target="_blank">download the PDF here</a>`;
+        } else {
+          pdfEmbed.setAttribute('src', ''); // Clear the embed if no URL
+          pdfLinkFallback.textContent = 'No PDF selected.';
+        }
+      });
+    });
+  </script>
+</body>
+</html>
