@@ -1,285 +1,30 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Items List - Responsive</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body {
-      font-family: sans-serif;
-      font-size: 16px;
-      margin: 10px;
-      background-color: #f8f9fa;
-    }
-    h1 {
-      font-size: 1.5em;
-      text-align: center;
-      margin-bottom: 20px;
-    }
-    .table-container {
-      width: 100%;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      border: 1px solid #ddd;
-    }
-    th, td {
-      border: 1px solid #ddd;
-      padding: 12px;
-      text-align: left;
-      vertical-align: middle;
-    }
-    thead th {
-      background-color: #f2f2f2;
-    }
-    tbody tr:nth-of-type(even) {
-      background-color: #f9f9f9;
-    }
-    input[type="text"] {
-      padding: 8px;
-      font-size: 1em;
-      font-family: sans-serif;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      box-sizing: border-box;
-      /* On desktop, allow JS to control width */
-      min-width: 80px;
-      transition: width 0.1s ease-in-out;
-    }
-    .clicked {
-      background-color: lightblue !important;
-    }
-
-    /* --- MOBILE RESPONSIVE STYLES --- */
-    /* This applies only to screens 768px wide or less */
-    @media screen and (max-width: 768px) {
-      table {
-        border: 0; /* Remove table border */
-      }
-      thead {
-        /* Hide the original headers on mobile */
-        display: none;
-      }
-      tr {
-        display: block; /* Make rows behave like blocks/cards */
-        margin-bottom: 15px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        box-shadow: 0 2px 2px rgba(0,0,0,0.1);
-      }
-      td {
-        display: block; /* Make cells behave like blocks */
-        text-align: right; /* Align cell content to the right */
-        border: none;
-        border-bottom: 1px solid #eee;
-        position: relative;
-        padding-left: 50%; /* Make space for the label */
-      }
-      td:last-child {
-        border-bottom: 0;
-      }
-      /* Add the labels before the cell content */
-      td::before {
-        content: attr(data-label); /* Use the data-label attribute as content */
-        position: absolute;
-        left: 12px;
-        width: calc(50% - 24px);
-        padding-right: 10px;
-        text-align: left;
-        font-weight: bold;
-        white-space: nowrap;
-      }
-      input[type="text"] {
-        /* Make inputs full-width on mobile */
-        width: 100% !important;
-      }
-    }
-  </style>
+<title>Checklist</title>
 </head>
 <body>
 
-  <h1>Q400 NWA CHANGE LIST (AMM 32-41-01-000/400-801)</h1>
-
-  <div class="table-container">
-    <table>
-      <thead>
-        <tr>
-          <th>Sr. No.</th>
-          <th>ITEMS</th>
-          <th>P/N</th>
-          <th>AIPC/AMM REF</th>
-          <th>OFF S/N OR EXPIRY</th>
-          <th>ON S/N</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td data-label="Sr. No.">1.</td>
-          <td data-label="ITEMS">TIRE WITH TAG</td>
-          <td data-label="P/N">415-118</td>
-          <td data-label="AIPC REF"></td>
-          <td data-label="OFF S/N OR EXPIRY"><input type="text" placeholder="S/N or Date"></td>
-          <td data-label="ON S/N"><input type="text" placeholder="S/N"></td>
-        </tr>
-        <tr>
-          <td data-label="Sr. No.">2.</td>
-          <td data-label="ITEMS">COTTER PIN</td>
-          <td data-label="P/N">MS24665-153</td>
-          <td data-label="AIPC REF"></td>
-          <td data-label="OFF S/N OR EXPIRY"><input type="text" placeholder="Discarded"></td>
-          <td data-label="ON S/N"><input type="text" placeholder="New"></td>
-        </tr>
-        <tr>
-          <td data-label="Sr. No.">3.</td>
-          <td data-label="ITEMS">TORQUE WRENCH</td>
-          <td data-label="P/N">UPTO 100 FT LBS</td>
-          <td data-label="AIPC REF"></td>
-          <td data-label="OFF S/N OR EXPIRY"><input type="text" placeholder="Cal. Due"></td>
-          <td data-label="ON S/N"><input type="text" placeholder="Cal. Due"></td>
-        </tr>
-        <tr>
-          <td data-label="Sr. No.">4.</td>
-          <td data-label="ITEMS">THREAD PROTECTOR (BULLET)</td>
-          <td data-label="P/N"></td>
-          <td data-label="AIPC REF"></td>
-          <td data-label="OFF S/N OR EXPIRY"><input type="text" placeholder="S/N"></td>
-          <td data-label="ON S/N"><input type="text" placeholder="S/N"></td>
-        </tr>
-        <tr>
-          <td data-label="Sr. No.">5.</td>
-          <td data-label="ITEMS">AXLE NUT ADAPTER (SOCKET)</td>
-          <td data-label="P/N"></td>
-          <td data-label="AIPC REF"></td>
-          <td data-label="OFF S/N OR EXPIRY"><input type="text" placeholder="S/N"></td>
-          <td data-label="ON S/N"><input type="text" placeholder="S/N"></td>
-        </tr>
-        <tr>
-          <td data-label="Sr. No.">6.</td>
-          <td data-label="ITEMS">TPG</td>
-          <td data-label="P/N">UPTO 100 PSI</td>
-          <td data-label="AIPC REF"></td>
-          <td data-label="OFF S/N OR EXPIRY"><input type="text" placeholder="Cal. Due"></td>
-          <td data-label="ON S/N"><input type="text" placeholder="Cal. Due"></td>
-        </tr>
-        <tr>
-          <td data-label="Sr. No.">7.</td>
-          <td data-label="ITEMS">JACK, JACK ROD WITH TAG</td>
-          <td data-label="P/N">FOR NOSE WHEEL</td>
-          <td data-label="AIPC REF"></td>
-          <td data-label="OFF S/N OR EXPIRY"><input type="text" placeholder="Insp. Due"></td>
-          <td data-label="ON S/N"><input type="text" placeholder="Insp. Due"></td>
-        </tr>
-        <tr>
-          <td data-label="Sr. No.">8.</td>
-          <td data-label="ITEMS">JACK PLATE</td>
-          <td data-label="P/N"></td>
-          <td data-label="AIPC REF"></td>
-          <td data-label="OFF S/N OR EXPIRY"><input type="text" placeholder="S/N"></td>
-          <td data-label="ON S/N"><input type="text" placeholder="S/N"></td>
-        </tr>
-        <tr>
-          <td data-label="Sr. No.">9.</td>
-          <td data-label="ITEMS">EXPANDER</td>
-          <td data-label="P/N">SUCH THAT IT CAN FIT TO TORQUE WRENCH TO ADAPTER</td>
-          <td data-label="AIPC REF"></td>
-          <td data-label="OFF S/N OR EXPIRY"><input type="text" placeholder="S/N"></td>
-          <td data-label="ON S/N"><input type="text" placeholder="S/N"></td>
-        </tr>
-        <tr>
-          <td data-label="Sr. No.">10.</td>
-          <td data-label="ITEMS">GREASE</td>
-          <td data-label="P/N"></td>
-          <td data-label="AIPC REF">CPM 14-06A</td>
-          <td data-label="OFF S/N OR EXPIRY"><input type="text" placeholder="Batch/Expiry"></td>
-          <td data-label="ON S/N"><input type="text" placeholder="Batch/Expiry"></td>
-        </tr>
-        <tr>
-          <td data-label="Sr. No.">11.</td>
-          <td data-label="ITEMS">CUTTER</td>
-          <td data-label="P/N"></td>
-          <td data-label="AIPC REF"></td>
-          <td data-label="OFF S/N OR EXPIRY"><input type="text" placeholder="S/N"></td>
-          <td data-label="ON S/N"><input type="text" placeholder="S/N"></td>
-        </tr>
-        <tr>
-          <td data-label="Sr. No.">12.</td>
-          <td data-label="ITEMS">NOSE PLIERS</td>
-          <td data-label="P/N"></td>
-          <td data-label="AIPC REF"></td>
-          <td data-label="OFF S/N OR EXPIRY"><input type="text" placeholder="S/N"></td>
-          <td data-label="ON S/N"><input type="text" placeholder="S/N"></td>
-        </tr>
-        <tr>
-          <td data-label="Sr. No.">13.</td>
-          <td data-label="ITEMS">PLAIN SCREW DRIVER</td>
-          <td data-label="P/N"></td>
-          <td data-label="AIPC REF">OR EQUIVALENT</td>
-          <td data-label="OFF S/N OR EXPIRY"><input type="text" placeholder="Insp. Due"></td>
-          <td data-label="ON S/N"><input type="text" placeholder="Insp. Due"></td>
-        </tr>
-        <tr>
-          <td data-label="Sr. No.">14.</td>
-          <td data-label="ITEMS"></td>
-          <td data-label="P/N"></td>
-          <td data-label="AIPC REF"></td>
-          <td data-label="OFF S/N OR EXPIRY"><input type="text" placeholder="S/N"></td>
-          <td data-label="ON S/N"><input type="text" placeholder="S/N"></td>
-        </tr>
-        <tr>
-          <td data-label="Sr. No.">15.</td>
-          <td data-label="ITEMS"></td>
-          <td data-label="P/N">0.032 INCH</td>
-          <td data-label="AIPC REF">CPM 14-06</td>
-          <td data-label="OFF S/N OR EXPIRY"><input type="text" placeholder="Discarded"></td>
-          <td data-label="ON S/N"><input type="text" placeholder="New"></td>
-        </tr>
-        <tr>
-          <td data-label="Sr. No.">16.</td>
-          <td data-label="ITEMS">TORQUE SEAL</td>
-          <td data-label="P/N"></td>
-          <td data-label="AIPC REF">CPM 10-07</td>
-          <td data-label="OFF S/N OR EXPIRY"><input type="text" placeholder="N/A"></td>
-          <td data-label="ON S/N"><input type="text" placeholder="Applied"></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <script>
-    // This script for toggling color works fine on both desktop and mobile
-    const table = document.querySelector('table');
-    table.addEventListener('click', function(event) {
-      if (event.target.tagName === 'TD') {
-        event.target.classList.toggle('clicked');
-      }
-    });
-
-    // This script for auto-resizing inputs is now mainly for the DESKTOP view
-    const measurer = document.createElement('span');
-    measurer.style.visibility = 'hidden';
-    measurer.style.position = 'absolute';
-    measurer.style.left = '-9999px';
-    measurer.style.whiteSpace = 'pre';
-    document.body.appendChild(measurer);
-
-    function resizeInput() {
-      const input = this;
-      const styles = window.getComputedStyle(input);
-      measurer.style.fontFamily = styles.fontFamily;
-      measurer.style.fontSize = styles.fontSize;
-      measurer.style.fontWeight = styles.fontWeight;
-      measurer.style.letterSpacing = styles.letterSpacing;
-      measurer.textContent = input.value || input.placeholder;
-      const newWidth = measurer.offsetWidth + 5;
-      input.style.width = newWidth + 'px';
-    }
-
-    const inputs = document.querySelectorAll('input[type="text"]');
-    inputs.forEach(input => {
-      input.addEventListener('input', resizeInput);
-      resizeInput.call(input);
-    });
-  </script>
+  <h1>MWA CHANGEDISCRIPTION</h1>
+  <ul>
+    <li>Tire p/n 415-118</li>
+    <li>Cotter pin: MS24665-153</li>
+    <li>Torque wrench up to 100 ft-lbs</li>
+    <li>Thread protector</li>
+    <li>Axle nut adapter</li>
+    <li>TPG up to 100 psi with tag</li>
+    <li>Jack with tag</li>
+    <li>Jack rod</li>
+    <li>Jack plate</li>
+    <li>Expander according to torque wrench drive</li>
+    <li>Grease</li>
+    <li>Cutter</li>
+    <li>Nose pliers twister</li>
+    <li>5/16 spanner</li>
+    <li>7/16 ratchet socket</li>
+    <li>Lock wire</li>
+    <li>Torque seal</li>
+  </ul>
 
 </body>
 </html>
