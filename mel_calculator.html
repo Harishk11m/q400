@@ -1,0 +1,140 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MEL Date & Time Calculation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .selected-date {
+            color: red !important;
+        }
+        .filled-text {
+            color: red;
+        }
+        .date-column {
+            min-width: 150px; /* Adjust this value as needed */
+            text-align: center;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 flex justify-center items-center min-h-screen">
+    <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
+        <h1 class="text-2xl font-semibold text-blue-600 mb-6 text-center">MEL CALCULATOR</h1>
+        <p class="mb-4">Current Time (UTC): <span id="currentTimeUTC" class="font-medium"></span></p>
+        <p><span id="melRef">AIRCRAFT RELESED IAW MEL REF___________</span> CAT '<span id="melCat" class="filled-text">___</span>' VALID TILL <span id="validTill" class="filled-text">___________</span> MIDNIGHT UTC. MELP COMPLIED. COCKPIT PLACARDED AND CREW BREIFED. NOTE TO ENGG MENTIONED.</p>
+        <div class="mb-6 space-y-4 mt-4">
+            <div class="flex justify-between items-center cursor-pointer" onclick="selectCategory('A', 'As per remarks')">
+                <span class="text-gray-700 font-medium">Category A:</span>
+                <span id="resultDateA" class="bg-gray-200 border rounded py-2 px-4 text-gray-800 selected-date date-column">As per remarks</span>
+            </div>
+            <div class="flex justify-between items-center cursor-pointer" onclick="selectCategory('B', formatDateTimeUTC(addDaysUTC(3), 'date'))">
+                <span class="text-gray-700 font-medium">Category B:</span>
+                <span id="resultDateB" class="bg-gray-200 border rounded py-2 px-4 text-gray-800 date-column"></span>
+            </div>
+            <div class="flex justify-between items-center cursor-pointer" onclick="selectCategory('C', formatDateTimeUTC(addDaysUTC(10), 'date'))">
+                <span class="text-gray-700 font-medium">Category C:</span>
+                <span id="resultDateC" class="bg-gray-200 border rounded py-2 px-4 text-gray-800 date-column"></span>
+            </div>
+            <div class="flex justify-between items-center cursor-pointer" onclick="selectCategory('D', formatDateTimeUTC(addDaysUTC(120), 'date'))">
+                <span class="text-gray-700 font-medium">Category D:</span>
+                <span id="resultDateD" class="bg-gray-200 border rounded py-2 px-gray-800 date-column"></span>
+            </div>
+        </div>
+        <p class="text-gray-500 text-sm mt-4">
+            Dates are calculated as: Category A - No date, Category B - Today + 3 days, Category C - Today + 10 days, Category D - Today + 120 days (all in UTC).
+        </p>
+    </div>
+
+    <script>
+        const resultDateAElement = document.getElementById("resultDateA");
+        const resultDateBElem = document.getElementById("resultDateB");
+        const resultDateCElem = document.getElementById("resultDateC");
+        const resultDateDElem = document.getElementById("resultDateD");
+        const validTillElement = document.getElementById("validTill");
+        const melCatElement = document.getElementById("melCat");
+        const currentTimeUTCElement = document.getElementById("currentTimeUTC");
+
+        const allCategoryDivs = document.querySelectorAll('.space-y-4 > div');
+
+        function formatTimeUTC(date) {
+            const hoursUTC = date.getUTCHours();
+            const minutesUTC = date.getUTCMinutes();
+            return `${hoursUTC < 10 ? '0' + hoursUTC : hoursUTC}:${minutesUTC < 10 ? '0' + minutesUTC : minutesUTC} UTC`;
+        }
+
+        function updateCurrentTime() {
+            const nowUTC = new Date();
+            currentTimeUTCElement.textContent = formatTimeUTC(nowUTC);
+        }
+
+        window.onload = function() {
+            updateCurrentTime();
+            setInterval(updateCurrentTime, 60000); // Update every minute
+
+            resultDateBElem.textContent = formatDateTimeUTC(addDaysUTC(3), 'date');
+            resultDateCElem.textContent = formatDateTimeUTC(addDaysUTC(10), 'date');
+            resultDateDElem.textContent = formatDateTimeUTC(addDaysUTC(120), 'date');
+            // Initially select Category A to show red filled text
+            selectCategory('A', 'As per remarks');
+        };
+
+        function getTodayUTC() {
+            return new Date(Date.UTC(new Date().getUTCFullYear(), new Date().getUTCMonth(), new Date().getUTCDate()));
+        }
+
+        function addDaysUTC(days) {
+            const currentDateUTC = getTodayUTC();
+            currentDateUTC.setUTCDate(currentDateUTC.getUTCDate() + days);
+            return currentDateUTC;
+        }
+
+        function formatDateTimeUTC(date, type = 'datetime') {
+            const dayUTC = date.getUTCDate();
+            const monthUTC = date.getUTCMonth() + 1;
+            const yearUTC = date.getUTCFullYear();
+
+            const formattedDate = `${dayUTC < 10 ? '0' + dayUTC : dayUTC}-${monthUTC < 10 ? '0' + monthUTC : monthUTC}-${yearUTC}`;
+
+            if (type === 'date') {
+                return formattedDate;
+            }
+            return formattedDate; // We only need the date for the categories
+        }
+
+        function selectCategory(category, dateText) {
+            // Remove the selected class from all category spans
+            allCategoryDivs.forEach(div => {
+                const span = div.querySelector('span:last-child');
+                span.classList.remove('selected-date');
+            });
+
+            let selectedElement;
+            if (category === 'A') {
+                selectedElement = resultDateAElement;
+            } else if (category === 'B') {
+                selectedElement = resultDateBElem;
+            } else if (category === 'C') {
+                selectedElement = resultDateCElem;
+            } else if (category === 'D') {
+                selectedElement = resultDateDElem;
+            }
+
+            // Add the selected class to the clicked category's date span
+            if (selectedElement) {
+                selectedElement.classList.add('selected-date');
+            }
+
+            // Fill in the blanks in the initial text with red color
+            melCatElement.textContent = category;
+            validTillElement.textContent = dateText + " 23:59 UTC"; // Assuming midnight refers to the end of the day
+        }
+    </script>
+</body>
+</html>
