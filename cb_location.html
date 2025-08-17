@@ -1,0 +1,430 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Circuit Breakers</title>
+    <style>
+        table {
+            width: 100%; /* Make the table take up the full width of its container */
+            border-collapse: collapse; /* Collapse borders for a cleaner look */
+            margin-bottom: 20px; /* Add some space below the table */
+        }
+
+        th, td {
+            border: 1px solid #ddd; /* Light gray border for cells */
+            padding: 8px; /* Add some padding inside cells */
+            text-align: left; /* Align text to the left */
+        }
+
+        th {
+            background-color: #f2f2f2; /* Light gray background for header */
+            font-weight: bold; /* Make header text bold */
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9; /* Slightly different background for even rows */
+        }
+    </style>
+</head>
+<body>
+
+    <h2>CIRCUIT BREAKERS</h2>
+   
+    <table>
+        <thead>
+<tr><td>A/P DISENG ANN 1</td><td>E8-AVIONICS LT ESS</td><td>N/A</td></tr>
+<tr><td>A/P DISENG ANN. 2</td><td>E11-AVIONICS RT ESS</td><td>N/A</td></tr>
+<tr><td>A/P PITCH ACTUATOR</td><td>E1-AVIONICS LT MAIN</td><td>N/A</td></tr>
+<tr><td>A/P ROLL ACTUATOR</td><td>E2-AVIONICS LT MAIN</td><td>N/A</td></tr>
+<tr><td>AC CONTROL-SHED CONTROL</td><td>B3-RT SECONDARY</td><td>N/A</td></tr>
+<tr><td>ACARS</td><td>G1-AVIONICS LT MAIN</td><td>10 sec</td></tr>
+<tr><td>ACARS PRINTER</td><td>R6 - LT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>ACU</td><td>F3-LT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>ADF 1</td><td>H3-AVIONICS LT MAIN</td><td>10 sec</td></tr>
+<tr><td>ADF 2</td><td>H4-AVIONICS RT MAIN</td><td>10 sec</td></tr>
+<tr><td>ADU1</td><td>A7-AVIONICS LT ESS.</td><td>2 sec</td></tr>
+<tr><td>ADU2</td><td>A6-AVIONICS RT MAIN</td><td>2 sec</td></tr>
+<tr><td>AHRS 1</td><td>A9-AVIONICS LT ESS.</td><td>10sec</td></tr>
+<tr><td>AHRS 1</td><td>A4-AVIONICS RT MAIN</td><td>10sec</td></tr>
+<tr><td>AHRS 1 CP</td><td>B4-AVIONICS RT MAIN</td><td>N/A</td></tr>
+<tr><td>AHRS 1 CP</td><td>B9-AVIONICS LT ESS.</td><td>N/A</td></tr>
+<tr><td>AHRS 2</td><td>A10-AVIONICS RT ESS.</td><td>10sec</td></tr>
+<tr><td>AHRS 2</td><td>A3-AVIONICS LT MAIN</td><td>10sec</td></tr>
+<tr><td>AHRS 2 CP</td><td>B10-AVIONICS RT. ESS.</td><td>N/A</td></tr>
+<tr><td>AHRS 2 CP</td><td>B3-AVIONICS LT MAIN</td><td>N/A</td></tr>
+<tr><td>AILERON TRIM ACTUATOR</td><td>G8-LT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>AILERON TRIM INDICATION</td><td>H8-LT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>AIRFRAME DEICE - MAN CTRL</td><td>K7-RT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>AIRFRAME DEICE - PRESS IND 1</td><td>N8-LT SECONDARY</td><td>N/A</td></tr>
+<tr><td>AIRFRAME DEICE - VANE HTR #6</td><td>D8-RT SECONDARY</td><td>N/A</td></tr>
+<tr><td>AIRFRAME DEICE BOOT LTS PNL</td><td>S6-RT MAIN</td><td>N/A</td></tr>
+<tr><td>AIRFRAME DEICE CV/DRAIN HTRS</td><td>R8-LT SECONDARY</td><td>N/A</td></tr>
+<tr><td>AIRFRAME DEICE DRAIN HTRS</td><td>B8-RT SECONDARY</td><td>N/A</td></tr>
+<tr><td>AIRFRAME DEICE PRESS IND 2</td><td>A7-RT SECONDARY</td><td>N/A</td></tr>
+<tr><td>AIRFRAME DEICE TMU</td><td>S5-RT MAIN</td><td>5 sec</td></tr>
+<tr><td>AIRFRAME DEICE TMU</td><td>A7-LT MAIN</td><td>5 sec</td></tr>
+<tr><td>AIRFRAME DEICE-VANE HTR #5</td><td>Q8-LT SECONDARY</td><td>N/A</td></tr>
+<tr><td>AIRFRAME DEICE-VANE HTR 1&3</td><td>P8 -LT SECONDARY</td><td>N/A</td></tr>
+<tr><td>AIRFRAME DEICE-VANE HTR 3&4</td><td>C8-RT SECONDARY</td><td>N/A</td></tr>
+<tr><td>AIRFRAME DIECE TMU</td><td>M5-LT ESSENTIAL</td><td>5 sec</td></tr>
+<tr><td>ANTI ICE CONTROL-COPILOT W/S</td><td>B6-RT SECONDARY</td><td>5 sec</td></tr>
+<tr><td>ANTISKID INBOARD</td><td>Q5-RT MAIN</td><td>5sec</td></tr>
+<tr><td>ANTISKID OUTBOARD</td><td>R5-RT MAIN</td><td>5 sec</td></tr>
+<tr><td>ANVS - PWR 1</td><td>A2-RT SECONDARY</td><td>N/A</td></tr>
+<tr><td>ANVS - PWR 2</td><td>B2-RT SECONDARY</td><td>N/A</td></tr>
+<tr><td>ANVS - PWR 3</td><td>C2-RT SECONDARY</td><td>N/A</td></tr>
+<tr><td>ANVS-CONTROL</td><td>D2-RT SECONDARY</td><td>30sec</td></tr>
+<tr><td>AOA VANE - L/H AC PWR</td><td>AC PANEL</td><td>N/A</td></tr>
+<tr><td>AOA VANE - R/H AC PWR</td><td>AC PANEL</td><td>N/A</td></tr>
+<tr><td>APU - GEN EXCITE</td><td>N7-R ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>APU - PWR FADEC</td><td>R7-RT ESSENTIAL</td><td>10 sec</td></tr>
+<tr><td>APU- CONTROL</td><td>P7-RT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>APU-FUEL SOV IND</td><td>L3-LT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>APU-MAIN</td><td>Q7-RT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>ARCDU 1</td><td>E4-AVIONICS RT MAIN</td><td>10sec</td></tr>
+<tr><td>ARCDU 1</td><td>G2-LT ESSENTIAL</td><td>10sec</td></tr>
+<tr><td>ARCDU 2</td><td>D3-AVIONICS LT MAIN</td><td>10sec</td></tr>
+<tr><td>ARCDU 2</td><td>D10-AVIONICS RT ESS</td><td>10sec</td></tr>
+<tr><td>AUDIBLE EVAC ALERT</td><td>E3-RT ESS. BATT PWR</td><td>N/A</td></tr>
+<tr><td>CABIN PRESSURE AUTO CTRL</td><td>C4-LT MAIN</td><td>N/A</td></tr>
+<tr><td>CABIN PRESSURE MANUAL CTRL</td><td>L5-LT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>CAMERA, CABIN</td><td>P5 - LT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>CAUTION & WARN PANEL 1</td><td>M4-RT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>CAUTION & WARN PANEL 2</td><td>N4 -R MAIN</td><td>N/A</td></tr>
+<tr><td>CLOCK 1</td><td>E9-AVIONICS LT ESS</td><td>N/A</td></tr>
+<tr><td>CLOCK 1</td><td>F3-RT ESS. BATT PWR</td><td>N/A</td></tr>
+<tr><td>CLOCK 2</td><td>E6-AVIONICS RT MAIN</td><td>N/A</td></tr>
+<tr><td>CLOCK 2</td><td>G3-BATT. PWR</td><td>N/A</td></tr>
+<tr><td>COOLING FAN 1 PWR PRIMARY</td><td>A6-LT MAIN</td><td>N/A</td></tr>
+<tr><td>COOLING FAN 1 PWR SECONDARY</td><td>M6-LT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>COOLING FAN 2 PWR PRIMARY</td><td>R4-RT MAIN</td><td>N/A</td></tr>
+<tr><td>COOLING FAN 2 PWR SEC.</td><td>L9-RT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>COOLING FAN 3 PWR PRIMARY</td><td>S4-RT MAIN</td><td>N/A</td></tr>
+<tr><td>COOLING FAN 3 PWR SECONDARY</td><td>B6-LT MAIN</td><td>N/A</td></tr>
+<tr><td>COOLING FAN CTRL</td><td>K9-RT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>CVR</td><td>F4-AVIONICS RT MAIN</td><td>N/A</td></tr>
+<tr><td>DCMP</td><td>STBYCB</td><td>N/A</td></tr>
+<tr><td>DME 1</td><td>G3-AVIONICS LT MAIN</td><td>10 sec</td></tr>
+<tr><td>DME 2</td><td>G4-AVIONICS RT MAIN</td><td>10 sec</td></tr>
+<tr><td>DOOR - AIRSTAIR DR SOV</td><td>E1-LT MAIN</td><td>N/A</td></tr>
+<tr><td>DOOR - COCKPIT REMOTE ACCESS</td><td>E10-R ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>DOOR - DR SEAL RESTRICT HRT</td><td>P7-LT SECONDARY</td><td>N/A</td></tr>
+<tr><td>ECS - CABIN DUCT TEMP IND.</td><td>C6-RT SECONDARY</td><td>N/A</td></tr>
+<tr><td>ECS - ECSECU L CH AUTO</td><td>B7-LT MAIN</td><td>10 sec</td></tr>
+<tr><td>ECS - ECSECU L CH MANUAL</td><td>Q6-RT MAIN</td><td>10 sec</td></tr>
+<tr><td>ECS - ECSECU R CH AUTO</td><td>R6-RT MAIN</td><td>10 sec</td></tr>
+<tr><td>ECS - ECSECU R CH MANUAL</td><td>C7-LT MAIN</td><td>10 sec</td></tr>
+<tr><td>EFIS CP 1</td><td>C2-AVIONICS LT MAIN</td><td>N/A</td></tr>
+<tr><td>EFIS CP 2</td><td>C5-AVIONICS RT MAIN</td><td>N/A</td></tr>
+<tr><td>ELECT - AC GEN CTRL 1</td><td>D7-LT MAIN</td><td>N/A</td></tr>
+<tr><td>ELECT - AC GEN CTRL 2</td><td>P6-RT MAIN</td><td>N/A</td></tr>
+<tr><td>ELECT - AUX BATT CONT</td><td>L8-LT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>ELECT - AUX BATT INPUT 1</td><td>J9-LT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>ELECT - AUX BATT INPUT 2</td><td>K9-LT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>ELECT - AVIONIC FEEDERS</td><td>S8-RT MAIN</td><td>N/A</td></tr>
+<tr><td>ELECT - AVIONIC FEEDERS</td><td>F9-LT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>ELECT - AVIONIC FEEDERS</td><td>A8-LT MAIN</td><td>N/A</td></tr>
+<tr><td>ELECT - AVIONIC FEEDERS</td><td>R8-RT MAIN</td><td>N/A</td></tr>
+<tr><td>ELECT - AVIONIC FEEDERS</td><td>B8-LT MAIN</td><td>N/A</td></tr>
+<tr><td>ELECT - AVIONIC FEEDERS</td><td>C8-LT MAIN</td><td>N/A</td></tr>
+<tr><td>ELECT - AVIONIC FEEDERS</td><td>G9-LT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>ELECT - AVIONIC FEEDERS</td><td>H9-LT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>ELECT - AVIONICS FEEDERS</td><td>Q8-RT MAIN</td><td>N/A</td></tr>
+<tr><td>ELECT - AVIONICS FEEDERS</td><td>F9-RT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>ELECT - AVIONICS FEEDERS</td><td>G9-RT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>ELECT - BATT CNTRL STBY</td><td>J8-RT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>ELECT - BATT CTRL MAIN BATT.</td><td>K8-RT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>ELECT - BATT MASTER SWITCH</td><td>H3-BATT PWR</td><td>N/A</td></tr>
+<tr><td>ELECT - BATT MASTER SWITCH</td><td>J3-BATT PWR</td><td>N/A</td></tr>
+<tr><td>ELECT - BATT MASTER SWITCH</td><td>K3-BATT PWR</td><td>N/A</td></tr>
+<tr><td>ELECT - BATT MASTER SWITCH</td><td>L3-BATT PWR</td><td>N/A</td></tr>
+<tr><td>ELECT - BUS FAULT RESET SWITCH</td><td>M8-LT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>ELECT - BUS TIE</td><td>J10-RT ESSENITAL</td><td>N/A</td></tr>
+<tr><td>ELECT - BUS TIE</td><td>H10-LT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>ELECT - DC BUS TIE CTRL</td><td>G8-RT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>ELECT - DC GEN 1 EXCITE</td><td>K8-LT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>ELECT - DC GEN 2 EXCITE</td><td>H8-RT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>ELECT - DC PWR MONITOR</td><td>H10-RT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>ELECT - EPCU DC PWR MON</td><td>G10-LT ESSENTIAL</td><td>10 sec</td></tr>
+<tr><td>ELECT - EPCU IND.</td><td>P8-RT MAIN</td><td>10 sec</td></tr>
+<tr><td>ELECT - EPCU VOLT IND</td><td>D8-LT MAIN</td><td>10 sec</td></tr>
+<tr><td>ELECT - EPCU VOLT IND</td><td>N9-LT SECONDARY</td><td>10 sec</td></tr>
+<tr><td>ELECT - EPCU VOLTAGE IND,</td><td>D9-RT SECONDARY</td><td>N/A</td></tr>
+<tr><td>ELECT - EXT PWR LOGIC</td><td>F8 - RT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>ELECT - L ESS BUS 1</td><td>E10-LT MAIN</td><td>N/A</td></tr>
+<tr><td>ELECT - L ESS BUS 2</td><td>E8-LT MAIN</td><td>N/A</td></tr>
+<tr><td>ELECT - L MAIN INPUT</td><td>A9-LT MAIN</td><td>N/A</td></tr>
+<tr><td>ELECT - L MAIN INPUT</td><td>B9-LT MAIN</td><td>N/A</td></tr>
+<tr><td>ELECT - L MAIN INPUT 1</td><td>J10-LT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>ELECT - L MAIN INPUT 2</td><td>K10 LT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>ELECT - L SEC INPUT</td><td>N10-LT SECONDARY</td><td>N/A</td></tr>
+<tr><td>ELECT - L SEC INPUT</td><td>P10-LT SECONDARY</td><td>N/A</td></tr>
+<tr><td>ELECT - L SEC INPUT</td><td>Q10-LT SECONDARY</td><td>N/A</td></tr>
+<tr><td>ELECT - L SEC INPUT</td><td>R10-LT SECONDARY</td><td>N/A</td></tr>
+<tr><td>ELECT - LEFT BUS TIE</td><td>J9-RT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>ELECT - LT ESS BATT BUS</td><td>J3-LT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>ELECT - LT MAIN INPUT</td><td>C9-LT MAIN</td><td>N/A</td></tr>
+<tr><td>ELECT - LT MAIN INPUT</td><td>D9-LT MAIN</td><td>N/A</td></tr>
+<tr><td>ELECT - MAIN BATT INPUT 1</td><td>K10-RT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>ELECT - MAIN BATT INPUT 2</td><td>L10-RT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>ELECT - R ESS BUS 1</td><td>N10 - R MAIN</td><td>N/A</td></tr>
+<tr><td>ELECT - R ESS BUS 2</td><td>N9 - R MAIN</td><td>N/A</td></tr>
+<tr><td>ELECT - R MAIN INPUT 1</td><td>F10-RT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>ELECT - R MAIN INPUT 2</td><td>G10-RT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>ELECT - R SEC INPUT</td><td>A10-RT SECONDARY</td><td>N/A</td></tr>
+<tr><td>ELECT - R SEC INPUT</td><td>B10-RT SECONDARY</td><td>N/A</td></tr>
+<tr><td>ELECT - R SEC INPUT</td><td>C10-RT SECONDARY</td><td>N/A</td></tr>
+<tr><td>ELECT - R SEC INPUT</td><td>D10-RT SECONDARY</td><td>N/A</td></tr>
+<tr><td>ELECT - RIGHT BUS TIE</td><td>J8-LT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>ELECT - RT MAIN INPUT</td><td>R9-RT MAIN</td><td>N/A</td></tr>
+<tr><td>ELECT - RT MAIN INPUT</td><td>P9-RT MAIN</td><td>N/A</td></tr>
+<tr><td>ELECT - RT MAIN INPUT</td><td>Q10-RT MAIN</td><td>N/A</td></tr>
+<tr><td>ELECT - RT MAIN INPUT</td><td>S9-RT MAIN</td><td>N/A</td></tr>
+<tr><td>ELECT - SECONDARY BUS TIE</td><td>H9-RT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>ELECT - STANDBY BATTERY</td><td>M9-LT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>ELECT - STBY BATT</td><td>M9-RT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>ELT</td><td>F10-AVIONICS RT ESS</td><td>N/A</td></tr>
+<tr><td>ENGINE - ECIU CH A</td><td>H5-LT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>ENGINE - ECIU CH B</td><td>H5-RT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>ENGINE - EMU</td><td>C5-LT MAIN</td><td>N/A</td></tr>
+<tr><td>ENGINE - ENG START PANEL</td><td>H6-LT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>ENGINE 1 - FADEC CH A</td><td>J4 LT ESSENTIAL</td><td>5 sec</td></tr>
+<tr><td>ENGINE 1 - FADEC CH B</td><td>J4-RT ESSENTIAL</td><td>5 sec</td></tr>
+<tr><td>ENGINE 1 - FUEL & FMU</td><td>H2-BATT PWR</td><td>N/A</td></tr>
+<tr><td>ENGINE 1 - IGNITION CH A</td><td>J5-LT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>ENGINE 1 - IGNITION CH B</td><td>J5-RT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>ENGINE 1 - INTAKE BYPASS DR ACT</td><td>P6-LT SECONDARY</td><td>N/A</td></tr>
+<tr><td>ENGINE 1 - INTK HTR AC PWR</td><td>AC PANEL</td><td>N/A</td></tr>
+<tr><td>ENGINE 1 - OIL COOLER DR ACT</td><td>L9-LT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>ENGINE 2 - FADEC CH A</td><td>K4-LT ESSETNIAL</td><td>5 sec</td></tr>
+<tr><td>ENGINE 2 - FADEC CH B</td><td>K4 RT ESSENTIAL</td><td>5 sec</td></tr>
+<tr><td>ENGINE 2 - FUEL & FMU</td><td>J2-BATT PWR</td><td>N/A</td></tr>
+<tr><td>ENGINE 2 - IGNITION CH A</td><td>K5-LT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>ENGINE 2 - IGNITION CH B</td><td>K5 RT ESSENITAL</td><td>N/A</td></tr>
+<tr><td>ENGINE 2 - INTK HTR AC PWR</td><td>AC PANEL</td><td>N/A</td></tr>
+<tr><td>ENGINE 2 - MAIN OIL PRESS</td><td>D7-RT SECONDARY</td><td>N/A</td></tr>
+<tr><td>ENGINE 2 - MAIN OIL PRESS</td><td>N8 - RT MAIN</td><td>N/A</td></tr>
+<tr><td>ENGINE 2 - OIL COOLER DR ACT</td><td>E9-RT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>ENGINE 2- INTAKE BYPASS DR ACT</td><td>D6-RT SECONDARY</td><td>N/A</td></tr>
+<tr><td>EQAR</td><td>L1-AVIONICS LT MAIN</td><td>1 sec</td></tr>
+<tr><td>EQAR</td><td>E4-LT MAIN</td><td>1sec</td></tr>
+<tr><td>ESID (ED)</td><td>B5-AVIONICS RT MAIN</td><td>30 sec</td></tr>
+<tr><td>ESID (ED)</td><td>B11-AVIONICS RT. ESS.</td><td>30 sec</td></tr>
+<tr><td>ESID-CP</td><td>B2-AVIONICS LT MAIN</td><td>N/A</td></tr>
+<tr><td>FADEC 1 CH A</td><td>J4 LT ESSENTIAL</td><td>5 sec</td></tr>
+<tr><td>FADEC 1 CH B</td><td>J4 RT ESSENTIAL</td><td>5 sec</td></tr>
+<tr><td>FADEC 2 CH A</td><td>K4-LT ESSETNIAL</td><td>5 sec</td></tr>
+<tr><td>FADEC 2 CH B</td><td>K4 RT ESSENTIAL</td><td>5 sec</td></tr>
+<tr><td>FCECU 1</td><td>M3-LT ESSENTIAL</td><td>90 sec</td></tr>
+<tr><td>FCECU 2</td><td>L6-RT ESSENTIAL</td><td>90 sec</td></tr>
+<tr><td>FDR</td><td>F3-AVIONICS LT MAIN</td><td>N/A</td></tr>
+<tr><td>FGM 1</td><td>F7-AVIONICS LT ESS</td><td>25sec</td></tr>
+<tr><td>FGM 2</td><td>F6-AVIONICS RT MAIN</td><td>25sec</td></tr>
+<tr><td>FIRE - APU/CARGO MANUAL EXT</td><td>K1-BATT PWR</td><td>N/A</td></tr>
+<tr><td>FIRE - CARGO CNTRL AMP &EXT</td><td>G2-BATT PWR</td><td>N/A</td></tr>
+<tr><td>FIRE - CARGO IND LTS</td><td>K3-LT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>FIRE - CARGO VENT VALVES</td><td>N3-RT MAIN</td><td>N/A</td></tr>
+<tr><td>FIRE - DETECTION ENG 1 VLV IND</td><td>J7-LT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>FIRE - DETECTION ENG 2 IND.</td><td>J7-RT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>FIRE - ENG 1 DETECTION & IND.</td><td>K7-LT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>FIRE - ENG 1&2 CNTRL AMP & EXT.</td><td>F2-RT ESS. BATT PWR</td><td>N/A</td></tr>
+<tr><td>FIRE - ENG 2 VALVE INDICATION</td><td>H7-RT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>FIRE - FIRE DETECTION APU IND.</td><td>G7-RT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>FIRE - SMOKE DET. BAGG/CARGO 2</td><td>M5-RT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>FIRE - SMOKE DET. LAV/CARGO 1</td><td>L5-RT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>FLAPS - L/H POSITION IND</td><td>M7-LT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>FLAPS - R/H POSITION IND.</td><td>F7-RT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>FLAPS CONTROL</td><td>L7-LT ESSENTIAL</td><td>5sec</td></tr>
+<tr><td>FLIGHT ATT. ADVISORY SIGNS</td><td>L2-LT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>FLIGHT ATTENDANT ANN.</td><td>G9-AVIONICS LT ESS</td><td>N/A</td></tr>
+<tr><td>FLIGHT ATTENDANT HANDSET PWR</td><td>Q1-AVIONICS LT MAIN</td><td>N/A</td></tr>
+<tr><td>FLIGHT GUIDANCE CP 1</td><td>G7-AVIONICS LT ESS</td><td>N/A</td></tr>
+<tr><td>FLIGHT GUIDANCE CP 2</td><td>G6-AVIONICS RT MAIN</td><td>N/A</td></tr>
+<tr><td>FMS 1</td><td>J3-AVIONICS LT ESS</td><td>35sec</td></tr>
+<tr><td>FMS 2</td><td>J4-AVIONICS RT MAIN</td><td>35sec</td></tr>
+<tr><td>FUEL - AUX PUMP 1 AC PWR</td><td>AC PANEL</td><td>N/A</td></tr>
+<tr><td>FUEL - AUX PUMP 2 AC PWR</td><td>AC PANEL</td><td>N/A</td></tr>
+<tr><td>FUEL - BATT REFUEL</td><td>M3-BATT PWR</td><td>N/A</td></tr>
+<tr><td>FUEL - HIGH LEVEL CTRL UNIT</td><td>L4-LT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>FUEL - REF/DEFUEL-RELAY XFR PNL</td><td>M4-LT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>FUEL - REFUEL/DEFUEL RELAY PNL</td><td>F4-RT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>FUEL - SOV ENG 1</td><td>K2-BATT PWR</td><td>N/A</td></tr>
+<tr><td>FUEL - SOV ENG 2</td><td>L2-RT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>FUEL - XFER PANEL</td><td>C4-RT SECONDARY</td><td>N/A</td></tr>
+<tr><td>GALLEY CONTROL PANEL</td><td>C3-RT SECONDARY</td><td>N/A</td></tr>
+<tr><td>GALLEY POWER</td><td>B1-RT SECONDARY</td><td>N/A</td></tr>
+<tr><td>GND CREW INPH ADV LIGHT</td><td>D7-AVIONICS LT ESS</td><td>N/A</td></tr>
+<tr><td>GPWS - LDG/FLAP</td><td>C1-AVIONICS LT MAIN</td><td>N/A</td></tr>
+<tr><td>GPWS - SYST</td><td>A1-AVIONICS LT MAIN</td><td>5sec</td></tr>
+<tr><td>GPWS -ANN</td><td>B1-AVIONICS LT MAIN</td><td>N/A</td></tr>
+<tr><td>HUG COMPUTER</td><td>N1-AVIONICS LT MAIN</td><td>30sec</td></tr>
+<tr><td>HUG CONTROL PANEL</td><td>M1-AVIONICS LT MAIN</td><td>30sec</td></tr>
+<tr><td>HYDRAULIC - HYD #3 CONTROL</td><td>M7-RT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>HYDRAULIC - HYD #3 CONTROL</td><td>H7-LT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>HYDRAULIC - HYD PRESS IND 1</td><td>F8-LT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>HYDRAULIC - PRESS. INDICATION</td><td>M8-RT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>HYDRAULIC - PTU</td><td>L8-RT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>HYDRAULIC - RUD ISO VALVE</td><td>E7-LT MAIN</td><td>N/A</td></tr>
+<tr><td>HYDRAULIC - STBY HYD PRESS IND 1</td><td>R4-LT SECONDARY</td><td>N/A</td></tr>
+<tr><td>HYDRUALIC - EN1 SOV</td><td>F1-RT ESS. BATT PWR</td><td>N/A</td></tr>
+<tr><td>HYDRYUALIC - ENG 2 SOV</td><td>G1-BATT PWR</td><td>N/A</td></tr>
+<tr><td>ICE DETECTOR - L/H AC PWR</td><td>AC PANEL</td><td>N/A</td></tr>
+<tr><td>ICE DETECTOR - R/H AC PWR</td><td>AC PANEL</td><td>N/A</td></tr>
+<tr><td>INDEX CONTROL PANEL 1</td><td>C7-AVIONICS LT ESS</td><td>N/A</td></tr>
+<tr><td>INDEX CONTROL PANEL 2</td><td>C6-AVIONICS RT MAIN</td><td>N/A</td></tr>
+<tr><td>INTEGRATED STBY INSTRUMENT</td><td>H1-LT BATT PWR</td><td>30sec</td></tr>
+<tr><td>IOM 1</td><td>F7-AVIONICS LT ESS</td><td>25sec</td></tr>
+<tr><td>IOM 2</td><td>F6-AVIONICS RT MAIN</td><td>25sec</td></tr>
+<tr><td>IOP 1</td><td>F7-AVIONICS LT ESS</td><td>25sec</td></tr>
+<tr><td>IOP 2</td><td>F6-AVIONICS RT MAIN</td><td>25sec</td></tr>
+<tr><td>IRS 1</td><td>L2-AVIONICS LT MAIN</td><td>N/A</td></tr>
+<tr><td>IRS FAN -AC PWR</td><td>AC PANEL</td><td>N/A</td></tr>
+<tr><td>LAVATORY SYSTEM -LOW LEVEL</td><td>D3-RT SECONDARY</td><td>N/A</td></tr>
+<tr><td>LIGHTS - ADVISORY CTRL UNIT</td><td>F3-LT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>LIGHTS - AIRSTAIR LIGHTS</td><td>E2-LT MAIN</td><td>N/A</td></tr>
+<tr><td>LIGHTS - ANTI COLL. WHT & RED</td><td>Q2-RT MAIN</td><td>N/A</td></tr>
+<tr><td>LIGHTS - APPROACH LTS LH PWR</td><td>N1-LT SECONDARY</td><td>N/A</td></tr>
+<tr><td>LIGHTS - APPROACH LTS RT PWR</td><td>N2-RT MAIN</td><td>N/A</td></tr>
+<tr><td>LIGHTS - ATTENDANT READING LTS</td><td>Q1-LT SECONDARY</td><td>N/A</td></tr>
+<tr><td>LIGHTS - BOARDING LIGHTS</td><td>H1-BATT PWR</td><td>N/A</td></tr>
+<tr><td>LIGHTS - CABIN LTS PWR 1</td><td>S2-RT MAIN</td><td>N/A</td></tr>
+<tr><td>LIGHTS - CABIN LTS PWR 2</td><td>S1-RT MAIN</td><td>N/A</td></tr>
+<tr><td>LIGHTS - CABIN SIDEWALL LTS CTRL</td><td>Q2-LT SECONDARY</td><td>N/A</td></tr>
+<tr><td>LIGHTS - CABIN SIDEWALL PWR 1</td><td>P2-LT SECONDARY</td><td>N/A</td></tr>
+<tr><td>LIGHTS - CABIN SIDEWALL PWR 2</td><td>A1-RT SECONDARY</td><td>N/A</td></tr>
+<tr><td>LIGHTS - CAUTION & WARN 1</td><td>M4-RT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>LIGHTS - CAUTION & WARN 2</td><td>N4 -R MAIN</td><td>N/A</td></tr>
+<tr><td>LIGHTS - CEILING LIGHTS CTRL</td><td>R2-RT MAIN</td><td>N/A</td></tr>
+<tr><td>LIGHTS - CENTER CONSOLE</td><td>S3-RT MAIN</td><td>N/A</td></tr>
+<tr><td>LIGHTS - COPLT CB PANEL LTS</td><td>L4-RT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>LIGHTS - COPLT MAP LIGHTS</td><td>P3-RT MAIN</td><td>N/A</td></tr>
+<tr><td>LIGHTS - EMERG LIGHTS</td><td>L1-BATT PWR</td><td>N/A</td></tr>
+<tr><td>LIGHTS - EMERGENCY LIGHTS</td><td>G3-LT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>LIGHTS - EMERGENCY LTS RELAY</td><td>E3-LT MAIN</td><td>N/A</td></tr>
+<tr><td>LIGHTS - FLT CMPT & DOME LTS</td><td>J1-BATT PWR</td><td>N/A</td></tr>
+<tr><td>LIGHTS - FLT COMPT DOME LTS</td><td>N2-LT SECONDARY</td><td>N/A</td></tr>
+<tr><td>LIGHTS - GLARE SHIELD LTS</td><td>B3-LT MAIN</td><td>N/A</td></tr>
+<tr><td>LIGHTS - L/H FLARE LIGHTS</td><td>D2-LT MAIN</td><td>N/A</td></tr>
+<tr><td>LIGHTS - L/H READING LIGHTS</td><td>Q1-RT MAIN</td><td>N/A</td></tr>
+<tr><td>LIGHTS - L/H WING INSPECTION</td><td>P1-LT SECONDARY</td><td>N/A</td></tr>
+<tr><td>LIGHTS - LANDING LTS CONTROL 1</td><td>C2-LT MAIN</td><td>N/A</td></tr>
+<tr><td>LIGHTS - LANDING LTS CTRL 2</td><td>P2-RT MAIN</td><td>N/A</td></tr>
+<tr><td>LIGHTS - LAVATORY</td><td>R2-LT SECONDARY</td><td>N/A</td></tr>
+<tr><td>LIGHTS - LOGO L/H</td><td>B7-RT SECONDARY</td><td>N/A</td></tr>
+<tr><td>LIGHTS - LOGO R/H</td><td>C7-RT SECONDARY</td><td>N/A</td></tr>
+<tr><td>LIGHTS - OVERHEAD CONSOLE</td><td>A3-LT MAIN</td><td>N/A</td></tr>
+<tr><td>LIGHTS - PANEL COPILOT FLIGHT</td><td>Q3-RT MAIN</td><td>N/A</td></tr>
+<tr><td>LIGHTS - PANEL LTS ENG INST.</td><td>R3- RT MAIN</td><td>N/A</td></tr>
+<tr><td>LIGHTS - PANEL LTS PLT FLT.</td><td>C3-LT MAIN</td><td>N/A</td></tr>
+<tr><td>LIGHTS - PILOT MAP LIGHTS</td><td>D3-LT MAIN</td><td>N/A</td></tr>
+<tr><td>LIGHTS - POSITION LIGHTS</td><td>M2-BATT PWR</td><td>N/A</td></tr>
+<tr><td>LIGHTS - R/H READING LIGHTS</td><td>R1-RT MAIN</td><td>N/A</td></tr>
+<tr><td>LIGHTS - RIGHT FLARE</td><td>C1-RT SECONDARY</td><td>N/A</td></tr>
+<tr><td>LIGHTS - RIGHT WING INSP.</td><td>D1-RT SECONDARY</td><td>N/A</td></tr>
+<tr><td>LIGHTS - STORM PNL CB PNL LTS</td><td>L1-LT BATT PWR</td><td>N/A</td></tr>
+<tr><td>LIGHTS - TAXI LIGHTS PWR</td><td>A2-LT MAIN</td><td>N/A</td></tr>
+<tr><td>LIGHTS - TAXI LTS CONTROL</td><td>B2-LT MAIN</td><td>N/A</td></tr>
+<tr><td>LIGHTS - WARDROBE & BAGG LTS</td><td>K2-LT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>MAINTENANCE PANEL</td><td>S6-LT SECONDARY</td><td>N/A</td></tr>
+<tr><td>MEDICAL OUTLET</td><td>R1-LT SECONDARY</td><td>N/A</td></tr>
+<tr><td>MFD 1</td><td>B7-AVIONICS LT ESS.</td><td>30 sec</td></tr>
+<tr><td>MFD 2</td><td>B6-AVIONICS RT MAIN</td><td>30 sec</td></tr>
+<tr><td>NOSE WHEEL STEERING CTRL 1</td><td>C6-LT MAIN</td><td>10sec</td></tr>
+<tr><td>NOSE WHEEL STEERING CTRL 2</td><td>P5-RT MAIN</td><td>10sec</td></tr>
+<tr><td>P.A. AMP</td><td>B8-AVIONICS LT ESS.</td><td>N/A</td></tr>
+<tr><td>PA EMERGENCY POWER</td><td>M1-BATT PWR</td><td>N/A</td></tr>
+<tr><td>PASS WARNING SIGNS</td><td>H3-LT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>PASSENGER BREIFING SYSTEM</td><td>A1-LT MAIN</td><td>N/A</td></tr>
+<tr><td>PEC 1 CH A</td><td>J6-LT ESSENTIAL</td><td>5 sec</td></tr>
+<tr><td>PEC 1 CH B</td><td>J6-RT ESSENTIAL</td><td>5 sec</td></tr>
+<tr><td>PEC 2 CH A</td><td>K6-RT ESSENTIAL</td><td>5 sec</td></tr>
+<tr><td>PEC 2 CH B</td><td>K6-LT ESSENTIAL</td><td>5 sec</td></tr>
+<tr><td>PFD 1</td><td>A2-AVIONICS LT MAIN</td><td>30 sec</td></tr>
+<tr><td>PFD 2</td><td>A5-AVIONICS RT MAIN</td><td>30 sec</td></tr>
+<tr><td>PITCH FEEL ACTUATOR 1</td><td>H4-LT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>PITCH FEEL ACTUATOR 2</td><td>H4-RT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>PITCH TRIM ACTUATOR 1</td><td>G4- LT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>PITCH TRIM ACTUATOR 2</td><td>G4-RT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>PITCH TRIM INDICATION</td><td>F4-LT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>PITOT HEAT - STANDBY</td><td>L7-RT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>PITOT HEAT L/H AC PWR</td><td>AC PANEL</td><td>N/A</td></tr>
+<tr><td>PITOT HEAT R/H AC PWR</td><td>AC PANEL</td><td>N/A</td></tr>
+<tr><td>PITOT STATIC ISO VLV</td><td>J2-LT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>PROP - AUX PUMP 1</td><td>A4-RT SECONDARY</td><td>N/A</td></tr>
+<tr><td>PROP - OSPD TEST</td><td>S9-LT SECONDARY</td><td>N/A</td></tr>
+<tr><td>PROP - PROP BALANCE</td><td>P4-RT MAIN</td><td>N/A</td></tr>
+<tr><td>PROP - TMU</td><td>M5-LT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>PROP 1 - ALT FEATHER PUMP</td><td>D4-RT SECONDARY</td><td>N/A</td></tr>
+<tr><td>PROP 1 - BETA LIGHTS</td><td>F5-LT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>PROP 1 - BETA SOLENOID</td><td>G5-LT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>PROP 1 - PEC CH A</td><td>J6-LT ESSENTIAL</td><td>5 sec</td></tr>
+<tr><td>PROP 1 - PEC CH B</td><td>J6-RT ESSENTIAL</td><td>5 sec</td></tr>
+<tr><td>PROP 1 - TMCU</td><td>L6-LT Essential</td><td>N/A</td></tr>
+<tr><td>PROP 2 - ALT FEATHER PUMP</td><td>P4-LT SECONDARY</td><td>N/A</td></tr>
+<tr><td>PROP 2 - AUX PUMP</td><td>S4-LT SECONDARY</td><td>N/A</td></tr>
+<tr><td>PROP 2 - BETA LIGHTS</td><td>F5-RT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>PROP 2 - BETA SOLENOID</td><td>G5-RT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>PROP 2 - PEC CH A</td><td>K6-RT ESSENTIAL</td><td>5 sec</td></tr>
+<tr><td>PROP 2 - PEC CH B</td><td>K6-LT ESSENTIAL</td><td>5 sec</td></tr>
+<tr><td>PROP 2 - TMCU</td><td>E5 - RT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>PSEU - ALT DWNLK IND</td><td>G6-LT ESSENTIAL</td><td>5sec</td></tr>
+<tr><td>PSEU - ALT DWNLK IND.</td><td>D6-LT MAIN</td><td>5sec</td></tr>
+<tr><td>PSEU - WOW 1 & IND</td><td>N6-R MAIN</td><td>5sec</td></tr>
+<tr><td>PSEU - WOW 1 & IND.</td><td>M6-RT ESSENTIAL</td><td>5sec</td></tr>
+<tr><td>PSEU - WOW 2 & CONTROL</td><td>F6-LT ESSENTIAL</td><td>5sec</td></tr>
+<tr><td>PSEU - WOW2 & CONTROL</td><td>E6-LT MAIN</td><td>5sec</td></tr>
+<tr><td>RADIO ALTIMETER 1</td><td>L3-AVIONICS LT MAIN</td><td>5sec</td></tr>
+<tr><td>RADIO ALTIMETER 2</td><td>L4-AVIONICS RT MAIN</td><td>5sec</td></tr>
+<tr><td>RCAU - COPILOT AUDIO</td><td>C3-AVIONICS LT MAIN</td><td>5sec</td></tr>
+<tr><td>RCAU - COPILOT AUDIO</td><td>C10-AVIONICS RT ESS.</td><td>5sec</td></tr>
+<tr><td>RCAU - OBS AUDIO</td><td>C4-AVIONICS RT MAIN</td><td>5sec</td></tr>
+<tr><td>RCAU - PILOT AUDIO</td><td>D4-AVIONICS RT MAIN</td><td>5sec</td></tr>
+<tr><td>RCAU - PILOT AUDIO</td><td>H2-LT ESSENTIAL</td><td>5sec</td></tr>
+<tr><td>RUDDER TRIM ACTUATOR</td><td>F7-LT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>RUDDER TRIM INDICATION</td><td>G7-LT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>SPKR-COPILOT (RCAU)</td><td>C11-AVIONICS RT. ESS</td><td>5sec</td></tr>
+<tr><td>SPKR-PILOT (RCAU)</td><td>C9-AVIONICS LT ESS</td><td>5sec</td></tr>
+<tr><td>SPLRS - ARM INBOARD</td><td>F6-RT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>SPLRS - ARM OUTBARD</td><td>G6-RT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>SPLRS-INDICATION</td><td>H6-RT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>STALL SYS .- SPM 1</td><td>F2-AVIONICS LT MAIN</td><td>25 sec</td></tr>
+<tr><td>STALL SYS. - SPM 2</td><td>F5-AVIONICS RT MAIN</td><td>25 sec</td></tr>
+<tr><td>STALL SYS. - STICK PUSHER 2</td><td>K6-AVIONICS RT MAIN</td><td>5 sec</td></tr>
+<tr><td>STALL SYS.- STICK PUSHER 1</td><td>K1-AVIONICS LT MAIN</td><td>5 sec</td></tr>
+<tr><td>STANDBY COMPASS</td><td>F1-LT BATT PWR</td><td>N/A</td></tr>
+<tr><td>TCAS</td><td>F1-AVIONICS LT MAIN</td><td>20sec</td></tr>
+<tr><td>TMCU - PROP 1</td><td>L6-LT Essential</td><td>N/A</td></tr>
+<tr><td>TMCU - PROP 2</td><td>E5 - RT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>TMU</td><td>M5-LT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>TMU - AUTO DIST VLV</td><td>A8-RT SECONDARY</td><td>N/A</td></tr>
+<tr><td>TMU - DEICE CTRL</td><td>M5-LT ESSENTIAL</td><td>N/A</td></tr>
+<tr><td>TRANSPONDER 1 (ATC)</td><td>M3-AVIONICS LT MAIN</td><td>5sec</td></tr>
+<tr><td>TRANSPONDER 2(ATC)</td><td>M4-AVIONICS RT MAIN</td><td>5sec</td></tr>
+<tr><td>TRU - L/H AC INPUT</td><td>AC PANEL</td><td>N/A</td></tr>
+<tr><td>TRU - R/H AC INPUT</td><td>AC PANEL</td><td>N/A</td></tr>
+<tr><td>VHF COMM 1</td><td>J1-LT BATT PWR</td><td>10 sec</td></tr>
+<tr><td>VHF COMM 2</td><td>D6-AVIONICS RT MAIN</td><td>10 sec</td></tr>
+<tr><td>VHF COMM 3</td><td>D1-AVIONICS LT MAIN</td><td>10 sec</td></tr>
+<tr><td>VHF COMM STBY</td><td>K1-LT BATT PWR</td><td>N/A</td></tr>
+<tr><td>VHF NAV 1</td><td>F2-LT ESSENTIAL</td><td>5sec</td></tr>
+<tr><td>VHF NAV 2</td><td>D5-AVIONICS RT MAIN</td><td>5sec</td></tr>
+<tr><td>VHF NAV 3</td><td>H5-AVIONICS RT MAIN</td><td>5sec</td></tr>
+<tr><td>WEATHER RADAR</td><td>H2-AVIONICS LT MAIN</td><td>5sec</td></tr>
+<tr><td>WEATHER RADAR CP</td><td>H1-AVIONICS LT MAIN</td><td>5sec</td></tr>
+<tr><td>WSHLD HEAT L/H AC PWR</td><td>AC PANEL-LT BUS</td><td>N/A</td></tr>
+<tr><td>WSHLD HEAT R/H AC PWR</td><td>AC PANEL-RT BUS</td><td>N/A</td></tr>
+<tr><td>WSHLD HT CTRL L/H</td><td>R7-LT SECONDARY</td><td>N/A</td></tr>
+<tr><td>WSHLD HT CTRL-PILOT RELAY</td><td>N5-R MAIN</td><td>N/A</td></tr>
+<tr><td>WSHLD WIPER - PILOT</td><td>S7-LT SECONDARY</td><td>N/A</td></tr>
+<tr><td>WSHLD WIPER-COPILOT</td><td>A6-RT SECONDARY</td><td>N/A</td></tr>
+<tr><td>YAW DAMP ACTUATOR</td><td>E3-AVIONICS LT MAIN</td><td>N/A</td></tr>
+
+
+        </tbody>
+    </table>
+
+   
+</body>
+</html>
