@@ -1,72 +1,222 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Clickable ATA Code Index</title>
-<style>
-  body {
-    font-family: sans-serif;
-  }
-  .ata-index {
-    list-style-type: none;
-    padding: 0;
-  }
-  .ata-chapter {
-    margin: 5px 0;
-  }
-  .ata-chapter a {
-    text-decoration: none;
-    color: #007bff;
-  }
-  .ata-chapter a:hover {
-    text-decoration: underline;
-  }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ATA Code Index</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f4f7f6;
+    }
+    /* Custom styles for a bit of extra polish */
+    .card-link {
+      transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    }
+    .card-link:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+  </style>
 </head>
-<body>
+<body class="bg-gray-100 text-gray-800">
 
-<h1>ATA Code Index</h1>
+  <div class="container mx-auto px-4 py-8 md:py-12">
+    <header class="text-center mb-10">
+      <h1 class="text-3xl md:text-4xl font-bold text-gray-900">ATA Code Index</h1>
+      <p class="text-md text-gray-600 mt-2">Select an ATA chapter to view details.</p>
+    </header>
 
-<ul class="ata-index">
-  <li class="ata-chapter"><a href="#ata-05">ATA 05 - TIME LIMITS/MAINTENANCE CHECKS</a></li>
-  <li class="ata-chapter"><a href="#ata-06">ATA 06 - DIMENSIONS AND AREAS</a></li>
-  <li class="ata-chapter"><a href="#ata-07">ATA 07 - LIFTING AND SHORING</a></li>
-  <li class="ata-chapter"><a href="#ata-08">ATA 08 - LEVELING AND WEIGHING</a></li>
-  <li class="ata-chapter"><a href="#ata-09">ATA 09 - TOWING AND TAXIING</a></li>
-  <li class="ata-chapter"><a href="#ata-10">ATA 10 - PARKING, MOORING, STORAGE & RETURN TO SERVICE</a></li>
-  <li class="ata-chapter"><a href="#ata-11">ATA 11 - PLACARDS AND MARKINGS</a></li>
-  <li class="ata-chapter"><a href="#ata-12">ATA 12 - SERVICING</a></li>
-  <li class="ata-chapter"><a href="#ata-20">ATA 20 - STANDARD PRACTICES - AIRFRAME</a></li>
-  <li class="ata-chapter"><a href="#ata-21">ATA 21 - AIR CONDITIONING</a></li>
-  <li class="ata-chapter"><a href="#ata-22">ATA 22 - AUTO FLIGHT</a></li>
-  <li class="ata-chapter"><a href="#ata-23">ATA 23 - COMMUNICATIONS</a></li>
-  <li class="ata-chapter"><a href="#ata-24">ATA 24 - ELECTRICAL POWER</a></li>
-  <li class="ata-chapter"><a href="#ata-25">ATA 25 - EQUIPMENT/FURNISHINGS</a></li>
-  <li class="ata-chapter"><a href="26.html">ATA26</a></li>
-  <li class="ata-chapter"><a href="#27.html">ATA 27 - FLIGHT CONTROLS</a></li>
-  <li class="ata-chapter"><a href="#ata-28">ATA 28 - FUEL</a></li>
-  <li class="ata-chapter"><a href="#ata-29">ATA 29 - HYDRAULIC POWER</a></li>
-  <li class="ata-chapter"><a href="#ata-30">ATA 30 - ICE AND RAIN PROTECTION</a></li>
-  <li class="ata-chapter"><a href="#ata-31">ATA 31 - INDICATING / RECORDING SYSTEMS</a></li>
-  <li class="ata-chapter"><a href="#ata-32">ATA 32 - LANDING GEAR</a></li>
-  <li class="ata-chapter"><a href="#ata-33">ATA 33 - LIGHTS</a></li>
-  <li class="ata-chapter"><a href="#ata-34">ATA 34 - NAVIGATION</a></li>
-  <li class="ata-chapter"><a href="#ata-35">ATA 35 - OXYGEN</a></li>
-  <li class="ata-chapter"><a href="#ata-36">ATA 36 - PNEUMATIC</a></li>
-  <li class="ata-chapter"><a href="#ata-38">ATA 38 - WATER/WASTE</a></li>
-  <li class="ata-chapter"><a href="#ata-49">ATA 49 - AIRBORNE AUXILIARY POWER</a></li>
-  <li class="ata-chapter"><a href="#ata-51">ATA 51 - STANDARD PRACTICES AND STRUCTURES</a></li>
-  <li class="ata-chapter"><a href="#ata-52">ATA 52 - DOORS</a></li>
-  <li class="ata-chapter"><a href="#ata-53">ATA 53 - FUSELAGE</a></li>
-  <li class="ata-chapter"><a href="#ata-54">ATA 54 - NACELLES/PYLONS</a></li>
-  <li class="ata-chapter"><a href="#ata-55">ATA 55 - STABILIZERS</a></li>
-  <li class="ata-chapter"><a href="#ata-56">ATA 56 - WINDOWS</a></li>
-  <li class="ata-chapter"><a href="#ata-57">ATA 57 - WINGS</a></li>
-  <li class="ata-chapter"><a href="61.html">ATA61</a></li>
-  <li class="ata-chapter"><a href="70-80.html">ATA70-ATA80</a></li>
-</ul>
+    <!-- The grid layout for the ATA chapters -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      
+      <!-- Each anchor tag is now a styled card -->
+      <a href="05.html" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
+        <span class="text-sm font-semibold text-blue-600">ATA 05</span>
+        <h3 class="text-lg font-semibold mt-1 text-gray-900">Time Limits/Maintenance Checks</h3>
+      </a>
+      
+      <a href="06.html" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
+        <span class="text-sm font-semibold text-blue-600">ATA 06</span>
+        <h3 class="text-lg font-semibold mt-1 text-gray-900">Dimensions and Areas</h3>
+      </a>
+
+      <a href="07.html" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
+        <span class="text-sm font-semibold text-blue-600">ATA 07</span>
+        <h3 class="text-lg font-semibold mt-1 text-gray-900">Lifting and Shoring</h3>
+      </a>
+
+      <a href="08.html" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
+        <span class="text-sm font-semibold text-blue-600">ATA 08</span>
+        <h3 class="text-lg font-semibold mt-1 text-gray-900">Leveling and Weighing</h3>
+      </a>
+
+      <a href="09.html" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
+        <span class="text-sm font-semibold text-blue-600">ATA 09</span>
+        <h3 class="text-lg font-semibold mt-1 text-gray-900">Towing and Taxiing</h3>
+      </a>
+
+      <a href="10.html" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
+        <span class="text-sm font-semibold text-blue-600">ATA 10</span>
+        <h3 class="text-lg font-semibold mt-1 text-gray-900">Parking, Mooring, Storage</h3>
+      </a>
+      
+      <a href="11.html" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
+        <span class="text-sm font-semibold text-blue-600">ATA 11</span>
+        <h3 class="text-lg font-semibold mt-1 text-gray-900">Placards and Markings</h3>
+      </a>
+
+      <a href="12.html" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
+        <span class="text-sm font-semibold text-blue-600">ATA 12</span>
+        <h3 class="text-lg font-semibold mt-1 text-gray-900">Servicing</h3>
+      </a>
+
+      <a href="20.html" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
+        <span class="text-sm font-semibold text-blue-600">ATA 20</span>
+        <h3 class="text-lg font-semibold mt-1 text-gray-900">Standard Practices - Airframe</h3>
+      </a>
+
+      <a href="21.html" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
+        <span class="text-sm font-semibold text-blue-600">ATA 21</span>
+        <h3 class="text-lg font-semibold mt-1 text-gray-900">Air Conditioning</h3>
+      </a>
+
+      <a href="22.html" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
+        <span class="text-sm font-semibold text-blue-600">ATA 22</span>
+        <h3 class="text-lg font-semibold mt-1 text-gray-900">Auto Flight</h3>
+      </a>
+
+      <a href="23.html" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
+        <span class="text-sm font-semibold text-blue-600">ATA 23</span>
+        <h3 class="text-lg font-semibold mt-1 text-gray-900">Communications</h3>
+      </a>
+
+      <a href="24.html" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
+        <span class="text-sm font-semibold text-blue-600">ATA 24</span>
+        <h3 class="text-lg font-semibold mt-1 text-gray-900">Electrical Power</h3>
+      </a>
+
+      <a href="25.html" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
+        <span class="text-sm font-semibold text-blue-600">ATA 25</span>
+        <h3 class="text-lg font-semibold mt-1 text-gray-900">Equipment/Furnishings</h3>
+      </a>
+
+      <a href="26.html" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
+        <span class="text-sm font-semibold text-blue-600">ATA 26</span>
+        <h3 class="text-lg font-semibold mt-1 text-gray-900">Fire Protection</h3>
+      </a>
+
+      <a href="27.html" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
+        <span class="text-sm font-semibold text-blue-600">ATA 27</span>
+        <h3 class="text-lg font-semibold mt-1 text-gray-900">Flight Controls</h3>
+      </a>
+
+      <a href="28.html" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
+        <span class="text-sm font-semibold text-blue-600">ATA 28</span>
+        <h3 class="text-lg font-semibold mt-1 text-gray-900">Fuel</h3>
+      </a>
+
+      <a href="29.html" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
+        <span class="text-sm font-semibold text-blue-600">ATA 29</span>
+        <h3 class="text-lg font-semibold mt-1 text-gray-900">Hydraulic Power</h3>
+      </a>
+
+      <a href="30.html" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
+        <span class="text-sm font-semibold text-blue-600">ATA 30</span>
+        <h3 class="text-lg font-semibold mt-1 text-gray-900">Ice and Rain Protection</h3>
+      </a>
+
+      <a href="31.html" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
+        <span class="text-sm font-semibold text-blue-600">ATA 31</span>
+        <h3 class="text-lg font-semibold mt-1 text-gray-900">Indicating / Recording</h3>
+      </a>
+
+      <a href="32.html" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
+        <span class="text-sm font-semibold text-blue-600">ATA 32</span>
+        <h3 class="text-lg font-semibold mt-1 text-gray-900">Landing Gear</h3>
+      </a>
+
+      <a href="33.html" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
+        <span class="text-sm font-semibold text-blue-600">ATA 33</span>
+        <h3 class="text-lg font-semibold mt-1 text-gray-900">Lights</h3>
+      </a>
+
+      <a href="34.html" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
+        <span class="text-sm font-semibold text-blue-600">ATA 34</span>
+        <h3 class="text-lg font-semibold mt-1 text-gray-900">Navigation</h3>
+      </a>
+
+      <a href="35.html" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
+        <span class="text-sm font-semibold text-blue-600">ATA 35</span>
+        <h3 class="text-lg font-semibold mt-1 text-gray-900">Oxygen</h3>
+      </a>
+
+      <a href="36.html" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
+        <span class="text-sm font-semibold text-blue-600">ATA 36</span>
+        <h3 class="text-lg font-semibold mt-1 text-gray-900">Pneumatic</h3>
+      </a>
+
+      <a href="38.html" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
+        <span class="text-sm font-semibold text-blue-600">ATA 38</span>
+        <h3 class="text-lg font-semibold mt-1 text-gray-900">Water/Waste</h3>
+      </a>
+
+      <a href="49.html" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
+        <span class="text-sm font-semibold text-blue-600">ATA 49</span>
+        <h3 class="text-lg font-semibold mt-1 text-gray-900">Airborne Auxiliary Power</h3>
+      </a>
+
+      <a href="51.html" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
+        <span class="text-sm font-semibold text-blue-600">ATA 51</span>
+        <h3 class="text-lg font-semibold mt-1 text-gray-900">Standard Practices/Structures</h3>
+      </a>
+
+      <a href="52.html" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
+        <span class="text-sm font-semibold text-blue-600">ATA 52</span>
+        <h3 class="text-lg font-semibold mt-1 text-gray-900">Doors</h3>
+      </a>
+
+      <a href="53.html" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
+        <span class="text-sm font-semibold text-blue-600">ATA 53</span>
+        <h3 class="text-lg font-semibold mt-1 text-gray-900">Fuselage</h3>
+      </a>
+
+      <a href="54.html" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
+        <span class="text-sm font-semibold text-blue-600">ATA 54</span>
+        <h3 class="text-lg font-semibold mt-1 text-gray-900">Nacelles/Pylons</h3>
+      </a>
+
+      <a href="55.html" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
+        <span class="text-sm font-semibold text-blue-600">ATA 55</span>
+        <h3 class="text-lg font-semibold mt-1 text-gray-900">Stabilizers</h3>
+      </a>
+
+      <a href="56.html" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
+        <span class="text-sm font-semibold text-blue-600">ATA 56</span>
+        <h3 class="text-lg font-semibold mt-1 text-gray-900">Windows</h3>
+      </a>
+
+      <a href="57.html" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
+        <span class="text-sm font-semibold text-blue-600">ATA 57</span>
+        <h3 class="text-lg font-semibold mt-1 text-gray-900">Wings</h3>
+      </a>
+
+      <a href="61.html" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
+        <span class="text-sm font-semibold text-blue-600">ATA 61</span>
+        <h3 class="text-lg font-semibold mt-1 text-gray-900">Propellers</h3>
+      </a>
+      
+      <a href="70-80.html" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
+        <span class="text-sm font-semibold text-blue-600">ATA 70-80</span>
+        <h3 class="text-lg font-semibold mt-1 text-gray-900">Engines</h3>
+      </a>
+
+    </div>
+  </div>
 
 </body>
 </html>
