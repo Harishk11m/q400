@@ -2,21 +2,43 @@
 <html>
 <head>
   <title>Items List</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
       font-family: sans-serif;
+      font-size: 16px; /* Increased base font size for readability */
+      margin: 10px; /* Added some margin around the body */
+    }
+    h1 {
+      font-size: 1.5em; /* Made heading size responsive */
+    }
+    /* This container makes the table scrollable horizontally on small screens */
+    .table-container {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
     }
     table {
       width: 100%;
       border-collapse: collapse;
+      min-width: 600px; /* Set a minimum width to prevent columns from becoming too narrow */
     }
     th, td {
       border: 1px solid black;
-      padding: 8px;
+      padding: 12px; /* Increased padding for better spacing and larger tap targets */
       text-align: left;
+      vertical-align: middle; /* Aligns content vertically */
     }
     th {
       background-color: #f2f2f2;
+    }
+    /* Style for the text input fields */
+    input[type="text"] {
+      width: 100%;
+      padding: 8px;
+      font-size: 1em;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box; /* Ensures padding doesn't affect the total width */
     }
     .clicked {
       background-color: lightblue;
@@ -27,171 +49,174 @@
 
   <h1>Q400 MWA CHANGE LIST (AMM 32-41-01-000/400-801)</h1>
 
-  <table>
-    <thead>
-      <tr>
-        <th>Sr. No.</th>
-        <th>ITEMS</th>
-        <th>P/N</th>
-        <th>AIPC REF</th>
-        <th>OFF S/N OR EXPIRY</th>
-        <th>ON S/N</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>1.</td>
-        <td>TIRE</td>
-        <td>415-117-1</td>
-        <td>32-41-01-01</td>
-        <td><input type="text"></td>
-        <td><input type="text"></td>
-      </tr>
-      <tr>
-        <td>2.</td>
-        <td>TIRETAG</td>
-        <td></td>
-        <td></td>
-        <td><input type="text"></td>
-        <td><input type="text"></td>
-      </tr>
-      <tr>
-        <td>3.</td>
-        <td>COTTER PIN</td>
-        <td>MS24665-88</td>
-        <td>32-41-01-01</td>
-        <td><input type="text"></td>
-        <td><input type="text"></td>
-      </tr>
-      <tr>
-        <td>4.</td>
-        <td>TORQUE WRENCH</td>
-        <td>UPTO 300 FT LBS</td>
-        <td></td>
-        <td><input type="text"></td>
-        <td><input type="text"></td>
-      </tr>
-      <tr>
-        <td>5.</td>
-        <td>THREAD PROTECTOR (BULLET)</td>
-        <td>AT32027</td>
-        <td></td>
-        <td><input type="text"></td>
-        <td><input type="text"></td>
-      </tr>
-      <tr>
-        <td>6.</td>
-        <td>AXLE NUT ADAPTER (SOCKET)</td>
-        <td>GSB3241006</td>
-        <td></td>
-        <td><input type="text"></td>
-        <td><input type="text"></td>
-      </tr>
-      <tr>
-        <td>7.</td>
-        <td>TPG</td>
-        <td>UPTO 150 PSI</td>
-        <td></td>
-        <td><input type="text"></td>
-        <td><input type="text"></td>
-      </tr>
-      <tr>
-        <td>8.</td>
-        <td>JACK WITH TAG</td>
-        <td>FOR MAIN WHEEL</td>
-        <td></td>
-        <td><input type="text"></td>
-        <td><input type="text"></td>
-      </tr>
-      <tr>
-        <td>9.</td>
-        <td>JACK ROD</td>
-        <td></td>
-        <td></td>
-        <td><input type="text"></td>
-        <td><input type="text"></td>
-      </tr>
-      <tr>
-        <td>10.</td>
-        <td>JACK PLATE</td>
-        <td></td>
-        <td></td>
-        <td><input type="text"></td>
-        <td><input type="text"></td>
-      </tr>
-      <tr>
-        <td>11.</td>
-        <td>EXPANDER</td>
-        <td>SUCH THAT IT CAN FIT TO TORQUE WRENCH TO ADAPTER</td>
-        <td></td>
-        <td><input type="text"></td>
-        <td><input type="text"></td>
-      </tr>
-      <tr>
-        <td>12.</td>
-        <td>GREASE</td>
-        <td></td>
-        <td>CPM 14-06A</td>
-        <td><input type="text"></td>
-        <td><input type="text"></td>
-      </tr>
-      <tr>
-        <td>13.</td>
-        <td>CUTTER</td>
-        <td></td>
-        <td></td>
-        <td><input type="text"></td>
-        <td><input type="text"></td>
-      </tr>
-      <tr>
-        <td>14.</td>
-        <td>NOSE PLIERS</td>
-        <td></td>
-        <td></td>
-        <td><input type="text"></td>
-        <td><input type="text"></td>
-      </tr>
-      <tr>
-        <td>15.</td>
-        <td>WHEEL DOLLY</td>
-        <td>PA1768</td>
-        <td>OR EQUIVALENT</td>
-        <td><input type="text"></td>
-        <td><input type="text"></td>
-      </tr>
-      <tr>
-        <td>16.</td>
-        <td>BRAKE ALIGNMENT TOOL</td>
-        <td>14–6881–0010</td>
-        <td></td>
-        <td><input type="text"></td>
-        <td><input type="text"></td>
-      </tr>
-      <tr>
-        <td>17.</td>
-        <td>LOCKING WIRE</td>
-        <td>0.032 INCH</td>
-        <td>CPM 14-06</td>
-        <td><input type="text"></td>
-        <td><input type="text"></td>
-      </tr>
-      <tr>
-        <td>18.</td>
-        <td>TORQUE SEAL</td>
-        <td></td>
-        <td>CPM 10-07</td>
-        <td><input type="text"></td>
-        <td><input type="text"></td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Sr. No.</th>
+          <th>ITEMS</th>
+          <th>P/N</th>
+          <th>AIPC REF</th>
+          <th>OFF S/N OR EXPIRY</th>
+          <th>ON S/N</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1.</td>
+          <td>TIRE</td>
+          <td>415-117-1</td>
+          <td>32-41-01-01</td>
+          <td><input type="text"></td>
+          <td><input type="text"></td>
+        </tr>
+        <tr>
+          <td>2.</td>
+          <td>TIRETAG</td>
+          <td></td>
+          <td></td>
+          <td><input type="text"></td>
+          <td><input type="text"></td>
+        </tr>
+        <tr>
+          <td>3.</td>
+          <td>COTTER PIN</td>
+          <td>MS24665-88</td>
+          <td>32-41-01-01</td>
+          <td><input type="text"></td>
+          <td><input type="text"></td>
+        </tr>
+        <tr>
+          <td>4.</td>
+          <td>TORQUE WRENCH</td>
+          <td>UPTO 300 FT LBS</td>
+          <td></td>
+          <td><input type="text"></td>
+          <td><input type="text"></td>
+        </tr>
+        <tr>
+          <td>5.</td>
+          <td>THREAD PROTECTOR (BULLET)</td>
+          <td>AT32027</td>
+          <td></td>
+          <td><input type="text"></td>
+          <td><input type="text"></td>
+        </tr>
+        <tr>
+          <td>6.</td>
+          <td>AXLE NUT ADAPTER (SOCKET)</td>
+          <td>GSB3241006</td>
+          <td></td>
+          <td><input type="text"></td>
+          <td><input type="text"></td>
+        </tr>
+        <tr>
+          <td>7.</td>
+          <td>TPG</td>
+          <td>UPTO 150 PSI</td>
+          <td></td>
+          <td><input type="text"></td>
+          <td><input type="text"></td>
+        </tr>
+        <tr>
+          <td>8.</td>
+          <td>JACK WITH TAG</td>
+          <td>FOR MAIN WHEEL</td>
+          <td></td>
+          <td><input type="text"></td>
+          <td><input type="text"></td>
+        </tr>
+        <tr>
+          <td>9.</td>
+          <td>JACK ROD</td>
+          <td></td>
+          <td></td>
+          <td><input type="text"></td>
+          <td><input type="text"></td>
+        </tr>
+        <tr>
+          <td>10.</td>
+          <td>JACK PLATE</td>
+          <td></td>
+          <td></td>
+          <td><input type="text"></td>
+          <td><input type="text"></td>
+        </tr>
+        <tr>
+          <td>11.</td>
+          <td>EXPANDER</td>
+          <td>SUCH THAT IT CAN FIT TO TORQUE WRENCH TO ADAPTER</td>
+          <td></td>
+          <td><input type="text"></td>
+          <td><input type="text"></td>
+        </tr>
+        <tr>
+          <td>12.</td>
+          <td>GREASE</td>
+          <td></td>
+          <td>CPM 14-06A</td>
+          <td><input type="text"></td>
+          <td><input type="text"></td>
+        </tr>
+        <tr>
+          <td>13.</td>
+          <td>CUTTER</td>
+          <td></td>
+          <td></td>
+          <td><input type="text"></td>
+          <td><input type="text"></td>
+        </tr>
+        <tr>
+          <td>14.</td>
+          <td>NOSE PLIERS</td>
+          <td></td>
+          <td></td>
+          <td><input type="text"></td>
+          <td><input type="text"></td>
+        </tr>
+        <tr>
+          <td>15.</td>
+          <td>WHEEL DOLLY</td>
+          <td>PA1768</td>
+          <td>OR EQUIVALENT</td>
+          <td><input type="text"></td>
+          <td><input type="text"></td>
+        </tr>
+        <tr>
+          <td>16.</td>
+          <td>BRAKE ALIGNMENT TOOL</td>
+          <td>14–6881–0010</td>
+          <td></td>
+          <td><input type="text"></td>
+          <td><input type="text"></td>
+        </tr>
+        <tr>
+          <td>17.</td>
+          <td>LOCKING WIRE</td>
+          <td>0.032 INCH</td>
+          <td>CPM 14-06</td>
+          <td><input type="text"></td>
+          <td><input type="text"></td>
+        </tr>
+        <tr>
+          <td>18.</td>
+          <td>TORQUE SEAL</td>
+          <td></td>
+          <td>CPM 10-07</td>
+          <td><input type="text"></td>
+          <td><input type="text"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
   <script>
+    // This script is fine for mobile, as 'click' events also fire on 'tap'.
     const table = document.querySelector('table');
     table.addEventListener('click', function(event) {
-      const target = event.target;
-      if (target.tagName === 'TD') {
-        target.classList.toggle('clicked');
+      // Ensure we're targeting a cell and not the input box inside it
+      if (event.target.tagName === 'TD') {
+        event.target.classList.toggle('clicked');
       }
     });
   </script>
