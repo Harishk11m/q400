@@ -1,44 +1,46 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Items List</title>
+  <title>Items List - Auto-resizing Inputs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
       font-family: sans-serif;
-      font-size: 16px; /* Increased base font size for readability */
-      margin: 10px; /* Added some margin around the body */
+      font-size: 16px;
+      margin: 10px;
     }
     h1 {
-      font-size: 1.5em; /* Made heading size responsive */
+      font-size: 1.5em;
     }
-    /* This container makes the table scrollable horizontally on small screens */
     .table-container {
       overflow-x: auto;
-      -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+      -webkit-overflow-scrolling: touch;
     }
     table {
       width: 100%;
       border-collapse: collapse;
-      min-width: 600px; /* Set a minimum width to prevent columns from becoming too narrow */
+      min-width: 600px;
     }
     th, td {
       border: 1px solid black;
-      padding: 12px; /* Increased padding for better spacing and larger tap targets */
+      padding: 12px;
       text-align: left;
-      vertical-align: middle; /* Aligns content vertically */
+      vertical-align: middle;
     }
     th {
       background-color: #f2f2f2;
     }
     /* Style for the text input fields */
     input[type="text"] {
-      width: 100%;
+      /* REMOVED width: 100% to allow dynamic resizing */
+      min-width: 80px; /* Set a minimum width for empty fields */
       padding: 8px;
       font-size: 1em;
+      font-family: sans-serif; /* Ensure font matches for accurate measurement */
       border: 1px solid #ccc;
       border-radius: 4px;
-      box-sizing: border-box; /* Ensures padding doesn't affect the total width */
+      box-sizing: border-box;
+      transition: width 0.1s ease-in-out; /* Smooth transition effect */
     }
     .clicked {
       background-color: lightblue;
@@ -67,157 +69,197 @@
           <td>TIRE</td>
           <td>415-117-1</td>
           <td>32-41-01-01</td>
-          <td><input type="text"></td>
-          <td><input type="text"></td>
+          <td><input type="text" placeholder="S/N or Date"></td>
+          <td><input type="text" placeholder="S/N"></td>
         </tr>
         <tr>
           <td>2.</td>
           <td>TIRETAG</td>
           <td></td>
           <td></td>
-          <td><input type="text"></td>
-          <td><input type="text"></td>
+          <td><input type="text" placeholder="S/N or Date"></td>
+          <td><input type="text" placeholder="S/N"></td>
         </tr>
         <tr>
           <td>3.</td>
           <td>COTTER PIN</td>
           <td>MS24665-88</td>
           <td>32-41-01-01</td>
-          <td><input type="text"></td>
-          <td><input type="text"></td>
+          <td><input type="text" placeholder="Discarded"></td>
+          <td><input type="text" placeholder="New"></td>
         </tr>
         <tr>
           <td>4.</td>
           <td>TORQUE WRENCH</td>
           <td>UPTO 300 FT LBS</td>
           <td></td>
-          <td><input type="text"></td>
-          <td><input type="text"></td>
+          <td><input type="text" placeholder="Cal. Due"></td>
+          <td><input type="text" placeholder="Cal. Due"></td>
         </tr>
         <tr>
           <td>5.</td>
           <td>THREAD PROTECTOR (BULLET)</td>
           <td>AT32027</td>
           <td></td>
-          <td><input type="text"></td>
-          <td><input type="text"></td>
+          <td><input type="text" placeholder="S/N"></td>
+          <td><input type="text" placeholder="S/N"></td>
         </tr>
         <tr>
           <td>6.</td>
           <td>AXLE NUT ADAPTER (SOCKET)</td>
           <td>GSB3241006</td>
           <td></td>
-          <td><input type="text"></td>
-          <td><input type="text"></td>
+          <td><input type="text" placeholder="S/N"></td>
+          <td><input type="text" placeholder="S/N"></td>
         </tr>
         <tr>
           <td>7.</td>
           <td>TPG</td>
           <td>UPTO 150 PSI</td>
           <td></td>
-          <td><input type="text"></td>
-          <td><input type="text"></td>
+          <td><input type="text" placeholder="Cal. Due"></td>
+          <td><input type="text" placeholder="Cal. Due"></td>
         </tr>
         <tr>
           <td>8.</td>
           <td>JACK WITH TAG</td>
           <td>FOR MAIN WHEEL</td>
           <td></td>
-          <td><input type="text"></td>
-          <td><input type="text"></td>
+          <td><input type="text" placeholder="Insp. Due"></td>
+          <td><input type="text" placeholder="Insp. Due"></td>
         </tr>
         <tr>
           <td>9.</td>
           <td>JACK ROD</td>
           <td></td>
           <td></td>
-          <td><input type="text"></td>
-          <td><input type="text"></td>
+          <td><input type="text" placeholder="S/N"></td>
+          <td><input type="text" placeholder="S/N"></td>
         </tr>
         <tr>
           <td>10.</td>
           <td>JACK PLATE</td>
           <td></td>
           <td></td>
-          <td><input type="text"></td>
-          <td><input type="text"></td>
+          <td><input type="text" placeholder="S/N"></td>
+          <td><input type="text" placeholder="S/N"></td>
         </tr>
         <tr>
           <td>11.</td>
           <td>EXPANDER</td>
           <td>SUCH THAT IT CAN FIT TO TORQUE WRENCH TO ADAPTER</td>
           <td></td>
-          <td><input type="text"></td>
-          <td><input type="text"></td>
+          <td><input type="text" placeholder="S/N"></td>
+          <td><input type="text" placeholder="S/N"></td>
         </tr>
         <tr>
           <td>12.</td>
           <td>GREASE</td>
           <td></td>
           <td>CPM 14-06A</td>
-          <td><input type="text"></td>
-          <td><input type="text"></td>
+          <td><input type="text" placeholder="Batch/Expiry"></td>
+          <td><input type="text" placeholder="Batch/Expiry"></td>
         </tr>
         <tr>
           <td>13.</td>
           <td>CUTTER</td>
           <td></td>
           <td></td>
-          <td><input type="text"></td>
-          <td><input type="text"></td>
+          <td><input type="text" placeholder="S/N"></td>
+          <td><input type="text" placeholder="S/N"></td>
         </tr>
         <tr>
           <td>14.</td>
           <td>NOSE PLIERS</td>
           <td></td>
           <td></td>
-          <td><input type="text"></td>
-          <td><input type="text"></td>
+          <td><input type="text" placeholder="S/N"></td>
+          <td><input type="text" placeholder="S/N"></td>
         </tr>
         <tr>
           <td>15.</td>
           <td>WHEEL DOLLY</td>
           <td>PA1768</td>
           <td>OR EQUIVALENT</td>
-          <td><input type="text"></td>
-          <td><input type="text"></td>
+          <td><input type="text" placeholder="Insp. Due"></td>
+          <td><input type="text" placeholder="Insp. Due"></td>
         </tr>
         <tr>
           <td>16.</td>
           <td>BRAKE ALIGNMENT TOOL</td>
           <td>14–6881–0010</td>
           <td></td>
-          <td><input type="text"></td>
-          <td><input type="text"></td>
+          <td><input type="text" placeholder="S/N"></td>
+          <td><input type="text" placeholder="S/N"></td>
         </tr>
         <tr>
           <td>17.</td>
           <td>LOCKING WIRE</td>
           <td>0.032 INCH</td>
           <td>CPM 14-06</td>
-          <td><input type="text"></td>
-          <td><input type="text"></td>
+          <td><input type="text" placeholder="Discarded"></td>
+          <td><input type="text" placeholder="New"></td>
         </tr>
         <tr>
           <td>18.</td>
           <td>TORQUE SEAL</td>
           <td></td>
           <td>CPM 10-07</td>
-          <td><input type="text"></td>
-          <td><input type="text"></td>
+          <td><input type="text" placeholder="N/A"></td>
+          <td><input type="text" placeholder="Applied"></td>
         </tr>
       </tbody>
     </table>
   </div>
 
   <script>
-    // This script is fine for mobile, as 'click' events also fire on 'tap'.
+    // --- SCRIPT 1: Toggling background color of cells ---
     const table = document.querySelector('table');
     table.addEventListener('click', function(event) {
-      // Ensure we're targeting a cell and not the input box inside it
       if (event.target.tagName === 'TD') {
         event.target.classList.toggle('clicked');
       }
+    });
+
+
+    // --- SCRIPT 2: Auto-resizing input fields ---
+
+    // 1. Create a single hidden span to measure text width.
+    const measurer = document.createElement('span');
+    measurer.style.visibility = 'hidden';
+    measurer.style.position = 'absolute';
+    measurer.style.left = '-9999px';
+    measurer.style.whiteSpace = 'pre'; // Preserve spaces for measurement
+    document.body.appendChild(measurer);
+
+    // 2. Define the function that resizes an input field.
+    function resizeInput() {
+      // 'this' refers to the input field that triggered the event.
+      const input = this;
+      
+      // Copy the input's font styles to our measurer span.
+      const styles = window.getComputedStyle(input);
+      measurer.style.fontFamily = styles.fontFamily;
+      measurer.style.fontSize = styles.fontSize;
+      measurer.style.fontWeight = styles.fontWeight;
+      measurer.style.letterSpacing = styles.letterSpacing;
+
+      // Use the input's text or its placeholder for measurement.
+      measurer.textContent = input.value || input.placeholder;
+      
+      // Calculate the new width and add a small buffer (e.g., 5px) for the cursor.
+      const newWidth = measurer.offsetWidth + 5;
+      input.style.width = newWidth + 'px';
+    }
+
+    // 3. Find all text inputs and attach the resize function.
+    const inputs = document.querySelectorAll('input[type="text"]');
+    inputs.forEach(input => {
+      // Resize on any input event (typing, pasting, etc.)
+      input.addEventListener('input', resizeInput);
+      
+      // Also resize initially on page load.
+      resizeInput.call(input);
     });
   </script>
 
