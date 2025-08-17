@@ -21,6 +21,14 @@
       transform: translateY(-4px);
       box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
     }
+    /* Simple SVG icon styling */
+    .pdf-icon {
+        width: 1.25rem; /* Equivalent to w-5 */
+        height: 1.25rem; /* Equivalent to h-5 */
+        fill: #ef4444; /* Red 500 - Tailwind class */
+        margin-left: 8px; /* Equivalent to ml-2 */
+        flex-shrink: 0; /* Prevent icon from shrinking */
+    }
   </style>
 </head>
 <body class="bg-gray-100 text-gray-800">
@@ -28,7 +36,7 @@
   <div class="container mx-auto px-4 py-8 md:py-12">
     <header class="text-center mb-10">
       <h1 class="text-3xl md:text-4xl font-bold text-gray-900">ATA Code Index</h1>
-      <p class="text-md text-gray-600 mt-2">Select an ATA chapter to view details.</p>
+      <p class="text-md text-gray-600 mt-2">Select an ATA chapter to view its PDF documentation.</p>
     </header>
 
     <!-- The grid layout for the ATA chapters -->
@@ -37,186 +45,124 @@
       <!-- Each anchor tag is now a styled card -->
       <a href="05.html" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
         <span class="text-sm font-semibold text-blue-600">ATA 05</span>
-        <h3 class="text-lg font-semibold mt-1 text-gray-900">Time Limits/Maintenance Checks</h3>
+        <h3 class="text-lg font-semibold mt-1 text-gray-900 flex items-center justify-between">
+            <span>Time Limits/Maintenance Checks</span>
+            <svg class="pdf-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M19.5 22h-15C3.67 22 3 21.33 3 20.5V3.5C3 2.67 3.67 2 4.5 2H14l7 7v11.5C21 21.33 20.33 22 19.5 22zm-7.5-6h-3.5C8.06 16 7.5 15.44 7.5 14.75S8.06 13.5 8.75 13.5H12c.69 0 1.25.56 1.25 1.25S12.69 16 12 16zm4 4h-7.5C8.06 20 7.5 19.44 7.5 18.75S8.06 17.5 8.75 17.5H16c.69 0 1.25.56 1.25 1.25S16.69 20 16 20zm0-8h-7.5C8.06 12 7.5 11.44 7.5 10.75S8.06 9.5 8.75 9.5H16c.69 0 1.25.56 1.25 1.25S16.69 12 16 12zm2-7V4.5H14c-.69 0-1.25-.56-1.25-1.25V2h-7C5.78 2 5 2.78 5 3.75v16.5C5 21.22 5.78 22 6.75 22h10.5c.97 0 1.75-.78 1.75-1.75V10.5l-3.5-3.5z"/>
+            </svg>
+        </h3>
       </a>
       
       <a href="06.html" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
         <span class="text-sm font-semibold text-blue-600">ATA 06</span>
-        <h3 class="text-lg font-semibold mt-1 text-gray-900">Dimensions and Areas</h3>
+        <h3 class="text-lg font-semibold mt-1 text-gray-900 flex items-center justify-between">
+            <span>Dimensions and Areas</span>
+            <svg class="pdf-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M19.5 22h-15C3.67 22 3 21.33 3 20.5V3.5C3 2.67 3.67 2 4.5 2H14l7 7v11.5C21 21.33 20.33 22 19.5 22zm-7.5-6h-3.5C8.06 16 7.5 15.44 7.5 14.75S8.06 13.5 8.75 13.5H12c.69 0 1.25.56 1.25 1.25S12.69 16 12 16zm4 4h-7.5C8.06 20 7.5 19.44 7.5 18.75S8.06 17.5 8.75 17.5H16c.69 0 1.25.56 1.25 1.25S16.69 20 16 20zm0-8h-7.5C8.06 12 7.5 11.44 7.5 10.75S8.06 9.5 8.75 9.5H16c.69 0 1.25.56 1.25 1.25S16.69 12 16 12zm2-7V4.5H14c-.69 0-1.25-.56-1.25-1.25V2h-7C5.78 2 5 2.78 5 3.75v16.5C5 21.22 5.78 22 6.75 22h10.5c.97 0 1.75-.78 1.75-1.75V10.5l-3.5-3.5z"/>
+            </svg>
+        </h3>
       </a>
 
       <a href="07.html" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
         <span class="text-sm font-semibold text-blue-600">ATA 07</span>
-        <h3 class="text-lg font-semibold mt-1 text-gray-900">Lifting and Shoring</h3>
+        <h3 class="text-lg font-semibold mt-1 text-gray-900 flex items-center justify-between">
+            <span>Lifting and Shoring</span>
+            <svg class="pdf-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M19.5 22h-15C3.67 22 3 21.33 3 20.5V3.5C3 2.67 3.67 2 4.5 2H14l7 7v11.5C21 21.33 20.33 22 19.5 22zm-7.5-6h-3.5C8.06 16 7.5 15.44 7.5 14.75S8.06 13.5 8.75 13.5H12c.69 0 1.25.56 1.25 1.25S12.69 16 12 16zm4 4h-7.5C8.06 20 7.5 19.44 7.5 18.75S8.06 17.5 8.75 17.5H16c.69 0 1.25.56 1.25 1.25S16.69 20 16 20zm0-8h-7.5C8.06 12 7.5 11.44 7.5 10.75S8.06 9.5 8.75 9.5H16c.69 0 1.25.56 1.25 1.25S16.69 12 16 12zm2-7V4.5H14c-.69 0-1.25-.56-1.25-1.25V2h-7C5.78 2 5 2.78 5 3.75v16.5C5 21.22 5.78 22 6.75 22h10.5c.97 0 1.75-.78 1.75-1.75V10.5l-3.5-3.5z"/>
+            </svg>
+        </h3>
       </a>
 
       <a href="08.html" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
         <span class="text-sm font-semibold text-blue-600">ATA 08</span>
-        <h3 class="text-lg font-semibold mt-1 text-gray-900">Leveling and Weighing</h3>
+        <h3 class="text-lg font-semibold mt-1 text-gray-900 flex items-center justify-between">
+            <span>Leveling and Weighing</span>
+            <svg class="pdf-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M19.5 22h-15C3.67 22 3 21.33 3 20.5V3.5C3 2.67 3.67 2 4.5 2H14l7 7v11.5C21 21.33 20.33 22 19.5 22zm-7.5-6h-3.5C8.06 16 7.5 15.44 7.5 14.75S8.06 13.5 8.75 13.5H12c.69 0 1.25.56 1.25 1.25S12.69 16 12 16zm4 4h-7.5C8.06 20 7.5 19.44 7.5 18.75S8.06 17.5 8.75 17.5H16c.69 0 1.25.56 1.25 1.25S16.69 20 16 20zm0-8h-7.5C8.06 12 7.5 11.44 7.5 10.75S8.06 9.5 8.75 9.5H16c.69 0 1.25.56 1.25 1.25S16.69 12 16 12zm2-7V4.5H14c-.69 0-1.25-.56-1.25-1.25V2h-7C5.78 2 5 2.78 5 3.75v16.5C5 21.22 5.78 22 6.75 22h10.5c.97 0 1.75-.78 1.75-1.75V10.5l-3.5-3.5z"/>
+            </svg>
+        </h3>
       </a>
 
       <a href="09.html" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
         <span class="text-sm font-semibold text-blue-600">ATA 09</span>
-        <h3 class="text-lg font-semibold mt-1 text-gray-900">Towing and Taxiing</h3>
+        <h3 class="text-lg font-semibold mt-1 text-gray-900 flex items-center justify-between">
+            <span>Towing and Taxiing</span>
+            <svg class="pdf-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M19.5 22h-15C3.67 22 3 21.33 3 20.5V3.5C3 2.67 3.67 2 4.5 2H14l7 7v11.5C21 21.33 20.33 22 19.5 22zm-7.5-6h-3.5C8.06 16 7.5 15.44 7.5 14.75S8.06 13.5 8.75 13.5H12c.69 0 1.25.56 1.25 1.25S12.69 16 12 16zm4 4h-7.5C8.06 20 7.5 19.44 7.5 18.75S8.06 17.5 8.75 17.5H16c.69 0 1.25.56 1.25 1.25S16.69 20 16 20zm0-8h-7.5C8.06 12 7.5 11.44 7.5 10.75S8.06 9.5 8.75 9.5H16c.69 0 1.25.56 1.25 1.25S16.69 12 16 12zm2-7V4.5H14c-.69 0-1.25-.56-1.25-1.25V2h-7C5.78 2 5 2.78 5 3.75v16.5C5 21.22 5.78 22 6.75 22h10.5c.97 0 1.75-.78 1.75-1.75V10.5l-3.5-3.5z"/>
+            </svg>
+        </h3>
       </a>
 
       <a href="10.html" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
         <span class="text-sm font-semibold text-blue-600">ATA 10</span>
-        <h3 class="text-lg font-semibold mt-1 text-gray-900">Parking, Mooring, Storage</h3>
+        <h3 class="text-lg font-semibold mt-1 text-gray-900 flex items-center justify-between">
+            <span>Parking, Mooring, Storage</span>
+            <svg class="pdf-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M19.5 22h-15C3.67 22 3 21.33 3 20.5V3.5C3 2.67 3.67 2 4.5 2H14l7 7v11.5C21 21.33 20.33 22 19.5 22zm-7.5-6h-3.5C8.06 16 7.5 15.44 7.5 14.75S8.06 13.5 8.75 13.5H12c.69 0 1.25.56 1.25 1.25S12.69 16 12 16zm4 4h-7.5C8.06 20 7.5 19.44 7.5 18.75S8.06 17.5 8.75 17.5H16c.69 0 1.25.56 1.25 1.25S16.69 20 16 20zm0-8h-7.5C8.06 12 7.5 11.44 7.5 10.75S8.06 9.5 8.75 9.5H16c.69 0 1.25.56 1.25 1.25S16.69 12 16 12zm2-7V4.5H14c-.69 0-1.25-.56-1.25-1.25V2h-7C5.78 2 5 2.78 5 3.75v16.5C5 21.22 5.78 22 6.75 22h10.5c.97 0 1.75-.78 1.75-1.75V10.5l-3.5-3.5z"/>
+            </svg>
+        </h3>
       </a>
       
       <a href="11.html" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
         <span class="text-sm font-semibold text-blue-600">ATA 11</span>
-        <h3 class="text-lg font-semibold mt-1 text-gray-900">Placards and Markings</h3>
+        <h3 class="text-lg font-semibold mt-1 text-gray-900 flex items-center justify-between">
+            <span>Placards and Markings</span>
+            <svg class="pdf-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M19.5 22h-15C3.67 22 3 21.33 3 20.5V3.5C3 2.67 3.67 2 4.5 2H14l7 7v11.5C21 21.33 20.33 22 19.5 22zm-7.5-6h-3.5C8.06 16 7.5 15.44 7.5 14.75S8.06 13.5 8.75 13.5H12c.69 0 1.25.56 1.25 1.25S12.69 16 12 16zm4 4h-7.5C8.06 20 7.5 19.44 7.5 18.75S8.06 17.5 8.75 17.5H16c.69 0 1.25.56 1.25 1.25S16.69 20 16 20zm0-8h-7.5C8.06 12 7.5 11.44 7.5 10.75S8.06 9.5 8.75 9.5H16c.69 0 1.25.56 1.25 1.25S16.69 12 16 12zm2-7V4.5H14c-.69 0-1.25-.56-1.25-1.25V2h-7C5.78 2 5 2.78 5 3.75v16.5C5 21.22 5.78 22 6.75 22h10.5c.97 0 1.75-.78 1.75-1.75V10.5l-3.5-3.5z"/>
+            </svg>
+        </h3>
       </a>
 
       <a href="12.html" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
         <span class="text-sm font-semibold text-blue-600">ATA 12</span>
-        <h3 class="text-lg font-semibold mt-1 text-gray-900">Servicing</h3>
+        <h3 class="text-lg font-semibold mt-1 text-gray-900 flex items-center justify-between">
+            <span>Servicing</span>
+            <svg class="pdf-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M19.5 22h-15C3.67 22 3 21.33 3 20.5V3.5C3 2.67 3.67 2 4.5 2H14l7 7v11.5C21 21.33 20.33 22 19.5 22zm-7.5-6h-3.5C8.06 16 7.5 15.44 7.5 14.75S8.06 13.5 8.75 13.5H12c.69 0 1.25.56 1.25 1.25S12.69 16 12 16zm4 4h-7.5C8.06 20 7.5 19.44 7.5 18.75S8.06 17.5 8.75 17.5H16c.69 0 1.25.56 1.25 1.25S16.69 20 16 20zm0-8h-7.5C8.06 12 7.5 11.44 7.5 10.75S8.06 9.5 8.75 9.5H16c.69 0 1.25.56 1.25 1.25S16.69 12 16 12zm2-7V4.5H14c-.69 0-1.25-.56-1.25-1.25V2h-7C5.78 2 5 2.78 5 3.75v16.5C5 21.22 5.78 22 6.75 22h10.5c.97 0 1.75-.78 1.75-1.75V10.5l-3.5-3.5z"/>
+            </svg>
+        </h3>
       </a>
 
       <a href="20.html" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
         <span class="text-sm font-semibold text-blue-600">ATA 20</span>
-        <h3 class="text-lg font-semibold mt-1 text-gray-900">Standard Practices - Airframe</h3>
+        <h3 class="text-lg font-semibold mt-1 text-gray-900 flex items-center justify-between">
+            <span>Standard Practices - Airframe</span>
+            <svg class="pdf-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M19.5 22h-15C3.67 22 3 21.33 3 20.5V3.5C3 2.67 3.67 2 4.5 2H14l7 7v11.5C21 21.33 20.33 22 19.5 22zm-7.5-6h-3.5C8.06 16 7.5 15.44 7.5 14.75S8.06 13.5 8.75 13.5H12c.69 0 1.25.56 1.25 1.25S12.69 16 12 16zm4 4h-7.5C8.06 20 7.5 19.44 7.5 18.75S8.06 17.5 8.75 17.5H16c.69 0 1.25.56 1.25 1.25S16.69 20 16 20zm0-8h-7.5C8.06 12 7.5 11.44 7.5 10.75S8.06 9.5 8.75 9.5H16c.69 0 1.25.56 1.25 1.25S16.69 12 16 12zm2-7V4.5H14c-.69 0-1.25-.56-1.25-1.25V2h-7C5.78 2 5 2.78 5 3.75v16.5C5 21.22 5.78 22 6.75 22h10.5c.97 0 1.75-.78 1.75-1.75V10.5l-3.5-3.5z"/>
+            </svg>
+        </h3>
       </a>
 
       <a href="21.html" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
         <span class="text-sm font-semibold text-blue-600">ATA 21</span>
-        <h3 class="text-lg font-semibold mt-1 text-gray-900">Air Conditioning</h3>
+        <h3 class="text-lg font-semibold mt-1 text-gray-900 flex items-center justify-between">
+            <span>Air Conditioning</span>
+            <svg class="pdf-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M19.5 22h-15C3.67 22 3 21.33 3 20.5V3.5C3 2.67 3.67 2 4.5 2H14l7 7v11.5C21 21.33 20.33 22 19.5 22zm-7.5-6h-3.5C8.06 16 7.5 15.44 7.5 14.75S8.06 13.5 8.75 13.5H12c.69 0 1.25.56 1.25 1.25S12.69 16 12 16zm4 4h-7.5C8.06 20 7.5 19.44 7.5 18.75S8.06 17.5 8.75 17.5H16c.69 0 1.25.56 1.25 1.25S16.69 20 16 20zm0-8h-7.5C8.06 12 7.5 11.44 7.5 10.75S8.06 9.5 8.75 9.5H16c.69 0 1.25.56 1.25 1.25S16.69 12 16 12zm2-7V4.5H14c-.69 0-1.25-.56-1.25-1.25V2h-7C5.78 2 5 2.78 5 3.75v16.5C5 21.22 5.78 22 6.75 22h10.5c.97 0 1.75-.78 1.75-1.75V10.5l-3.5-3.5z"/>
+            </svg>
+        </h3>
       </a>
 
       <a href="22.html" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
         <span class="text-sm font-semibold text-blue-600">ATA 22</span>
-        <h3 class="text-lg font-semibold mt-1 text-gray-900">Auto Flight</h3>
+        <h3 class="text-lg font-semibold mt-1 text-gray-900 flex items-center justify-between">
+            <span>Auto Flight</span>
+            <svg class="pdf-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M19.5 22h-15C3.67 22 3 21.33 3 20.5V3.5C3 2.67 3.67 2 4.5 2H14l7 7v11.5C21 21.33 20.33 22 19.5 22zm-7.5-6h-3.5C8.06 16 7.5 15.44 7.5 14.75S8.06 13.5 8.75 13.5H12c.69 0 1.25.56 1.25 1.25S12.69 16 12 16zm4 4h-7.5C8.06 20 7.5 19.44 7.5 18.75S8.06 17.5 8.75 17.5H16c.69 0 1.25.56 1.25 1.25S16.69 20 16 20zm0-8h-7.5C8.06 12 7.5 11.44 7.5 10.75S8.06 9.5 8.75 9.5H16c.69 0 1.25.56 1.25 1.25S16.69 12 16 12zm2-7V4.5H14c-.69 0-1.25-.56-1.25-1.25V2h-7C5.78 2 5 2.78 5 3.75v16.5C5 21.22 5.78 22 6.75 22h10.5c.97 0 1.75-.78 1.75-1.75V10.5l-3.5-3.5z"/>
+            </svg>
+        </h3>
       </a>
 
       <a href="23.html" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
         <span class="text-sm font-semibold text-blue-600">ATA 23</span>
-        <h3 class="text-lg font-semibold mt-1 text-gray-900">Communications</h3>
+        <h3 class="text-lg font-semibold mt-1 text-gray-900 flex items-center justify-between">
+            <span>Communications</span>
+            <svg class="pdf-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M19.5 22h-15C3.67 22 3 21.33 3 20.5V3.5C3 2.67 3.67 2 4.5 2H14l7 7v11.5C21 21.33 20.33 22 19.5 22zm-7.5-6h-3.5C8.06 16 7.5 15.44 7.5 14.75S8.06 13.5 8.75 13.5H12c.69 0 1.25.56 1.25 1.25S12.69 16 12 16zm4 4h-7.5C8.06 20 7.5 19.44 7.5 18.75S8.06 17.5 8.75 17.5H16c.69 0 1.25.56 1.25 1.25S16.69 20 16 20zm0-8h-7.5C8.06 12 7.5 11.44 7.5 10.75S8.06 9.5 8.75 9.5H16c.69 0 1.25.56 1.25 1.25S16.69 12 16 12zm2-7V4.5H14c-.69 0-1.25-.56-1.25-1.25V2h-7C5.78 2 5 2.78 5 3.75v16.5C5 21.22 5.78 22 6.75 22h10.5c.97 0 1.75-.78 1.75-1.75V10.5l-3.5-3.5z"/>
+            </svg>
+        </h3>
       </a>
 
       <a href="24.html" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
         <span class="text-sm font-semibold text-blue-600">ATA 24</span>
-        <h3 class="text-lg font-semibold mt-1 text-gray-900">Electrical Power</h3>
-      </a>
-
-      <a href="25.html" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
-        <span class="text-sm font-semibold text-blue-600">ATA 25</span>
-        <h3 class="text-lg font-semibold mt-1 text-gray-900">Equipment/Furnishings</h3>
-      </a>
-
-      <a href="26.html" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
-        <span class="text-sm font-semibold text-blue-600">ATA 26</span>
-        <h3 class="text-lg font-semibold mt-1 text-gray-900">Fire Protection</h3>
-      </a>
-
-      <a href="27.html" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
-        <span class="text-sm font-semibold text-blue-600">ATA 27</span>
-        <h3 class="text-lg font-semibold mt-1 text-gray-900">Flight Controls</h3>
-      </a>
-
-      <a href="28.html" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
-        <span class="text-sm font-semibold text-blue-600">ATA 28</span>
-        <h3 class="text-lg font-semibold mt-1 text-gray-900">Fuel</h3>
-      </a>
-
-      <a href="29.html" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
-        <span class="text-sm font-semibold text-blue-600">ATA 29</span>
-        <h3 class="text-lg font-semibold mt-1 text-gray-900">Hydraulic Power</h3>
-      </a>
-
-      <a href="30.html" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
-        <span class="text-sm font-semibold text-blue-600">ATA 30</span>
-        <h3 class="text-lg font-semibold mt-1 text-gray-900">Ice and Rain Protection</h3>
-      </a>
-
-      <a href="31.html" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
-        <span class="text-sm font-semibold text-blue-600">ATA 31</span>
-        <h3 class="text-lg font-semibold mt-1 text-gray-900">Indicating / Recording</h3>
-      </a>
-
-      <a href="32.html" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
-        <span class="text-sm font-semibold text-blue-600">ATA 32</span>
-        <h3 class="text-lg font-semibold mt-1 text-gray-900">Landing Gear</h3>
-      </a>
-
-      <a href="33.html" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
-        <span class="text-sm font-semibold text-blue-600">ATA 33</span>
-        <h3 class="text-lg font-semibold mt-1 text-gray-900">Lights</h3>
-      </a>
-
-      <a href="34.html" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
-        <span class="text-sm font-semibold text-blue-600">ATA 34</span>
-        <h3 class="text-lg font-semibold mt-1 text-gray-900">Navigation</h3>
-      </a>
-
-      <a href="35.html" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
-        <span class="text-sm font-semibold text-blue-600">ATA 35</span>
-        <h3 class="text-lg font-semibold mt-1 text-gray-900">Oxygen</h3>
-      </a>
-
-      <a href="36.html" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
-        <span class="text-sm font-semibold text-blue-600">ATA 36</span>
-        <h3 class="text-lg font-semibold mt-1 text-gray-900">Pneumatic</h3>
-      </a>
-
-      <a href="38.html" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
-        <span class="text-sm font-semibold text-blue-600">ATA 38</span>
-        <h3 class="text-lg font-semibold mt-1 text-gray-900">Water/Waste</h3>
-      </a>
-
-      <a href="49.html" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
-        <span class="text-sm font-semibold text-blue-600">ATA 49</span>
-        <h3 class="text-lg font-semibold mt-1 text-gray-900">Airborne Auxiliary Power</h3>
-      </a>
-
-      <a href="51.html" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
-        <span class="text-sm font-semibold text-blue-600">ATA 51</span>
-        <h3 class="text-lg font-semibold mt-1 text-gray-900">Standard Practices/Structures</h3>
-      </a>
-
-      <a href="52.html" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
-        <span class="text-sm font-semibold text-blue-600">ATA 52</span>
-        <h3 class="text-lg font-semibold mt-1 text-gray-900">Doors</h3>
-      </a>
-
-      <a href="53.html" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
-        <span class="text-sm font-semibold text-blue-600">ATA 53</span>
-        <h3 class="text-lg font-semibold mt-1 text-gray-900">Fuselage</h3>
-      </a>
-
-      <a href="54.html" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
-        <span class="text-sm font-semibold text-blue-600">ATA 54</span>
-        <h3 class="text-lg font-semibold mt-1 text-gray-900">Nacelles/Pylons</h3>
-      </a>
-
-      <a href="55.html" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
-        <span class="text-sm font-semibold text-blue-600">ATA 55</span>
-        <h3 class="text-lg font-semibold mt-1 text-gray-900">Stabilizers</h3>
-      </a>
-
-      <a href="56.html" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
-        <span class="text-sm font-semibold text-blue-600">ATA 56</span>
-        <h3 class="text-lg font-semibold mt-1 text-gray-900">Windows</h3>
-      </a>
-
-      <a href="57.html" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
-        <span class="text-sm font-semibold text-blue-600">ATA 57</span>
-        <h3 class="text-lg font-semibold mt-1 text-gray-900">Wings</h3>
-      </a>
-
-      <a href="61.html" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
-        <span class="text-sm font-semibold text-blue-600">ATA 61</span>
-        <h3 class="text-lg font-semibold mt-1 text-gray-900">Propellers</h3>
-      </a>
-      
-      <a href="70-80.html" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
-        <span class="text-sm font-semibold text-blue-600">ATA 70-80</span>
-        <h3 class="text-lg font-semibold mt-1 text-gray-900">Engines</h3>
-      </a>
-
-    </div>
-  </div>
-
-</body>
-</html>
+        <h3 class="text-lg font-semibold m
