@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Time Calculator</title>
+<style>
+  body { font-family: sans-serif; }
+  .container { margin: 20px; }
+  .time-entry { margin-bottom: 10px; display: flex; align-items: center; }
+  .time-entry label { width: 80px; margin-right: 10px; }
+  .time-entry input[type="text"] { padding: 8px; border: 1px solid #ccc; border-radius: 4px; margin-right: 10px; width: 100px; }
+  .time-entry button { padding: 8px 12px; background-color: #dc3545; color: white; border: none; border-radius: 4px; cursor: pointer; }
+  .time-entry button:hover { background-color: #c82333; }
+  #calculateBtn { padding: 10px 15px; background-color: #28a745; color: white; border: none; border-radius: 4px; cursor: pointer; margin-top: 15px; }
+  #calculateBtn:hover { background-color: #1e7e34; }
+  #totalTime { margin-top: 20px; font-weight: bold; font-size: 1.2em; }
+  .input-group { display: flex; flex-direction: column; }
+</style>
+</head>
+<body>
+  <div class="container">
+    <h1>Time Calculator</h1>
+
+    <div id="timeEntries">
+      </div>
+
+    <button id="calculateBtn" onclick="calculateTotal()">Calculate Total</button>
+
+    <div id="totalTime"></div>
+  </div>
+
+  <script>
+    function removeTimeEntry(entryId) {
+      const entryToRemove = document.getElementById(entryId);
+      entryToRemove.remove();
+      relabelTimeEntries();
+      calculateTotal();
+    }
+
+    function relabelTimeEntries() {
+      const timeEntriesDiv = document.getElementById('timeEntries');
+      const entries = timeEntriesDiv.children;
+      for (let i = 0; i < entries.length; i++) {
+        const label = entries[i].querySelector('label');
+        if (label) {
+          label.textContent = `Time ${i + 1}:`;
+        }
+      }
+    }
+
+    function formatTimeInput(inputElement) {
+      const value = inputElement.value.replace(/[^0-9]/g, ''); // Remove non-numeric characters
+      if (value.length >= 2 && value.length < 4) {
+        inputElement.value = value.slice(0, 2) + ':' + value.slice(2);
+      } else if (value.length >= 4) {
+        inputElement.value = value.slice(0, 2) + ':' + value.slice(2, 4);
+      }
+    }
+
+    function calculateTotal() {
+      const timeInputs = document.querySelectorAll('.timeInput');
+      let totalMinutes = 0;
+      const totalTimeDiv = document.getElementById('totalTime');
+
+      for (const input of timeInputs) {
+        const timeValue = input.value;
+        if (timeValue) {
+          const timeRegex = /^([01]\d|2[0-3]):([0-5]\d)$/;
+          if (!timeRegex.test(timeValue)) {
+            totalTimeDiv.textContent = "Invalid time format in one or more entries (HH:MM).";
+            return;
+          }
+          const [hours, minutes] = timeValue.split(':').map(Number);
+          totalMinutes += (hours * 60) + minutes;
+        }
+      }
+
+      const totalHours = Math.floor(totalMinutes / 60);
+      const remainingMinutes = totalMinutes % 60;
+
+      totalTimeDiv.textContent = `Total Time: ${totalHours} hours and ${remainingMinutes} minutes.`;
+    }
+
+    function addTimeEntry(index) {
+      const timeEntriesDiv = document.getElementById('timeEntries');
+      const newEntry = document.createElement('div');
+      newEntry.classList.add('time-entry');
+      newEntry.id = `timeEntry-${index}`;
+
+      const label = document.createElement('label');
+      label.textContent = `Time ${index}:`;
+
+      const input = document.createElement('input');
+      input.type = 'text';
+      input.classList.add('timeInput');
+      input.id = `timeInput-${index}`;
+      input.placeholder = "HHMM"; // Suggest entering without colon initially
+      input.addEventListener('input', function() {
+        formatTimeInput(this);
+        // Optionally trigger calculation on input if desired
+        // calculateTotal();
+      });
+      input.addEventListener('blur', calculateTotal); // Calculate on focus loss
+
+      const removeButton = document.createElement('button');
+      removeButton.textContent = 'Remove';
+      removeButton.onclick = function() {
+        removeTimeEntry(newEntry.id);
+      };
+
+      newEntry.appendChild(label);
+      newEntry.appendChild(input);
+      newEntry.appendChild(removeButton);
+      timeEntriesDiv.appendChild(newEntry);
+    }
+
+    for (let i = 1; i <= 15; i++) {
+      addTimeEntry(i);
+    }
+  </script>
+</body>
+</html>
