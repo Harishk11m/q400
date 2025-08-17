@@ -1,0 +1,270 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Station Checklist</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 20px;
+    background-color: #f4f4f4;
+    color: #333;
+  }
+  .container {
+    max-width: 800px;
+    margin: auto;
+    background: #fff;
+    padding: 20px 40px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  h1 {
+    text-align: center;
+    color: #2c3e50;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 10px;
+  }
+  h2 {
+    color: #34495e;
+    margin-top: 25px;
+  }
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  li {
+    background: #ecf0f1;
+    padding: 10px;
+    margin-bottom: 8px;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+    cursor: pointer;
+  }
+  li:hover {
+    background: #bdc3c7;
+  }
+  hr {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+    margin: 30px 0;
+  }
+
+  /* Table styling */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+  }
+  th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  th {
+    background-color: #34495e;
+    color: white;
+  }
+  input[type="text"], input[type="date"] {
+    width: 100%;
+    box-sizing: border-box;
+    border: none;
+    padding: 5px;
+    background: #f9f9f9;
+  }
+
+  /* New CSS class for clicked/completed tasks */
+  .completed-task {
+    background-color: #d4edda;
+    color: #155724;
+    text-decoration: line-through;
+    opacity: 0.7;
+  }
+
+  /* Style for the input field to make it fit nicely */
+  .task-input {
+    margin-left: 10px;
+    padding: 4px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>Check list for station</h1>
+  <h2>Daily</h2>
+  <ul>
+    <li>Yellow TLP Filing</li>
+    <li>AMOS Login
+      <ul>
+        <li>Harish Kumar (HRSK)</li>
+        <li>Ravi Chavan (CHAV)</li>
+        <li>Check 685</li>
+      </ul>
+    </li>
+  </ul>
+  
+  <h3>Aircraft Status</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>A/C Reg</th>
+        <th>Bay No.</th>
+        <th>AME</th>
+        <th>MEL</th>
+        <th>CDD</th>
+        <th>ADD</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><input type="date"></td>
+        <td><input type="text"></td>
+        <td><input type="text"></td>
+        <td><input type="text"></td>
+        <td><input type="text"></td>
+        <td><input type="text"></td>
+        <td><input type="text"></td>
+      </tr>
+      <tr>
+        <td><input type="date"></td>
+        <td><input type="text"></td>
+        <td><input type="text"></td>
+        <td><input type="text"></td>
+        <td><input type="text"></td>
+        <td><input type="text"></td>
+        <td><input type="text"></td>
+      </tr>
+      <tr>
+        <td><input type="date"></td>
+        <td><input type="text"></td>
+        <td><input type="text"></td>
+        <td><input type="text"></td>
+        <td><input type="text"></td>
+        <td><input type="text"></td>
+        <td><input type="text"></td>
+      </tr>
+      <tr>
+        <td><input type="date"></td>
+        <td><input type="text"></td>
+        <td><input type="text"></td>
+        <td><input type="text"></td>
+        <td><input type="text"></td>
+        <td><input type="text"></td>
+        <td><input type="text"></td>
+      </tr>
+      <tr>
+        <td><input type="date"></td>
+        <td><input type="text"></td>
+        <td><input type="text"></td>
+        <td><input type="text"></td>
+        <td><input type="text"></td>
+        <td><input type="text"></td>
+        <td><input type="text"></td>
+      </tr>
+      </tbody>
+  </table>
+   <h2>Checklist Before Arrival</h2>
+      <ul>
+        <li>Tool Kit</li>
+        <li>Tool Kit Key</li>
+        <li>Marshalling Wands/Torch</li>
+        <li>Headset</li>
+        <li>Cargo Tape</li>
+        <li>Masking Tape</li>
+        <li>Double Sided Tape</li>
+        <li>High Speed Tape</li>
+        <li>Anti Erosion Tape</li>
+        <li>Pen</li>
+      </ul>
+<hr>
+  <ul>
+    <li>Check mail
+      <ul>
+        <li>Harish.k@spicejet.com</li>
+        <li>Ixy.engg@spicejet.com</li>
+        <li>Ravi.chavan@spicejet.com</li>
+      </ul>
+    </li>
+    <li>Read
+      <ul>
+        <li>Preflight</li>
+        <li>Layover</li>
+      </ul>
+    </li>
+  </ul>
+  <hr>
+
+  <h2>Weekly</h2>
+  <ul>
+    <li>Weekly</li>
+    <li>E-course</li>
+    <li>Send YTLP & Fuel slip to Delhi.</li>
+  </ul>
+  <hr>
+  <h2>Monthly</h2>
+  <ul>
+    <li>Tool Kit (before 10th of month)
+      <ul>
+        <li>Mustering</li>
+        <li>Cleaning</li>
+        <li>Reconciliation</li>
+      </ul>
+    </li>
+    <li>Attendance update
+      <ul>
+        <li><a href="https://docs.google.com/spreadsheets/d/1p8_2q1a_i6NDW4oUxpAKnWUAjlQdVdxE7Jl3hOeuka8/edit?gid=0#gid=0">Zoho sheet (harish.k@spicejet.com, shared sheet)</a></li>
+        <li><a href="https://accounts.zoho.in/signin?servicename=zohopeople&signupurl=https://www.zoho.com/people/signup.html">ZOHO Regulerisation</a></li>
+      </ul>
+    </li>
+  </ul>
+  <hr>
+  <h2>Quarterly</h2>
+  <ul>
+    <li>Self Audit (Jan, April, July, October) before 10th of month.
+      <ul>
+        <li>Check fire ex</li>
+        <li>Check POL Trolley</li>
+        <li><a href="https://docs.google.com/spreadsheets/d/1-PWyMml3J26ByAkcrbpI7QCz-yItCr7hvB6nQ0oEuws/edit?gid=0#gid=0">Check inventory</a></li>
+        <li>Update for Tag</li>
+        <li>Check Personal file
+          <ul>
+            <li>Harish Kumar</li>
+            <li>Ravi Kumar</li>
+          </ul>
+        </li>
+        <li>SERA Login</li>
+      </ul>
+    </li>
+  </ul>
+  <hr>
+</div>
+
+<script>
+  // Get all the list items (li elements) on the page
+  const listItems = document.querySelectorAll('li');
+
+  // Loop through each list item and add a click event listener
+  listItems.forEach(item => {
+    item.addEventListener('click', function(event) {
+      // Prevent the click event from bubbling up to parent <li> elements.
+      event.stopPropagation();
+
+      // Check if the clicked element is an input field
+      if (event.target.tagName.toLowerCase() === 'input') {
+        // Do nothing if the click is on the input field
+        return;
+      }
+
+      // Toggle the 'completed-task' class on the clicked list item
+      this.classList.toggle('completed-task');
+    });
+  });
+</script>
+
+</body>
+</html>
