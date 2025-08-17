@@ -3,503 +3,126 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ATA Code Index</title>
+    <title>All ATA Codes with PDFs</title>
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        /* Custom font for better aesthetics */
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f4f7f6;
+            line-height: 1.6;
         }
-        /* Custom styles for a bit of extra polish */
-        .card-link {
-            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-            cursor: pointer; /* Indicate it's clickable */
-        }
-        .card-link:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-        }
-        /* Simple SVG icon styling */
-        .pdf-icon {
-            width: 1.25rem; /* Equivalent to w-5 */
-            height: 1.25rem; /* Equivalent to h-5 */
-            fill: #ef4444; /* Red 500 - Tailwind class */
-            margin-left: 8px; /* Equivalent to ml-2 */
-            flex-shrink: 0; /* Prevent icon from shrinking */
-        }
-        /* PDF Viewer specific styles */
-        #pdfViewerContainer {
-            background-color: #ffffff;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            padding: 30px;
-            width: 95%;
-            max-width: 1000px;
-            text-align: center;
-            margin: 20px auto;
-            display: none; /* Hidden by default */
-        }
-        #pdfViewerContainer iframe {
-            width: 100%;
-            height: 80vh; /* Use viewport height for better responsiveness */
-            border: 1px solid #e2e8f0;
-            border-radius: 8px;
-            margin-top: 20px;
-        }
-        .back-button {
-            display: inline-flex;
-            align-items: center;
-            background-color: #3b82f6; /* Blue 600 */
-            color: white;
-            padding: 10px 20px;
-            border-radius: 8px;
-            font-weight: 500;
+        /* Style for the clickable links */
+        .ata-link {
+            display: block; /* Make the whole list item clickable */
+            padding: 8px 12px;
+            margin-bottom: 4px; /* Small space between items */
+            background-color: #fce7f3; /* Light pink background */
+            border-radius: 8px; /* Rounded corners */
+            color: #831843; /* Darker red text */
             text-decoration: none;
-            transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
-            margin-bottom: 20px;
+            transition: background-color 0.2s ease-in-out, transform 0.1s ease-in-out, box-shadow 0.2s ease-in-out;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Subtle shadow */
         }
-        .back-button:hover {
-            background-color: #2563eb; /* Blue 700 */
-            transform: translateY(-2px);
+        .ata-link:hover {
+            background-color: #fbcfe8; /* Lighter pink on hover */
+            transform: translateY(-2px); /* Slight lift effect */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15); /* More prominent shadow on hover */
+        }
+        .ata-link strong {
+            color: #c026d3; /* Vibrant magenta for chapter number */
         }
     </style>
 </head>
-<body class="bg-gray-100 text-gray-800">
+<body class="bg-gradient-to-br from-red-100 to-rose-200 flex items-center justify-center min-h-screen p-4">
+    <div class="bg-white p-8 rounded-xl shadow-2xl max-w-3xl w-full border border-red-200">
+        <h1 class="text-4xl font-extrabold text-center text-red-800 mb-6">Complete ATA Chapter Codes 📚</h1>
+        <p class="text-gray-700 mb-8 text-lg text-center">
+            The Air Transport Association (ATA) Spec 100 provides a standardized numbering system for all aircraft systems. Click on any chapter below to view its corresponding PDF document.
+        </p>
 
-  <div id="indexGrid" class="container mx-auto px-4 py-8 md:py-12">
-    <header class="text-center mb-10">
-      <h1 class="text-3xl md:text-4xl font-bold text-gray-900">ATA Code Index</h1>
-      <p class="text-md text-gray-600 mt-2">Select an ATA chapter to view its PDF documentation.</p>
-    </header>
+        <ul class="space-y-2">
+            <li><a href="00.pdf" target="_blank" download="00.pdf" class="ata-link"><strong class="font-medium">Chapter 00:</strong> INTRODUCTORY - General</a></li>
+            <li><a href="01.pdf" target="_blank" download="01.pdf" class="ata-link"><strong class="font-medium">Chapter 01:</strong> MAINTENANCE POLICY</a></li>
+            <li><a href="02.pdf" target="_blank" download="02.pdf" class="ata-link"><strong class="font-medium">Chapter 02:</strong> OPERATIONS</a></li>
+            <li><a href="03.pdf" target="_blank" download="03.pdf" class="ata-link"><strong class="font-medium">Chapter 03:</strong> SUPPORT SYSTEMS</a></li>
+            <li><a href="04.pdf" target="_blank" download="04.pdf" class="ata-link"><strong class="font-medium">Chapter 04:</strong> TEMPORARY REVISION</a></li>
+            <li><a href="05.pdf" target="_blank" download="05.pdf" class="ata-link"><strong class="font-medium">Chapter 05:</strong> TIME LIMITS/MAINTENANCE CHECKS</a></li>
+            <li><a href="06.pdf" target="_blank" download="06.pdf" class="ata-link"><strong class="font-medium">Chapter 06:</strong> DIMENSIONS AND AREAS</a></li>
+            <li><a href="07.pdf" target="_blank" download="07.pdf" class="ata-link"><strong class="font-medium">Chapter 07:</strong> LIFTING AND SHORING</a></li>
+            <li><a href="08.pdf" target="_blank" download="08.pdf" class="ata-link"><strong class="font-medium">Chapter 08:</strong> LEVELING AND WEIGHING</a></li>
+            <li><a href="09.pdf" target="_blank" download="09.pdf" class="ata-link"><strong class="font-medium">Chapter 09:</strong> TOWING AND TAXIING</a></li>
+            <li><a href="10.pdf" target="_blank" download="10.pdf" class="ata-link"><strong class="font-medium">Chapter 10:</strong> PARKING, MOORING, STORAGE AND RETURN TO SERVICE</a></li>
+            <li><a href="11.pdf" target="_blank" download="11.pdf" class="ata-link"><strong class="font-medium">Chapter 11:</strong> PLACARDS AND MARKINGS</a></li>
+            <li><a href="12.pdf" target="_blank" download="12.pdf" class="ata-link"><strong class="font-medium">Chapter 12:</strong> SERVICING – ROUTINE MAINTENANCE</a></li>
+            <li><a href="20.pdf" target="_blank" download="20.pdf" class="ata-link"><strong class="font-medium">Chapter 20:</strong> STANDARD PRACTICES – AIRFRAME</a></li>
+            <li><a href="21.pdf" target="_blank" download="21.pdf" class="ata-link"><strong class="font-medium">Chapter 21:</strong> AIR CONDITIONING / PRESSURIZATION</a></li>
+            <li><a href="22.pdf" target="_blank" download="22.pdf" class="ata-link"><strong class="font-medium">Chapter 22:</strong> AUTOFLIGHT</a></li>
+            <li><a href="23.pdf" target="_blank" download="23.pdf" class="ata-link"><strong class="font-medium">Chapter 23:</strong> COMMUNICATIONS</a></li>
+            <li><a href="24.pdf" target="_blank" download="24.pdf" class="ata-link"><strong class="font-medium">Chapter 24:</strong> ELECTRICAL POWER</a></li>
+            <li><a href="25.pdf" target="_blank" download="25.pdf" class="ata-link"><strong class="font-medium">Chapter 25:</strong> EQUIPMENT / FURNISHINGS</a></li>
+            <li><a href="26.pdf" target="_blank" download="26.pdf" class="ata-link"><strong class="font-medium">Chapter 26:</strong> FIRE PROTECTION</a></li>
+            <li><a href="27.pdf" target="_blank" download="27.pdf" class="ata-link"><strong class="font-medium">Chapter 27:</strong> FLIGHT CONTROLS</a></li>
+            <li><a href="28.pdf" target="_blank" download="28.pdf" class="ata-link"><strong class="font-medium">Chapter 28:</strong> FUEL</a></li>
+            <li><a href="29.pdf" target="_blank" download="29.pdf" class="ata-link"><strong class="font-medium">Chapter 29:</strong> HYDRAULIC POWER</a></li>
+            <li><a href="30.pdf" target="_blank" download="30.pdf" class="ata-link"><strong class="font-medium">Chapter 30:</strong> ICE AND RAIN PROTECTION</a></li>
+            <li><a href="31.pdf" target="_blank" download="31.pdf" class="ata-link"><strong class="font-medium">Chapter 31:</strong> INDICATING / RECORDING SYSTEMS</a></li>
+            <li><a href="32.pdf" target="_blank" download="32.pdf" class="ata-link"><strong class="font-medium">Chapter 32:</strong> LANDING GEAR</a></li>
+            <li><a href="33.pdf" target="_blank" download="33.pdf" class="ata-link"><strong class="font-medium">Chapter 33:</strong> LIGHTS</a></li>
+            <li><a href="34.pdf" target="_blank" download="34.pdf" class="ata-link"><strong class="font-medium">Chapter 34:</strong> NAVIGATION</a></li>
+            <li><a href="35.pdf" target="_blank" download="35.pdf" class="ata-link"><strong class="font-medium">Chapter 35:</strong> OXYGEN</a></li>
+            <li><a href="36.pdf" target="_blank" download="36.pdf" class="ata-link"><strong class="font-medium">Chapter 36:</strong> PNEUMATIC</a></li>
+            <li><a href="37.pdf" target="_blank" download="37.pdf" class="ata-link"><strong class="font-medium">Chapter 37:</strong> VACUUM</a></li>
+            <li><a href="38.pdf" target="_blank" download="38.pdf" class="ata-link"><strong class="font-medium">Chapter 38:</strong> WATER / WASTE</a></li>
+            <li><a href="39.pdf" target="_blank" download="39.pdf" class="ata-link"><strong class="font-medium">Chapter 39:</strong> ELECTRICAL – ELECTRONIC PANELS AND MULTIPURPOSE COMPONENTS</a></li>
+            <li><a href="40.pdf" target="_blank" download="40.pdf" class="ata-link"><strong class="font-medium">Chapter 40:</strong> PROPELLER/ROTOR</a></li>
+            <li><a href="41.pdf" target="_blank" download="41.pdf" class="ata-link"><strong class="font-medium">Chapter 41:</strong> WATER BALLAST</a></li>
+            <li><a href="42.pdf" target="_blank" download="42.pdf" class="ata-link"><strong class="font-medium">Chapter 42:</strong> INTEGRATED MODULAR AVIONICS (IMA)</a></li>
+            <li><a href="43.pdf" target="_blank" download="43.pdf" class="ata-link"><strong class="font-medium">Chapter 43:</strong> GENERAL NAVIGATION SYSTEM</a></li>
+            <li><a href="44.pdf" target="_blank" download="44.pdf" class="ata-link"><strong class="font-medium">Chapter 44:</strong> CABIN SYSTEMS</a></li>
+            <li><a href="45.pdf" target="_blank" download="45.pdf" class="ata-link"><strong class="font-medium">Chapter 45:</strong> DIAGNOSTIC AND MAINTENANCE SYSTEM (CMS)</a></li>
+            <li><a href="46.pdf" target="_blank" download="46.pdf" class="ata-link"><strong class="font-medium">Chapter 46:</strong> INFORMATION SYSTEMS</a></li>
+            <li><a href="47.pdf" target="_blank" download="47.pdf" class="ata-link"><strong class="font-medium">Chapter 47:</strong> INERT GAS SYSTEM</a></li>
+            <li><a href="48.pdf" target="_blank" download="48.pdf" class="ata-link"><strong class="font-medium">Chapter 48:</strong> IN-FLIGHT SERVICE SYSTEMS</a></li>
+            <li><a href="49.pdf" target="_blank" download="49.pdf" class="ata-link"><strong class="font-medium">Chapter 49:</strong> AIRBORNE AUXILIARY POWER (APU)</a></li>
+            <li><a href="50.pdf" target="_blank" download="50.pdf" class="ata-link"><strong class="font-medium">Chapter 50:</strong> CARGO AND ACCESSORY COMPARTMENTS</a></li>
+            <li><a href="51.pdf" target="_blank" download="51.pdf" class="ata-link"><strong class="font-medium">Chapter 51:</strong> STANDARD PRACTICES AND STRUCTURES – GENERAL</a></li>
+            <li><a href="52.pdf" target="_blank" download="52.pdf" class="ata-link"><strong class="font-medium">Chapter 52:</strong> DOORS</a></li>
+            <li><a href="53.pdf" target="_blank" download="53.pdf" class="ata-link"><strong class="font-medium">Chapter 53:</strong> FUSELAGE</a></li>
+            <li><a href="54.pdf" target="_blank" download="54.pdf" class="ata-link"><strong class="font-medium">Chapter 54:</strong> NACELLES / PYLONS</a></li>
+            <li><a href="55.pdf" target="_blank" download="55.pdf" class="ata-link"><strong class="font-medium">Chapter 55:</strong> STABILIZERS</a></li>
+            <li><a href="56.pdf" target="_blank" download="56.pdf" class="ata-link"><strong class="font-medium">Chapter 56:</strong> WINDOWS</a></li>
+            <li><a href="57.pdf" target="_blank" download="57.pdf" class="ata-link"><strong class="font-medium">Chapter 57:</strong> WINGS</a></li>
+            <li><a href="60.pdf" target="_blank" download="60.pdf" class="ata-link"><strong class="font-medium">Chapter 60:</strong> STANDARD PRACTICES – PROPELLER/ROTOR</a></li>
+            <li><a href="61.pdf" target="_blank" download="61.pdf" class="ata-link"><strong class="font-medium">Chapter 61:</strong> PROPELLERS / PROPULSION</a></li>
+            <li><a href="62.pdf" target="_blank" download="62.pdf" class="ata-link"><strong class="font-medium">Chapter 62:</strong> MAIN ROTORS</a></li>
+            <li><a href="63.pdf" target="_blank" download="63.pdf" class="ata-link"><strong class="font-medium">Chapter 63:</strong> MAIN ROTOR DRIVES</a></li>
+            <li><a href="64.pdf" target="_blank" download="64.pdf" class="ata-link"><strong class="font-medium">Chapter 64:</strong> TAIL ROTOR</a></li>
+            <li><a href="65.pdf" target="_blank" download="65.pdf" class="ata-link"><strong class="font-medium">Chapter 65:</strong> TAIL ROTOR DRIVE</a></li>
+            <li><a href="66.pdf" target="_blank" download="66.pdf" class="ata-link"><strong class="font-medium">Chapter 66:</strong> FOLDING BLADES / TAIL PYLON</a></li>
+            <li><a href="67.pdf" target="_blank" download="67.pdf" class="ata-link"><strong class="font-medium">Chapter 67:</strong> ROTOR FLIGHT CONTROL</a></li>
+            <li><a href="70.pdf" target="_blank" download="70.pdf" class="ata-link"><strong class="font-medium">Chapter 70:</strong> STANDARD PRACTICES – ENGINE</a></li>
+            <li><a href="71.pdf" target="_blank" download="71.pdf" class="ata-link"><strong class="font-medium">Chapter 71:</strong> POWER PLANT</a></li>
+            <li><a href="72.pdf" target="_blank" download="72.pdf" class="ata-link"><strong class="font-medium">Chapter 72:</strong> ENGINE (Turbine / Turboprop, Reciprocating)</a></li>
+            <li><a href="73.pdf" target="_blank" download="73.pdf" class="ata-link"><strong class="font-medium">Chapter 73:</strong> ENGINE FUEL AND CONTROL</a></li>
+            <li><a href="74.pdf" target="_blank" download="74.pdf" class="ata-link"><strong class="font-medium">Chapter 74:</strong> IGNITION</a></li>
+            <li><a href="75.pdf" target="_blank" download="75.pdf" class="ata-link"><strong class="font-medium">Chapter 75:</strong> AIR (Engine)</a></li>
+            <li><a href="76.pdf" target="_blank" download="76.pdf" class="ata-link"><strong class="font-medium">Chapter 76:</strong> ENGINE CONTROLS</a></li>
+            <li><a href="77.pdf" target="_blank" download="77.pdf" class="ata-link"><strong class="font-medium">Chapter 77:</strong> ENGINE INDICATING</a></li>
+            <li><a href="78.pdf" target="_blank" download="78.pdf" class="ata-link"><strong class="font-medium">Chapter 78:</strong> EXHAUST</a></li>
+            <li><a href="79.pdf" target="_blank" download="79.pdf" class="ata-link"><strong class="font-medium">Chapter 79:</strong> OIL (Engine)</a></li>
+            <li><a href="80.pdf" target="_blank" download="80.pdf" class="ata-link"><strong class="font-medium">Chapter 80:</strong> STARTING</a></li>
+            <li><a href="81.pdf" target="_blank" download="81.pdf" class="ata-link"><strong class="font-medium">Chapter 81:</strong> TURBINES (RECIPROCATING ENGINES)</a></li>
+            <li><a href="82.pdf" target="_blank" download="82.pdf" class="ata-link"><strong class="font-medium">Chapter 82:</strong> WATER INJECTION</a></li>
+            <li><a href="83.pdf" target="_blank" download="83.pdf" class="ata-link"><strong class="font-medium">Chapter 83:</strong> ACCESSORY GEARBOXES</a></li>
+            <li><a href="84.pdf" target="_blank" download="84.pdf" class="ata-link"><strong class="font-medium">Chapter 84:</strong> EXHAUST AUGMENTATION</a></li>
+            <li><a href="85.pdf" target="_blank" download="85.pdf" class="ata-link"><strong class="font-medium">Chapter 85:</strong> GAS TURBINE AUXILIARY POWER UNITS (APU)</a></li>
+            <li><a href="91.pdf" target="_blank" download="91.pdf" class="ata-link"><strong class="font-medium">Chapter 91:</strong> CHARTS</a></li>
+        </ul>
 
-    <!-- The grid layout for the ATA chapters -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-      
-      <!-- Each anchor tag is now a styled card. Removed href and added data-pdf-src -->
-      <a data-pdf-src="05.pdf" data-title="ATA 05 - Time Limits/Maintenance Checks" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
-        <span class="text-sm font-semibold text-blue-600">ATA 05</span>
-        <h3 class="text-lg font-semibold mt-1 text-gray-900 flex items-center justify-between">
-            <span>Time Limits/Maintenance Checks</span>
-            <svg class="pdf-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M19.5 22h-15C3.67 22 3 21.33 3 20.5V3.5C3 2.67 3.67 2 4.5 2H14l7 7v11.5C21 21.33 20.33 22 19.5 22zm-7.5-6h-3.5C8.06 16 7.5 15.44 7.5 14.75S8.06 13.5 8.75 13.5H12c.69 0 1.25.56 1.25 1.25S12.69 16 12 16zm4 4h-7.5C8.06 20 7.5 19.44 7.5 18.75S8.06 17.5 8.75 17.5H16c.69 0 1.25.56 1.25 1.25S16.69 20 16 20zm0-8h-7.5C8.06 12 7.5 11.44 7.5 10.75S8.06 9.5 8.75 9.5H16c.69 0 1.25.56 1.25 1.25S16.69 12 16 12zm2-7V4.5H14c-.69 0-1.25-.56-1.25-1.25V2h-7C5.78 2 5 2.78 5 3.75v16.5C5 21.22 5.78 22 6.75 22h10.5c.97 0 1.75-.78 1.75-1.75V10.5l-3.5-3.5z"/>
-            </svg>
-        </h3>
-      </a>
-      
-      <a data-pdf-src="06.pdf" data-title="ATA 06 - Dimensions and Areas" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
-        <span class="text-sm font-semibold text-blue-600">ATA 06</span>
-        <h3 class="text-lg font-semibold mt-1 text-gray-900 flex items-center justify-between">
-            <span>Dimensions and Areas</span>
-            <svg class="pdf-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M19.5 22h-15C3.67 22 3 21.33 3 20.5V3.5C3 2.67 3.67 2 4.5 2H14l7 7v11.5C21 21.33 20.33 22 19.5 22zm-7.5-6h-3.5C8.06 16 7.5 15.44 7.5 14.75S8.06 13.5 8.75 13.5H12c.69 0 1.25.56 1.25 1.25S12.69 16 12 16zm4 4h-7.5C8.06 20 7.5 19.44 7.5 18.75S8.06 17.5 8.75 17.5H16c.69 0 1.25.56 1.25 1.25S16.69 20 16 20zm0-8h-7.5C8.06 12 7.5 11.44 7.5 10.75S8.06 9.5 8.75 9.5H16c.69 0 1.25.56 1.25 1.25S16.69 12 16 12zm2-7V4.5H14c-.69 0-1.25-.56-1.25-1.25V2h-7C5.78 2 5 2.78 5 3.75v16.5C5 21.22 5.78 22 6.75 22h10.5c.97 0 1.75-.78 1.75-1.75V10.5l-3.5-3.5z"/>
-            </svg>
-        </h3>
-      </a>
-
-      <a data-pdf-src="07.pdf" data-title="ATA 07 - Lifting and Shoring" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
-        <span class="text-sm font-semibold text-blue-600">ATA 07</span>
-        <h3 class="text-lg font-semibold mt-1 text-gray-900 flex items-center justify-between">
-            <span>Lifting and Shoring</span>
-            <svg class="pdf-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M19.5 22h-15C3.67 22 3 21.33 3 20.5V3.5C3 2.67 3.67 2 4.5 2H14l7 7v11.5C21 21.33 20.33 22 19.5 22zm-7.5-6h-3.5C8.06 16 7.5 15.44 7.5 14.75S8.06 13.5 8.75 13.5H12c.69 0 1.25.56 1.25 1.25S12.69 16 12 16zm4 4h-7.5C8.06 20 7.5 19.44 7.5 18.75S8.06 17.5 8.75 17.5H16c.69 0 1.25.56 1.25 1.25S16.69 20 16 20zm0-8h-7.5C8.06 12 7.5 11.44 7.5 10.75S8.06 9.5 8.75 9.5H16c.69 0 1.25.56 1.25 1.25S16.69 12 16 12zm2-7V4.5H14c-.69 0-1.25-.56-1.25-1.25V2h-7C5.78 2 5 2.78 5 3.75v16.5C5 21.22 5.78 22 6.75 22h10.5c.97 0 1.75-.78 1.75-1.75V10.5l-3.5-3.5z"/>
-            </svg>
-        </h3>
-      </a>
-
-      <a data-pdf-src="08.pdf" data-title="ATA 08 - Leveling and Weighing" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
-        <span class="text-sm font-semibold text-blue-600">ATA 08</span>
-        <h3 class="text-lg font-semibold mt-1 text-gray-900 flex items-center justify-between">
-            <span>Leveling and Weighing</span>
-            <svg class="pdf-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M19.5 22h-15C3.67 22 3 21.33 3 20.5V3.5C3 2.67 3.67 2 4.5 2H14l7 7v11.5C21 21.33 20.33 22 19.5 22zm-7.5-6h-3.5C8.06 16 7.5 15.44 7.5 14.75S8.06 13.5 8.75 13.5H12c.69 0 1.25.56 1.25 1.25S12.69 16 12 16zm4 4h-7.5C8.06 20 7.5 19.44 7.5 18.75S8.06 17.5 8.75 17.5H16c.69 0 1.25.56 1.25 1.25S16.69 20 16 20zm0-8h-7.5C8.06 12 7.5 11.44 7.5 10.75S8.06 9.5 8.75 9.5H16c.69 0 1.25.56 1.25 1.25S16.69 12 16 12zm2-7V4.5H14c-.69 0-1.25-.56-1.25-1.25V2h-7C5.78 2 5 2.78 5 3.75v16.5C5 21.22 5.78 22 6.75 22h10.5c.97 0 1.75-.78 1.75-1.75V10.5l-3.5-3.5z"/>
-            </svg>
-        </h3>
-      </a>
-
-      <a data-pdf-src="09.pdf" data-title="ATA 09 - Towing and Taxiing" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
-        <span class="text-sm font-semibold text-blue-600">ATA 09</span>
-        <h3 class="text-lg font-semibold mt-1 text-gray-900 flex items-center justify-between">
-            <span>Towing and Taxiing</span>
-            <svg class="pdf-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M19.5 22h-15C3.67 22 3 21.33 3 20.5V3.5C3 2.67 3.67 2 4.5 2H14l7 7v11.5C21 21.33 20.33 22 19.5 22zm-7.5-6h-3.5C8.06 16 7.5 15.44 7.5 14.75S8.06 13.5 8.75 13.5H12c.69 0 1.25.56 1.25 1.25S12.69 16 12 16zm4 4h-7.5C8.06 20 7.5 19.44 7.5 18.75S8.06 17.5 8.75 17.5H16c.69 0 1.25.56 1.25 1.25S16.69 20 16 20zm0-8h-7.5C8.06 12 7.5 11.44 7.5 10.75S8.06 9.5 8.75 9.5H16c.69 0 1.25.56 1.25 1.25S16.69 12 16 12zm2-7V4.5H14c-.69 0-1.25-.56-1.25-1.25V2h-7C5.78 2 5 2.78 5 3.75v16.5C5 21.22 5.78 22 6.75 22h10.5c.97 0 1.75-.78 1.75-1.75V10.5l-3.5-3.5z"/>
-            </svg>
-        </h3>
-      </a>
-
-      <a data-pdf-src="10.pdf" data-title="ATA 10 - Parking, Mooring, Storage" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
-        <span class="text-sm font-semibold text-blue-600">ATA 10</span>
-        <h3 class="text-lg font-semibold mt-1 text-gray-900 flex items-center justify-between">
-            <span>Parking, Mooring, Storage</span>
-            <svg class="pdf-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M19.5 22h-15C3.67 22 3 21.33 3 20.5V3.5C3 2.67 3.67 2 4.5 2H14l7 7v11.5C21 21.33 20.33 22 19.5 22zm-7.5-6h-3.5C8.06 16 7.5 15.44 7.5 14.75S8.06 13.5 8.75 13.5H12c.69 0 1.25.56 1.25 1.25S12.69 16 12 16zm4 4h-7.5C8.06 20 7.5 19.44 7.5 18.75S8.06 17.5 8.75 17.5H16c.69 0 1.25.56 1.25 1.25S16.69 20 16 20zm0-8h-7.5C8.06 12 7.5 11.44 7.5 10.75S8.06 9.5 8.75 9.5H16c.69 0 1.25.56 1.25 1.25S16.69 12 16 12zm2-7V4.5H14c-.69 0-1.25-.56-1.25-1.25V2h-7C5.78 2 5 2.78 5 3.75v16.5C5 21.22 5.78 22 6.75 22h10.5c.97 0 1.75-.78 1.75-1.75V10.5l-3.5-3.5z"/>
-            </svg>
-        </h3>
-      </a>
-      
-      <a data-pdf-src="11.pdf" data-title="ATA 11 - Placards and Markings" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
-        <span class="text-sm font-semibold text-blue-600">ATA 11</span>
-        <h3 class="text-lg font-semibold mt-1 text-gray-900 flex items-center justify-between">
-            <span>Placards and Markings</span>
-            <svg class="pdf-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M19.5 22h-15C3.67 22 3 21.33 3 20.5V3.5C3 2.67 3.67 2 4.5 2H14l7 7v11.5C21 21.33 20.33 22 19.5 22zm-7.5-6h-3.5C8.06 16 7.5 15.44 7.5 14.75S8.06 13.5 8.75 13.5H12c.69 0 1.25.56 1.25 1.25S12.69 16 12 16zm4 4h-7.5C8.06 20 7.5 19.44 7.5 18.75S8.06 17.5 8.75 17.5H16c.69 0 1.25.56 1.25 1.25S16.69 20 16 20zm0-8h-7.5C8.06 12 7.5 11.44 7.5 10.75S8.06 9.5 8.75 9.5H16c.69 0 1.25.56 1.25 1.25S16.69 12 16 12zm2-7V4.5H14c-.69 0-1.25-.56-1.25-1.25V2h-7C5.78 2 5 2.78 5 3.75v16.5C5 21.22 5.78 22 6.75 22h10.5c.97 0 1.75-.78 1.75-1.75V10.5l-3.5-3.5z"/>
-            </svg>
-        </h3>
-      </a>
-
-      <a data-pdf-src="12.pdf" data-title="ATA 12 - Servicing" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
-        <span class="text-sm font-semibold text-blue-600">ATA 12</span>
-        <h3 class="text-lg font-semibold mt-1 text-gray-900 flex items-center justify-between">
-            <span>Servicing</span>
-            <svg class="pdf-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M19.5 22h-15C3.67 22 3 21.33 3 20.5V3.5C3 2.67 3.67 2 4.5 2H14l7 7v11.5C21 21.33 20.33 22 19.5 22zm-7.5-6h-3.5C8.06 16 7.5 15.44 7.5 14.75S8.06 13.5 8.75 13.5H12c.69 0 1.25.56 1.25 1.25S12.69 16 12 16zm4 4h-7.5C8.06 20 7.5 19.44 7.5 18.75S8.06 17.5 8.75 17.5H16c.69 0 1.25.56 1.25 1.25S16.69 20 16 20zm0-8h-7.5C8.06 12 7.5 11.44 7.5 10.75S8.06 9.5 8.75 9.5H16c.69 0 1.25.56 1.25 1.25S16.69 12 16 12zm2-7V4.5H14c-.69 0-1.25-.56-1.25-1.25V2h-7C5.78 2 5 2.78 5 3.75v16.5C5 21.22 5.78 22 6.75 22h10.5c.97 0 1.75-.78 1.75-1.75V10.5l-3.5-3.5z"/>
-            </svg>
-        </h3>
-      </a>
-
-      <a data-pdf-src="20.pdf" data-title="ATA 20 - Standard Practices - Airframe" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
-        <span class="text-sm font-semibold text-blue-600">ATA 20</span>
-        <h3 class="text-lg font-semibold mt-1 text-gray-900 flex items-center justify-between">
-            <span>Standard Practices - Airframe</span>
-            <svg class="pdf-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M19.5 22h-15C3.67 22 3 21.33 3 20.5V3.5C3 2.67 3.67 2 4.5 2H14l7 7v11.5C21 21.33 20.33 22 19.5 22zm-7.5-6h-3.5C8.06 16 7.5 15.44 7.5 14.75S8.06 13.5 8.75 13.5H12c.69 0 1.25.56 1.25 1.25S12.69 16 12 16zm4 4h-7.5C8.06 20 7.5 19.44 7.5 18.75S8.06 17.5 8.75 17.5H16c.69 0 1.25.56 1.25 1.25S16.69 20 16 20zm0-8h-7.5C8.06 12 7.5 11.44 7.5 10.75S8.06 9.5 8.75 9.5H16c.69 0 1.25.56 1.25 1.25S16.69 12 16 12zm2-7V4.5H14c-.69 0-1.25-.56-1.25-1.25V2h-7C5.78 2 5 2.78 5 3.75v16.5C5 21.22 5.78 22 6.75 22h10.5c.97 0 1.75-.78 1.75-1.75V10.5l-3.5-3.5z"/>
-            </svg>
-        </h3>
-      </a>
-
-      <a data-pdf-src="21.pdf" data-title="ATA 21 - Air Conditioning" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
-        <span class="text-sm font-semibold text-blue-600">ATA 21</span>
-        <h3 class="text-lg font-semibold mt-1 text-gray-900 flex items-center justify-between">
-            <span>Air Conditioning</span>
-            <svg class="pdf-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M19.5 22h-15C3.67 22 3 21.33 3 20.5V3.5C3 2.67 3.67 2 4.5 2H14l7 7v11.5C21 21.33 20.33 22 19.5 22zm-7.5-6h-3.5C8.06 16 7.5 15.44 7.5 14.75S8.06 13.5 8.75 13.5H12c.69 0 1.25.56 1.25 1.25S12.69 16 12 16zm4 4h-7.5C8.06 20 7.5 19.44 7.5 18.75S8.06 17.5 8.75 17.5H16c.69 0 1.25.56 1.25 1.25S16.69 20 16 20zm0-8h-7.5C8.06 12 7.5 11.44 7.5 10.75S8.06 9.5 8.75 9.5H16c.69 0 1.25.56 1.25 1.25S16.69 12 16 12zm2-7V4.5H14c-.69 0-1.25-.56-1.25-1.25V2h-7C5.78 2 5 2.78 5 3.75v16.5C5 21.22 5.78 22 6.75 22h10.5c.97 0 1.75-.78 1.75-1.75V10.5l-3.5-3.5z"/>
-            </svg>
-        </h3>
-      </a>
-
-      <a data-pdf-src="22.pdf" data-title="ATA 22 - Auto Flight" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
-        <span class="text-sm font-semibold text-blue-600">ATA 22</span>
-        <h3 class="text-lg font-semibold mt-1 text-gray-900 flex items-center justify-between">
-            <span>Auto Flight</span>
-            <svg class="pdf-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M19.5 22h-15C3.67 22 3 21.33 3 20.5V3.5C3 2.67 3.67 2 4.5 2H14l7 7v11.5C21 21.33 20.33 22 19.5 22zm-7.5-6h-3.5C8.06 16 7.5 15.44 7.5 14.75S8.06 13.5 8.75 13.5H12c.69 0 1.25.56 1.25 1.25S12.69 16 12 16zm4 4h-7.5C8.06 20 7.5 19.44 7.5 18.75S8.06 17.5 8.75 17.5H16c.69 0 1.25.56 1.25 1.25S16.69 20 16 20zm0-8h-7.5C8.06 12 7.5 11.44 7.5 10.75S8.06 9.5 8.75 9.5H16c.69 0 1.25.56 1.25 1.25S16.69 12 16 12zm2-7V4.5H14c-.69 0-1.25-.56-1.25-1.25V2h-7C5.78 2 5 2.78 5 3.75v16.5C5 21.22 5.78 22 6.75 22h10.5c.97 0 1.75-.78 1.75-1.75V10.5l-3.5-3.5z"/>
-            </svg>
-        </h3>
-      </a>
-
-      <a data-pdf-src="23.pdf" data-title="ATA 23 - Communications" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
-        <span class="text-sm font-semibold text-blue-600">ATA 23</span>
-        <h3 class="text-lg font-semibold mt-1 text-gray-900 flex items-center justify-between">
-            <span>Communications</span>
-            <svg class="pdf-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M19.5 22h-15C3.67 22 3 21.33 3 20.5V3.5C3 2.67 3.67 2 4.5 2H14l7 7v11.5C21 21.33 20.33 22 19.5 22zm-7.5-6h-3.5C8.06 16 7.5 15.44 7.5 14.75S8.06 13.5 8.75 13.5H12c.69 0 1.25.56 1.25 1.25S12.69 16 12 16zm4 4h-7.5C8.06 20 7.5 19.44 7.5 18.75S8.06 17.5 8.75 17.5H16c.69 0 1.25.56 1.25 1.25S16.69 20 16 20zm0-8h-7.5C8.06 12 7.5 11.44 7.5 10.75S8.06 9.5 8.75 9.5H16c.69 0 1.25.56 1.25 1.25S16.69 12 16 12zm2-7V4.5H14c-.69 0-1.25-.56-1.25-1.25V2h-7C5.78 2 5 2.78 5 3.75v16.5C5 21.22 5.78 22 6.75 22h10.5c.97 0 1.75-.78 1.75-1.75V10.5l-3.5-3.5z"/>
-            </svg>
-        </h3>
-      </a>
-
-      <a data-pdf-src="24.pdf" data-title="ATA 24 - Electrical Power" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
-        <span class="text-sm font-semibold text-blue-600">ATA 24</span>
-        <h3 class="text-lg font-semibold mt-1 text-gray-900 flex items-center justify-between">
-            <span>Electrical Power</span>
-            <svg class="pdf-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M19.5 22h-15C3.67 22 3 21.33 3 20.5V3.5C3 2.67 3.67 2 4.5 2H14l7 7v11.5C21 21.33 20.33 22 19.5 22zm-7.5-6h-3.5C8.06 16 7.5 15.44 7.5 14.75S8.06 13.5 8.75 13.5H12c.69 0 1.25.56 1.25 1.25S12.69 16 12 16zm4 4h-7.5C8.06 20 7.5 19.44 7.5 18.75S8.06 17.5 8.75 17.5H16c.69 0 1.25.56 1.25 1.25S16.69 20 16 20zm0-8h-7.5C8.06 12 7.5 11.44 7.5 10.75S8.06 9.5 8.75 9.5H16c.69 0 1.25.56 1.25 1.25S16.69 12 16 12zm2-7V4.5H14c-.69 0-1.25-.56-1.25-1.25V2h-7C5.78 2 5 2.78 5 3.75v16.5C5 21.22 5.78 22 6.75 22h10.5c.97 0 1.75-.78 1.75-1.75V10.5l-3.5-3.5z"/>
-            </svg>
-        </h3>
-      </a>
-
-      <a data-pdf-src="25.pdf" data-title="ATA 25 - Equipment/Furnishings" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
-        <span class="text-sm font-semibold text-blue-600">ATA 25</span>
-        <h3 class="text-lg font-semibold mt-1 text-gray-900 flex items-center justify-between">
-            <span>Equipment/Furnishings</span>
-            <svg class="pdf-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M19.5 22h-15C3.67 22 3 21.33 3 20.5V3.5C3 2.67 3.67 2 4.5 2H14l7 7v11.5C21 21.33 20.33 22 19.5 22zm-7.5-6h-3.5C8.06 16 7.5 15.44 7.5 14.75S8.06 13.5 8.75 13.5H12c.69 0 1.25.56 1.25 1.25S12.69 16 12 16zm4 4h-7.5C8.06 20 7.5 19.44 7.5 18.75S8.06 17.5 8.75 17.5H16c.69 0 1.25.56 1.25 1.25S16.69 20 16 20zm0-8h-7.5C8.06 12 7.5 11.44 7.5 10.75S8.06 9.5 8.75 9.5H16c.69 0 1.25.56 1.25 1.25S16.69 12 16 12zm2-7V4.5H14c-.69 0-1.25-.56-1.25-1.25V2h-7C5.78 2 5 2.78 5 3.75v16.5C5 21.22 5.78 22 6.75 22h10.5c.97 0 1.75-.78 1.75-1.75V10.5l-3.5-3.5z"/>
-            </svg>
-        </h3>
-      </a>
-
-      <a data-pdf-src="26.pdf" data-title="ATA 26 - Fire Protection" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
-        <span class="text-sm font-semibold text-blue-600">ATA 26</span>
-        <h3 class="text-lg font-semibold mt-1 text-gray-900 flex items-center justify-between">
-            <span>Fire Protection</span>
-            <svg class="pdf-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M19.5 22h-15C3.67 22 3 21.33 3 20.5V3.5C3 2.67 3.67 2 4.5 2H14l7 7v11.5C21 21.33 20.33 22 19.5 22zm-7.5-6h-3.5C8.06 16 7.5 15.44 7.5 14.75S8.06 13.5 8.75 13.5H12c.69 0 1.25.56 1.25 1.25S12.69 16 12 16zm4 4h-7.5C8.06 20 7.5 19.44 7.5 18.75S8.06 17.5 8.75 17.5H16c.69 0 1.25.56 1.25 1.25S16.69 20 16 20zm0-8h-7.5C8.06 12 7.5 11.44 7.5 10.75S8.06 9.5 8.75 9.5H16c.69 0 1.25.56 1.25 1.25S16.69 12 16 12zm2-7V4.5H14c-.69 0-1.25-.56-1.25-1.25V2h-7C5.78 2 5 2.78 5 3.75v16.5C5 21.22 5.78 22 6.75 22h10.5c.97 0 1.75-.78 1.75-1.75V10.5l-3.5-3.5z"/>
-            </svg>
-        </h3>
-      </a>
-
-      <a data-pdf-src="27.pdf" data-title="ATA 27 - Flight Controls" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
-        <span class="text-sm font-semibold text-blue-600">ATA 27</span>
-        <h3 class="text-lg font-semibold mt-1 text-gray-900 flex items-center justify-between">
-            <span>Flight Controls</span>
-            <svg class="pdf-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M19.5 22h-15C3.67 22 3 21.33 3 20.5V3.5C3 2.67 3.67 2 4.5 2H14l7 7v11.5C21 21.33 20.33 22 19.5 22zm-7.5-6h-3.5C8.06 16 7.5 15.44 7.5 14.75S8.06 13.5 8.75 13.5H12c.69 0 1.25.56 1.25 1.25S12.69 16 12 16zm4 4h-7.5C8.06 20 7.5 19.44 7.5 18.75S8.06 17.5 8.75 17.5H16c.69 0 1.25.56 1.25 1.25S16.69 20 16 20zm0-8h-7.5C8.06 12 7.5 11.44 7.5 10.75S8.06 9.5 8.75 9.5H16c.69 0 1.25.56 1.25 1.25S16.69 12 16 12zm2-7V4.5H14c-.69 0-1.25-.56-1.25-1.25V2h-7C5.78 2 5 2.78 5 3.75v16.5C5 21.22 5.78 22 6.75 22h10.5c.97 0 1.75-.78 1.75-1.75V10.5l-3.5-3.5z"/>
-            </svg>
-        </h3>
-      </a>
-
-      <a data-pdf-src="28.pdf" data-title="ATA 28 - Fuel" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
-        <span class="text-sm font-semibold text-blue-600">ATA 28</span>
-        <h3 class="text-lg font-semibold mt-1 text-gray-900 flex items-center justify-between">
-            <span>Fuel</span>
-            <svg class="pdf-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M19.5 22h-15C3.67 22 3 21.33 3 20.5V3.5C3 2.67 3.67 2 4.5 2H14l7 7v11.5C21 21.33 20.33 22 19.5 22zm-7.5-6h-3.5C8.06 16 7.5 15.44 7.5 14.75S8.06 13.5 8.75 13.5H12c.69 0 1.25.56 1.25 1.25S12.69 16 12 16zm4 4h-7.5C8.06 20 7.5 19.44 7.5 18.75S8.06 17.5 8.75 17.5H16c.69 0 1.25.56 1.25 1.25S16.69 20 16 20zm0-8h-7.5C8.06 12 7.5 11.44 7.5 10.75S8.06 9.5 8.75 9.5H16c.69 0 1.25.56 1.25 1.25S16.69 12 16 12zm2-7V4.5H14c-.69 0-1.25-.56-1.25-1.25V2h-7C5.78 2 5 2.78 5 3.75v16.5C5 21.22 5.78 22 6.75 22h10.5c.97 0 1.75-.78 1.75-1.75V10.5l-3.5-3.5z"/>
-            </svg>
-        </h3>
-      </a>
-
-      <a data-pdf-src="29.pdf" data-title="ATA 29 - Hydraulic Power" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
-        <span class="text-sm font-semibold text-blue-600">ATA 29</span>
-        <h3 class="text-lg font-semibold mt-1 text-gray-900 flex items-center justify-between">
-            <span>Hydraulic Power</span>
-            <svg class="pdf-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M19.5 22h-15C3.67 22 3 21.33 3 20.5V3.5C3 2.67 3.67 2 4.5 2H14l7 7v11.5C21 21.33 20.33 22 19.5 22zm-7.5-6h-3.5C8.06 16 7.5 15.44 7.5 14.75S8.06 13.5 8.75 13.5H12c.69 0 1.25.56 1.25 1.25S12.69 16 12 16zm4 4h-7.5C8.06 20 7.5 19.44 7.5 18.75S8.06 17.5 8.75 17.5H16c.69 0 1.25.56 1.25 1.25S16.69 20 16 20zm0-8h-7.5C8.06 12 7.5 11.44 7.5 10.75S8.06 9.5 8.75 9.5H16c.69 0 1.25.56 1.25 1.25S16.69 12 16 12zm2-7V4.5H14c-.69 0-1.25-.56-1.25-1.25V2h-7C5.78 2 5 2.78 5 3.75v16.5C5 21.22 5.78 22 6.75 22h10.5c.97 0 1.75-.78 1.75-1.75V10.5l-3.5-3.5z"/>
-            </svg>
-        </h3>
-      </a>
-
-      <a data-pdf-src="30.pdf" data-title="ATA 30 - Ice and Rain Protection" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
-        <span class="text-sm font-semibold text-blue-600">ATA 30</span>
-        <h3 class="text-lg font-semibold mt-1 text-gray-900 flex items-center justify-between">
-            <span>Ice and Rain Protection</span>
-            <svg class="pdf-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M19.5 22h-15C3.67 22 3 21.33 3 20.5V3.5C3 2.67 3.67 2 4.5 2H14l7 7v11.5C21 21.33 20.33 22 19.5 22zm-7.5-6h-3.5C8.06 16 7.5 15.44 7.5 14.75S8.06 13.5 8.75 13.5H12c.69 0 1.25.56 1.25 1.25S12.69 16 12 16zm4 4h-7.5C8.06 20 7.5 19.44 7.5 18.75S8.06 17.5 8.75 17.5H16c.69 0 1.25.56 1.25 1.25S16.69 20 16 20zm0-8h-7.5C8.06 12 7.5 11.44 7.5 10.75S8.06 9.5 8.75 9.5H16c.69 0 1.25.56 1.25 1.25S16.69 12 16 12zm2-7V4.5H14c-.69 0-1.25-.56-1.25-1.25V2h-7C5.78 2 5 2.78 5 3.75v16.5C5 21.22 5.78 22 6.75 22h10.5c.97 0 1.75-.78 1.75-1.75V10.5l-3.5-3.5z"/>
-            </svg>
-        </h3>
-      </a>
-
-      <a data-pdf-src="31.pdf" data-title="ATA 31 - Indicating / Recording" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
-        <span class="text-sm font-semibold text-blue-600">ATA 31</span>
-        <h3 class="text-lg font-semibold mt-1 text-gray-900 flex items-center justify-between">
-            <span>Indicating / Recording</span>
-            <svg class="pdf-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M19.5 22h-15C3.67 22 3 21.33 3 20.5V3.5C3 2.67 3.67 2 4.5 2H14l7 7v11.5C21 21.33 20.33 22 19.5 22zm-7.5-6h-3.5C8.06 16 7.5 15.44 7.5 14.75S8.06 13.5 8.75 13.5H12c.69 0 1.25.56 1.25 1.25S12.69 16 12 16zm4 4h-7.5C8.06 20 7.5 19.44 7.5 18.75S8.06 17.5 8.75 17.5H16c.69 0 1.25.56 1.25 1.25S16.69 20 16 20zm0-8h-7.5C8.06 12 7.5 11.44 7.5 10.75S8.06 9.5 8.75 9.5H16c.69 0 1.25.56 1.25 1.25S16.69 12 16 12zm2-7V4.5H14c-.69 0-1.25-.56-1.25-1.25V2h-7C5.78 2 5 2.78 5 3.75v16.5C5 21.22 5.78 22 6.75 22h10.5c.97 0 1.75-.78 1.75-1.75V10.5l-3.5-3.5z"/>
-            </svg>
-        </h3>
-      </a>
-
-      <a data-pdf-src="32.pdf" data-title="ATA 32 - Landing Gear" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
-        <span class="text-sm font-semibold text-blue-600">ATA 32</span>
-        <h3 class="text-lg font-semibold mt-1 text-gray-900 flex items-center justify-between">
-            <span>Landing Gear</span>
-            <svg class="pdf-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M19.5 22h-15C3.67 22 3 21.33 3 20.5V3.5C3 2.67 3.67 2 4.5 2H14l7 7v11.5C21 21.33 20.33 22 19.5 22zm-7.5-6h-3.5C8.06 16 7.5 15.44 7.5 14.75S8.06 13.5 8.75 13.5H12c.69 0 1.25.56 1.25 1.25S12.69 16 12 16zm4 4h-7.5C8.06 20 7.5 19.44 7.5 18.75S8.06 17.5 8.75 17.5H16c.69 0 1.25.56 1.25 1.25S16.69 20 16 20zm0-8h-7.5C8.06 12 7.5 11.44 7.5 10.75S8.06 9.5 8.75 9.5H16c.69 0 1.25.56 1.25 1.25S16.69 12 16 12zm2-7V4.5H14c-.69 0-1.25-.56-1.25-1.25V2h-7C5.78 2 5 2.78 5 3.75v16.5C5 21.22 5.78 22 6.75 22h10.5c.97 0 1.75-.78 1.75-1.75V10.5l-3.5-3.5z"/>
-            </svg>
-        </h3>
-      </a>
-
-      <a data-pdf-src="33.pdf" data-title="ATA 33 - Lights" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
-        <span class="text-sm font-semibold text-blue-600">ATA 33</span>
-        <h3 class="text-lg font-semibold mt-1 text-gray-900 flex items-center justify-between">
-            <span>Lights</span>
-            <svg class="pdf-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M19.5 22h-15C3.67 22 3 21.33 3 20.5V3.5C3 2.67 3.67 2 4.5 2H14l7 7v11.5C21 21.33 20.33 22 19.5 22zm-7.5-6h-3.5C8.06 16 7.5 15.44 7.5 14.75S8.06 13.5 8.75 13.5H12c.69 0 1.25.56 1.25 1.25S12.69 16 12 16zm4 4h-7.5C8.06 20 7.5 19.44 7.5 18.75S8.06 17.5 8.75 17.5H16c.69 0 1.25.56 1.25 1.25S16.69 20 16 20zm0-8h-7.5C8.06 12 7.5 11.44 7.5 10.75S8.06 9.5 8.75 9.5H16c.69 0 1.25.56 1.25 1.25S16.69 12 16 12zm2-7V4.5H14c-.69 0-1.25-.56-1.25-1.25V2h-7C5.78 2 5 2.78 5 3.75v16.5C5 21.22 5.78 22 6.75 22h10.5c.97 0 1.75-.78 1.75-1.75V10.5l-3.5-3.5z"/>
-            </svg>
-        </h3>
-      </a>
-
-      <a data-pdf-src="34.pdf" data-title="ATA 34 - Navigation" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
-        <span class="text-sm font-semibold text-blue-600">ATA 34</span>
-        <h3 class="text-lg font-semibold mt-1 text-gray-900 flex items-center justify-between">
-            <span>Navigation</span>
-            <svg class="pdf-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M19.5 22h-15C3.67 22 3 21.33 3 20.5V3.5C3 2.67 3.67 2 4.5 2H14l7 7v11.5C21 21.33 20.33 22 19.5 22zm-7.5-6h-3.5C8.06 16 7.5 15.44 7.5 14.75S8.06 13.5 8.75 13.5H12c.69 0 1.25.56 1.25 1.25S12.69 16 12 16zm4 4h-7.5C8.06 20 7.5 19.44 7.5 18.75S8.06 17.5 8.75 17.5H16c.69 0 1.25.56 1.25 1.25S16.69 20 16 20zm0-8h-7.5C8.06 12 7.5 11.44 7.5 10.75S8.06 9.5 8.75 9.5H16c.69 0 1.25.56 1.25 1.25S16.69 12 16 12zm2-7V4.5H14c-.69 0-1.25-.56-1.25-1.25V2h-7C5.78 2 5 2.78 5 3.75v16.5C5 21.22 5.78 22 6.75 22h10.5c.97 0 1.75-.78 1.75-1.75V10.5l-3.5-3.5z"/>
-            </svg>
-        </h3>
-      </a>
-
-      <a data-pdf-src="35.pdf" data-title="ATA 35 - Oxygen" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
-        <span class="text-sm font-semibold text-blue-600">ATA 35</span>
-        <h3 class="text-lg font-semibold mt-1 text-gray-900 flex items-center justify-between">
-            <span>Oxygen</span>
-            <svg class="pdf-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M19.5 22h-15C3.67 22 3 21.33 3 20.5V3.5C3 2.67 3.67 2 4.5 2H14l7 7v11.5C21 21.33 20.33 22 19.5 22zm-7.5-6h-3.5C8.06 16 7.5 15.44 7.5 14.75S8.06 13.5 8.75 13.5H12c.69 0 1.25.56 1.25 1.25S12.69 16 12 16zm4 4h-7.5C8.06 20 7.5 19.44 7.5 18.75S8.06 17.5 8.75 17.5H16c.69 0 1.25.56 1.25 1.25S16.69 20 16 20zm0-8h-7.5C8.06 12 7.5 11.44 7.5 10.75S8.06 9.5 8.75 9.5H16c.69 0 1.25.56 1.25 1.25S16.69 12 16 12zm2-7V4.5H14c-.69 0-1.25-.56-1.25-1.25V2h-7C5.78 2 5 2.78 5 3.75v16.5C5 21.22 5.78 22 6.75 22h10.5c.97 0 1.75-.78 1.75-1.75V10.5l-3.5-3.5z"/>
-            </svg>
-        </h3>
-      </a>
-
-      <a data-pdf-src="36.pdf" data-title="ATA 36 - Pneumatic" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
-        <span class="text-sm font-semibold text-blue-600">ATA 36</span>
-        <h3 class="text-lg font-semibold mt-1 text-gray-900 flex items-center justify-between">
-            <span>Pneumatic</span>
-            <svg class="pdf-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M19.5 22h-15C3.67 22 3 21.33 3 20.5V3.5C3 2.67 3.67 2 4.5 2H14l7 7v11.5C21 21.33 20.33 22 19.5 22zm-7.5-6h-3.5C8.06 16 7.5 15.44 7.5 14.75S8.06 13.5 8.75 13.5H12c.69 0 1.25.56 1.25 1.25S12.69 16 12 16zm4 4h-7.5C8.06 20 7.5 19.44 7.5 18.75S8.06 17.5 8.75 17.5H16c.69 0 1.25.56 1.25 1.25S16.69 20 16 20zm0-8h-7.5C8.06 12 7.5 11.44 7.5 10.75S8.06 9.5 8.75 9.5H16c.69 0 1.25.56 1.25 1.25S16.69 12 16 12zm2-7V4.5H14c-.69 0-1.25-.56-1.25-1.25V2h-7C5.78 2 5 2.78 5 3.75v16.5C5 21.22 5.78 22 6.75 22h10.5c.97 0 1.75-.78 1.75-1.75V10.5l-3.5-3.5z"/>
-            </svg>
-        </h3>
-      </a>
-
-      <a data-pdf-src="38.pdf" data-title="ATA 38 - Water/Waste" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
-        <span class="text-sm font-semibold text-blue-600">ATA 38</span>
-        <h3 class="text-lg font-semibold mt-1 text-gray-900 flex items-center justify-between">
-            <span>Water/Waste</span>
-            <svg class="pdf-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M19.5 22h-15C3.67 22 3 21.33 3 20.5V3.5C3 2.67 3.67 2 4.5 2H14l7 7v11.5C21 21.33 20.33 22 19.5 22zm-7.5-6h-3.5C8.06 16 7.5 15.44 7.5 14.75S8.06 13.5 8.75 13.5H12c.69 0 1.25.56 1.25 1.25S12.69 16 12 16zm4 4h-7.5C8.06 20 7.5 19.44 7.5 18.75S8.06 17.5 8.75 17.5H16c.69 0 1.25.56 1.25 1.25S16.69 20 16 20zm0-8h-7.5C8.06 12 7.5 11.44 7.5 10.75S8.06 9.5 8.75 9.5H16c.69 0 1.25.56 1.25 1.25S16.69 12 16 12zm2-7V4.5H14c-.69 0-1.25-.56-1.25-1.25V2h-7C5.78 2 5 2.78 5 3.75v16.5C5 21.22 5.78 22 6.75 22h10.5c.97 0 1.75-.78 1.75-1.75V10.5l-3.5-3.5z"/>
-            </svg>
-        </h3>
-      </a>
-
-      <a data-pdf-src="49.pdf" data-title="ATA 49 - Airborne Auxiliary Power" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
-        <span class="text-sm font-semibold text-blue-600">ATA 49</span>
-        <h3 class="text-lg font-semibold mt-1 text-gray-900 flex items-center justify-between">
-            <span>Airborne Auxiliary Power</span>
-            <svg class="pdf-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M19.5 22h-15C3.67 22 3 21.33 3 20.5V3.5C3 2.67 3.67 2 4.5 2H14l7 7v11.5C21 21.33 20.33 22 19.5 22zm-7.5-6h-3.5C8.06 16 7.5 15.44 7.5 14.75S8.06 13.5 8.75 13.5H12c.69 0 1.25.56 1.25 1.25S12.69 16 12 16zm4 4h-7.5C8.06 20 7.5 19.44 7.5 18.75S8.06 17.5 8.75 17.5H16c.69 0 1.25.56 1.25 1.25S16.69 20 16 20zm0-8h-7.5C8.06 12 7.5 11.44 7.5 10.75S8.06 9.5 8.75 9.5H16c.69 0 1.25.56 1.25 1.25S16.69 12 16 12zm2-7V4.5H14c-.69 0-1.25-.56-1.25-1.25V2h-7C5.78 2 5 2.78 5 3.75v16.5C5 21.22 5.78 22 6.75 22h10.5c.97 0 1.75-.78 1.75-1.75V10.5l-3.5-3.5z"/>
-            </svg>
-        </h3>
-      </a>
-
-      <a data-pdf-src="51.pdf" data-title="ATA 51 - Standard Practices/Structures" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
-        <span class="text-sm font-semibold text-blue-600">ATA 51</span>
-        <h3 class="text-lg font-semibold mt-1 text-gray-900 flex items-center justify-between">
-            <span>Standard Practices/Structures</span>
-            <svg class="pdf-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M19.5 22h-15C3.67 22 3 21.33 3 20.5V3.5C3 2.67 3.67 2 4.5 2H14l7 7v11.5C21 21.33 20.33 22 19.5 22zm-7.5-6h-3.5C8.06 16 7.5 15.44 7.5 14.75S8.06 13.5 8.75 13.5H12c.69 0 1.25.56 1.25 1.25S12.69 16 12 16zm4 4h-7.5C8.06 20 7.5 19.44 7.5 18.75S8.06 17.5 8.75 17.5H16c.69 0 1.25.56 1.25 1.25S16.69 20 16 20zm0-8h-7.5C8.06 12 7.5 11.44 7.5 10.75S8.06 9.5 8.75 9.5H16c.69 0 1.25.56 1.25 1.25S16.69 12 16 12zm2-7V4.5H14c-.69 0-1.25-.56-1.25-1.25V2h-7C5.78 2 5 2.78 5 3.75v16.5C5 21.22 5.78 22 6.75 22h10.5c.97 0 1.75-.78 1.75-1.75V10.5l-3.5-3.5z"/>
-            </svg>
-        </h3>
-      </a>
-
-      <a data-pdf-src="52.pdf" data-title="ATA 52 - Doors" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
-        <span class="text-sm font-semibold text-blue-600">ATA 52</span>
-        <h3 class="text-lg font-semibold mt-1 text-gray-900 flex items-center justify-between">
-            <span>Doors</span>
-            <svg class="pdf-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M19.5 22h-15C3.67 22 3 21.33 3 20.5V3.5C3 2.67 3.67 2 4.5 2H14l7 7v11.5C21 21.33 20.33 22 19.5 22zm-7.5-6h-3.5C8.06 16 7.5 15.44 7.5 14.75S8.06 13.5 8.75 13.5H12c.69 0 1.25.56 1.25 1.25S12.69 16 12 16zm4 4h-7.5C8.06 20 7.5 19.44 7.5 18.75S8.06 17.5 8.75 17.5H16c.69 0 1.25.56 1.25 1.25S16.69 20 16 20zm0-8h-7.5C8.06 12 7.5 11.44 7.5 10.75S8.06 9.5 8.75 9.5H16c.69 0 1.25.56 1.25 1.25S16.69 12 16 12zm2-7V4.5H14c-.69 0-1.25-.56-1.25-1.25V2h-7C5.78 2 5 2.78 5 3.75v16.5C5 21.22 5.78 22 6.75 22h10.5c.97 0 1.75-.78 1.75-1.75V10.5l-3.5-3.5z"/>
-            </svg>
-        </h3>
-      </a>
-
-      <a data-pdf-src="53.pdf" data-title="ATA 53 - Fuselage" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
-        <span class="text-sm font-semibold text-blue-600">ATA 53</span>
-        <h3 class="text-lg font-semibold mt-1 text-gray-900 flex items-center justify-between">
-            <span>Fuselage</span>
-            <svg class="pdf-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M19.5 22h-15C3.67 22 3 21.33 3 20.5V3.5C3 2.67 3.67 2 4.5 2H14l7 7v11.5C21 21.33 20.33 22 19.5 22zm-7.5-6h-3.5C8.06 16 7.5 15.44 7.5 14.75S8.06 13.5 8.75 13.5H12c.69 0 1.25.56 1.25 1.25S12.69 16 12 16zm4 4h-7.5C8.06 20 7.5 19.44 7.5 18.75S8.06 17.5 8.75 17.5H16c.69 0 1.25.56 1.25 1.25S16.69 20 16 20zm0-8h-7.5C8.06 12 7.5 11.44 7.5 10.75S8.06 9.5 8.75 9.5H16c.69 0 1.25.56 1.25 1.25S16.69 12 16 12zm2-7V4.5H14c-.69 0-1.25-.56-1.25-1.25V2h-7C5.78 2 5 2.78 5 3.75v16.5C5 21.22 5.78 22 6.75 22h10.5c.97 0 1.75-.78 1.75-1.75V10.5l-3.5-3.5z"/>
-            </svg>
-        </h3>
-      </a>
-
-      <a data-pdf-src="54.pdf" data-title="ATA 54 - Nacelles/Pylons" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
-        <span class="text-sm font-semibold text-blue-600">ATA 54</span>
-        <h3 class="text-lg font-semibold mt-1 text-gray-900 flex items-center justify-between">
-            <span>Nacelles/Pylons</span>
-            <svg class="pdf-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M19.5 22h-15C3.67 22 3 21.33 3 20.5V3.5C3 2.67 3.67 2 4.5 2H14l7 7v11.5C21 21.33 20.33 22 19.5 22zm-7.5-6h-3.5C8.06 16 7.5 15.44 7.5 14.75S8.06 13.5 8.75 13.5H12c.69 0 1.25.56 1.25 1.25S12.69 16 12 16zm4 4h-7.5C8.06 20 7.5 19.44 7.5 18.75S8.06 17.5 8.75 17.5H16c.69 0 1.25.56 1.25 1.25S16.69 20 16 20zm0-8h-7.5C8.06 12 7.5 11.44 7.5 10.75S8.06 9.5 8.75 9.5H16c.69 0 1.25.56 1.25 1.25S16.69 12 16 12zm2-7V4.5H14c-.69 0-1.25-.56-1.25-1.25V2h-7C5.78 2 5 2.78 5 3.75v16.5C5 21.22 5.78 22 6.75 22h10.5c.97 0 1.75-.78 1.75-1.75V10.5l-3.5-3.5z"/>
-            </svg>
-        </h3>
-      </a>
-
-      <a data-pdf-src="55.pdf" data-title="ATA 55 - Stabilizers" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
-        <span class="text-sm font-semibold text-blue-600">ATA 55</span>
-        <h3 class="text-lg font-semibold mt-1 text-gray-900 flex items-center justify-between">
-            <span>Stabilizers</span>
-            <svg class="pdf-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M19.5 22h-15C3.67 22 3 21.33 3 20.5V3.5C3 2.67 3.67 2 4.5 2H14l7 7v11.5C21 21.33 20.33 22 19.5 22zm-7.5-6h-3.5C8.06 16 7.5 15.44 7.5 14.75S8.06 13.5 8.75 13.5H12c.69 0 1.25.56 1.25 1.25S12.69 16 12 16zm4 4h-7.5C8.06 20 7.5 19.44 7.5 18.75S8.06 17.5 8.75 17.5H16c.69 0 1.25.56 1.25 1.25S16.69 20 16 20zm0-8h-7.5C8.06 12 7.5 11.44 7.5 10.75S8.06 9.5 8.75 9.5H16c.69 0 1.25.56 1.25 1.25S16.69 12 16 12zm2-7V4.5H14c-.69 0-1.25-.56-1.25-1.25V2h-7C5.78 2 5 2.78 5 3.75v16.5C5 21.22 5.78 22 6.75 22h10.5c.97 0 1.75-.78 1.75-1.75V10.5l-3.5-3.5z"/>
-            </svg>
-        </h3>
-      </a>
-
-      <a data-pdf-src="56.pdf" data-title="ATA 56 - Windows" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
-        <span class="text-sm font-semibold text-blue-600">ATA 56</span>
-        <h3 class="text-lg font-semibold mt-1 text-gray-900 flex items-center justify-between">
-            <span>Windows</span>
-            <svg class="pdf-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M19.5 22h-15C3.67 22 3 21.33 3 20.5V3.5C3 2.67 3.67 2 4.5 2H14l7 7v11.5C21 21.33 20.33 22 19.5 22zm-7.5-6h-3.5C8.06 16 7.5 15.44 7.5 14.75S8.06 13.5 8.75 13.5H12c.69 0 1.25.56 1.25 1.25S12.69 16 12 16zm4 4h-7.5C8.06 20 7.5 19.44 7.5 18.75S8.06 17.5 8.75 17.5H16c.69 0 1.25.56 1.25 1.25S16.69 20 16 20zm0-8h-7.5C8.06 12 7.5 11.44 7.5 10.75S8.06 9.5 8.75 9.5H16c.69 0 1.25.56 1.25 1.25S16.69 12 16 12zm2-7V4.5H14c-.69 0-1.25-.56-1.25-1.25V2h-7C5.78 2 5 2.78 5 3.75v16.5C5 21.22 5.78 22 6.75 22h10.5c.97 0 1.75-.78 1.75-1.75V10.5l-3.5-3.5z"/>
-            </svg>
-        </h3>
-      </a>
-
-      <a data-pdf-src="57.pdf" data-title="ATA 57 - Wings" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
-        <span class="text-sm font-semibold text-blue-600">ATA 57</span>
-        <h3 class="text-lg font-semibold mt-1 text-gray-900 flex items-center justify-between">
-            <span>Wings</span>
-            <svg class="pdf-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M19.5 22h-15C3.67 22 3 21.33 3 20.5V3.5C3 2.67 3.67 2 4.5 2H14l7 7v11.5C21 21.33 20.33 22 19.5 22zm-7.5-6h-3.5C8.06 16 7.5 15.44 7.5 14.75S8.06 13.5 8.75 13.5H12c.69 0 1.25.56 1.25 1.25S12.69 16 12 16zm4 4h-7.5C8.06 20 7.5 19.44 7.5 18.75S8.06 17.5 8.75 17.5H16c.69 0 1.25.56 1.25 1.25S16.69 20 16 20zm0-8h-7.5C8.06 12 7.5 11.44 7.5 10.75S8.06 9.5 8.75 9.5H16c.69 0 1.25.56 1.25 1.25S16.69 12 16 12zm2-7V4.5H14c-.69 0-1.25-.56-1.25-1.25V2h-7C5.78 2 5 2.78 5 3.75v16.5C5 21.22 5.78 22 6.75 22h10.5c.97 0 1.75-.78 1.75-1.75V10.5l-3.5-3.5z"/>
-            </svg>
-        </h3>
-      </a>
-
-      <a data-pdf-src="61.pdf" data-title="ATA 61 - Propellers" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
-        <span class="text-sm font-semibold text-blue-600">ATA 61</span>
-        <h3 class="text-lg font-semibold mt-1 text-gray-900 flex items-center justify-between">
-            <span>Propellers</span>
-            <svg class="pdf-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M19.5 22h-15C3.67 22 3 21.33 3 20.5V3.5C3 2.67 3.67 2 4.5 2H14l7 7v11.5C21 21.33 20.33 22 19.5 22zm-7.5-6h-3.5C8.06 16 7.5 15.44 7.5 14.75S8.06 13.5 8.75 13.5H12c.69 0 1.25.56 1.25 1.25S12.69 16 12 16zm4 4h-7.5C8.06 20 7.5 19.44 7.5 18.75S8.06 17.5 8.75 17.5H16c.69 0 1.25.56 1.25 1.25S16.69 20 16 20zm0-8h-7.5C8.06 12 7.5 11.44 7.5 10.75S8.06 9.5 8.75 9.5H16c.69 0 1.25.56 1.25 1.25S16.69 12 16 12zm2-7V4.5H14c-.69 0-1.25-.56-1.25-1.25V2h-7C5.78 2 5 2.78 5 3.75v16.5C5 21.22 5.78 22 6.75 22h10.5c.97 0 1.75-.78 1.75-1.75V10.5l-3.5-3.5z"/>
-            </svg>
-        </h3>
-      </a>
-      
-      <a data-pdf-src="70-80.pdf" data-title="ATA 70-80 - Engines" class="card-link block bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
-        <span class="text-sm font-semibold text-blue-600">ATA 70-80</span>
-        <h3 class="text-lg font-semibold mt-1 text-gray-900 flex items-center justify-between">
-            <span>Engines</span>
-            <svg class="pdf-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M19.5 22h-15C3.67 22 3 21.33 3 20.5V3.5C3 2.67 3.67 2 4.5 2H14l7 7v11.5C21 21.33 20.33 22 19.5 22zm-7.5-6h-3.5C8.06 16 7.5 15.44 7.5 14.75S8.06 13.5 8.75 13.5H12c.69 0 1.25.56 1.25 1.25S12.69 16 12 16zm4 4h-7.5C8.06 20 7.5 19.44 7.5 18.75S8.06 17.5 8.75 17.5H16c.69 0 1.25.56 1.25 1.25S16.69 20 16 20zm0-8h-7.5C8.06 12 7.5 11.44 7.5 10.75S8.06 9.5 8.75 9.5H16c.69 0 1.25.56 1.25 1.25S16.69 12 16 12zm2-7V4.5H14c-.69 0-1.25-.56-1.25-1.25V2h-7C5.78 2 5 2.78 5 3.75v16.5C5 21.22 5.78 22 6.75 22h10.5c.97 0 1.75-.78 1.75-1.75V10.5l-3.5-3.5z"/>
-            </svg>
-        </h3>
-      </a>
-
+        <p class="text-sm text-gray-600 mt-8 text-center">
+            This comprehensive list covers all the common ATA 100 chapter codes.
+        </p>
     </div>
-  </div>
-
-  <div id="pdfViewerContainer" class="container mx-auto">
-    <button id="backToIndexButton" class="back-button">
-        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
-        Back to Index
-    </button>
-
-    <h1 id="pdfChapterTitle" class="text-3xl md:text-4xl font-bold text-gray-900"></h1>
-    <p class="text-gray-600 mb-4">
-        Below is the PDF document.
-    </p>
-
-    <iframe id="pdfFrame" src="" type="application/pdf">
-        This browser does not support PDFs. Please download the PDF to view it: <a id="pdfDownloadLink" href="#" class="text-blue-600 hover:underline">Download PDF</a>
-    </iframe>
-  </div>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const cardLinks = document.querySelectorAll('.card-link');
-        const indexGrid = document.getElementById('indexGrid');
-        const pdfViewerContainer = document.getElementById('pdfViewerContainer');
-        const pdfFrame = document.getElementById('pdfFrame');
-        const pdfChapterTitle = document.getElementById('pdfChapterTitle');
-        const pdfDownloadLink = document.getElementById('pdfDownloadLink');
-        const backToIndexButton = document.getElementById('backToIndexButton');
-
-        cardLinks.forEach(link => {
-            link.addEventListener('click', (event) => {
-                event.preventDefault(); // Prevent default link behavior
-                const pdfSrc = link.dataset.pdfSrc;
-                const chapterTitle = link.dataset.title;
-
-                pdfFrame.src = pdfSrc; // Set the PDF source
-                pdfDownloadLink.href = pdfSrc; // Set download link
-                pdfChapterTitle.textContent = chapterTitle; // Update the title in the viewer
-
-                // Hide the index grid and show the PDF viewer
-                indexGrid.style.display = 'none';
-                pdfViewerContainer.style.display = 'block';
-
-                // Scroll to the top of the viewer
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
-        });
-
-        backToIndexButton.addEventListener('click', () => {
-            // Hide the PDF viewer and show the index grid
-            pdfViewerContainer.style.display = 'none';
-            indexGrid.style.display = 'block';
-
-            // Clear PDF source to prevent it from loading in the background
-            pdfFrame.src = '';
-
-            // Scroll to the top of the index
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-    });
-  </script>
-
 </body>
 </html>
