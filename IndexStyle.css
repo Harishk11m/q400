@@ -1,0 +1,25 @@
+/* Custom font for better aesthetics */
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+        }
+        /* Style for the clickable links */
+        .ata-link {
+            display: block; /* Make the whole list item clickable */
+            padding: 8px 12px;
+            margin-bottom: 4px; /* Small space between items */
+            background-color: #999796; /* grey in background */
+            border-radius: 8px; /* Rounded corners */
+            color: #831843; /* Darker red text */
+            text-decoration: none;
+            transition: background-color 0.2s ease-in-out, transform 0.1s ease-in-out, box-shadow 0.2s ease-in-out;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+        }
+        .ata-link:hover {
+            background-color: #fbcfe8; /* Lighter pink on hover */
+            transform: translateY(-2px); /* Slight lift effect */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15); /* More prominent shadow on hover */
+        }
+        .ata-link strong {
+            color: #c026d3; /* Vibrant magenta for chapter number */
+        }
