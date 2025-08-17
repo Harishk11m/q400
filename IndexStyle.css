@@ -1,25 +1,42 @@
-/* Custom font for better aesthetics */
-        body {
-            font-family: 'Inter', sans-serif;
-            line-height: 1.6;
-        }
-        /* Style for the clickable links */
-        .ata-link {
-            display: block; /* Make the whole list item clickable */
-            padding: 8px 12px;
-            margin-bottom: 4px; /* Small space between items */
-            background-color: #999796; /* grey in background */
-            border-radius: 8px; /* Rounded corners */
-            color: #831843; /* Darker red text */
-            text-decoration: none;
-            transition: background-color 0.2s ease-in-out, transform 0.1s ease-in-out, box-shadow 0.2s ease-in-out;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-        }
-        .ata-link:hover {
-            background-color: #fbcfe8; /* Lighter pink on hover */
-            transform: translateY(-2px); /* Slight lift effect */
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15); /* More prominent shadow on hover */
-        }
-        .ata-link strong {
-            color: #c026d3; /* Vibrant magenta for chapter number */
-        }
+/* Dark Red Theme CSS */
+
+:root {
+  --background-color: #1a1a1a;  /* Very dark charcoal */
+  --card-background: #252525;   /* Slightly lighter dark grey */
+  --text-color: #f5f5f5;        /* Off-white */
+  --link-color: #ef4444;        /* A strong, vibrant red */
+  --hover-background: #b91c1c;  /* A deeper, more prominent red for hover */
+  --chapter-number: #dc2626;    /* A slightly lighter red for the number */
+  --box-shadow-color: rgba(0, 0, 0, 0.4);
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  line-height: 1.6;
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+.ata-link {
+  display: block;
+  padding: 12px 16px;
+  margin-bottom: 8px;
+  background-color: var(--card-background);
+  border-radius: 12px;
+  color: var(--link-color);
+  text-decoration: none;
+  transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out, box-shadow 0.3s ease-in-out;
+  box-shadow: 0 2px 5px var(--box-shadow-color);
+}
+
+.ata-link:hover {
+  background-color: var(--hover-background);
+  color: var(--text-color); /* Change text to off-white for contrast on hover */
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px var(--box-shadow-color);
+}
+
+.ata-link strong {
+  color: var(--chapter-number);
+  font-weight: 600; /* Bolder for better readability */
+}
