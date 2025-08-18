@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Pre-Flight Inspection Checklist</title>
+<style>
+    body {
+        font-family: sans-serif;
+    }
+    .container {
+        max-width: 800px;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+    }
+    .header {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .logo {
+        max-width: 150px;
+    }
+    .title {
+        font-size: 24px;
+        font-weight: bold;
+        margin-top: 10px;
+    }
+    .checklist-section {
+        margin-bottom: 20px;
+    }
+    .checklist-section h3 {
+        background-color: #f2f2f2;
+        padding: 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .checklist-section h3::after {
+        content: '+';
+        font-size: 20px;
+        font-weight: bold;
+    }
+    .checklist-section.active h3::after {
+        content: '-';
+    }
+    .checklist-content {
+        display: none;
+        padding: 10px 0;
+    }
+    .checklist-section.active .checklist-content {
+        display: block;
+    }
+    .checklist-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 8px;
+        font-size: 16px;
+    }
+    .checkbox-label {
+        position: relative;
+        padding-left: 35px;
+        cursor: pointer;
+    }
+    .checkbox-label input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+    }
+    .checkmark {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 25px;
+        width: 25px;
+        background-color: #eee;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+    }
+    .checkbox-label input:checked ~ .checkmark {
+        background-color: #2196F3;
+        border: 1px solid #2196F3;
+    }
+    .checkbox-label input:checked ~ .checkmark::after {
+        content: '✔';
+        position: absolute;
+        left: 9px;
+        top: 5px;
+        font-size: 16px;
+        color: white;
+    }
+    .checkbox-label input:checked ~ span {
+        text-decoration: line-through;
+        color: #888;
+    }
+    .note {
+        font-style: italic;
+        color: #555;
+        margin-left: 35px;
+        font-size: 14px;
+    }
+    .warning {
+        font-weight: bold;
+        color: red;
+        margin-left: 35px;
+        font-size: 14px;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <img src="https://i.imgur.com/your-spicejet-logo.png" alt="Spicejet Logo" class="logo">
+        <div class="title">DHC-8-402 (Q400) AIRCRAFT PRE-FLIGHT INSPECTION SCHEDULE</div>
+    </div>
+    
+    <div class="checklist-section" id="section1">
+        <h3>1. ARRIVAL CHECKS</h3>
+        <div class="checklist-content">
+            <div class="checklist-item">
+                <label class="checkbox-label">
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                    <span>Place chocks, as required.</span>
+                </label>
+            </div>
+            <div class="checklist-item">
+                <label class="checkbox-label">
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                    <span>Check documents on board, Review sector defects, Review Deferred Defects (Including MEL items), Cabin Defects, Notes to Crew and Engineers and take appropriate action as required.</span>
+                </label>
+            </div>
+            <p class="note">Note: Ensure that Cabin defects with respect to Emergency equipment including life vests are attended appropriately before release of aircraft.</p>
+            <div class="checklist-item">
+                <label class="checkbox-label">
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                    <span>Ensure that aircraft external surfaces, engines inlet/exhaust and propellers are free from damages, snow, ice, dust and sand etc.</span>
+                </label>
+            </div>
+            <div class="checklist-item">
+                <label class="checkbox-label">
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                    <span>If halt is more than two hrs, Install Main Landing gears ground lock pins and engage Nose gear ground lock.</span>
+                </label>
+            </div>
+            <div class="checklist-item">
+                <label class="checkbox-label">
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                    <span>Whenever any landing gear door is opened, install relevant landing gear door safety pins.</span>
+                </label>
+            </div>
+            <div class="checklist-item">
+                <label class="checkbox-label">
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                    <span>Install Pitot Static covers.</span>
+                </label>
+            </div>
+            <p class="note">Note: Make an entry for the above in Technical Log.</p>
+            <p class="warning">WARNING: DO NOT INSTALL THE COVERS WHEN THE PITOT STATIC PROBES ARE HOT. THE COVER WILL MELT AND CAUSE A BLOCKAGE OF THE HOLES IN THE PITOT STATIC PROBE. THIS CAN CAUSE INJURY TO PERSONNEL AND/OR DAMAGE TO EQUIPMENT.</p>
+        </div>
+    </div>
+    
+    <div class="checklist-section" id="section2">
+        <h3>2. FORWARD FUSELAGE</h3>
+        <div class="checklist-content">
+            <div class="checklist-item">
+                <label class="checkbox-label">
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                    <span>Check Pitot Static Probes, AOA vane, Ice detection Probe, TAT Probe, Antennas for satisfactory condition and any damage.</span>
+                </label>
+            </div>
+            <div class="checklist-item">
+                <label class="checkbox-label">
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                    <span>Check Fwd Entry Door and Fuselage skin and all access panels for security.</span>
+                </label>
+            </div>
+            <div class="checklist-item">
+                <label class="checkbox-label">
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                    <span>Check Radome, windshields, cockpit windows, Windshield wipers for satisfactory condition and security.</span>
+                </label>
+            </div>
+            <div class="checklist-item">
+                <label class="checkbox-label">
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                    <span>Check Crew Oxygen bottle for overboard discharge indicator Green burst disc.</span>
+                </label>
+            </div>
+            <div class="checklist-item">
+                <label class="checkbox-label">
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                    <span>Check Fwd baggage door, Nose Bay doors & cargo compartments for closure, any fluid spillage, security of lining & ceiling panels.</span>
+                </label>
+            </div>
+            <div class="checklist-item">
+                <label class="checkbox-label">
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                    <span>Inspect outflow vent is clear.</span>
+                </label>
+            </div>
+            <div class="checklist-item">
+                <label class="checkbox-label">
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                    <span>Inspect Nose Gear Wheel Well, components in the area and Nose Wheel Tires for general condition. Check tires and wheels for proper condition and inflation. Check Nose landing gear and it's area for leaks & ensure correct extension of the Oleo.</span>
+                </label>
+            </div>
+            <div class="checklist-item">
+                <label class="checkbox-label">
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                    <span>Check all access panels for security.</span>
+                </label>
+            </div>
+            <div class="checklist-item">
+                <label class="checkbox-label">
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                    <span>Check Taxi Light, Forward Egress Light and Emergency Light for condition and security.</span>
+                </label>
+            </div>
+        </div>
+    </div>
+    
+    <div class="checklist-section" id="section3">
+        <h3>3. WING</h3>
+        <div class="checklist-content">
+            <div class="checklist-item">
+                <label class="checkbox-label">
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                    <span>Visually inspect all areas of wings lower surface, Inboard and outboard De-icing Boot, flight control surfaces & tank vents for condition and obvious damage, FOD, leaks, missing fasteners & fairings etc.</span>
+                </label>
+            </div>
+            <div class="checklist-item">
+                <label class="checkbox-label">
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                    <span>Check all under wing access panels for security. Sump drain valves, Inboard and Outboard tank water drains for leaks.</span>
+                </label>
+            </div>
+            <div class="checklist-item">
+                <label class="checkbox-label">
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                    <span>Check static temperature probe for satisfactory condition and any damage.</span>
+                </label>
+            </div>
+            <div class="checklist-item">
+                <label class="checkbox-label">
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                    <span>Check Static Dischargers for presence and damage.</span>
+                </label>
+            </div>
+            <div class="checklist-item">
+                <label class="checkbox-label">
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                    <span>Check fuel tank ram air (NACA) Vents are clear.</span>
+                </label>
+            </div>
+            <div class="checklist-item">
+                <label class="checkbox-label">
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                    <span>Check Wing inspection lights, Landing Lights, Wing tip and navigation lights for condition and security.</span>
+                </label>
+            </div>
+        </div>
+    </div>
+    
+    <div class="checklist-section" id="section4">
+        <h3>4. ENGINE AND NACELLE</h3>
+        <div class="checklist-content">
+            <div class="checklist-item">
+                <label class="checkbox-label">
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                    <span>Check Propeller blade and spinner, Engine Intake and Exhaust for any FOD and any dents/damage.</span>
+                </label>
+            </div>
+            <div class="checklist-item">
+                <label class="checkbox-label">
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                    <span>Check Engine Inboard and Outboard Panels and Cowls for security of installation, Inboard and Outboard Nacelle Drains.</span>
+                </label>
+            </div>
+            <div class="checklist-item">
+                <label class="checkbox-label">
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                    <span>Check Oil Cooler Door.</span>
+                </label>
+            </div>
+            <div class="checklist-item">
+                <label class="checkbox-label">
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                    <span>Check for any sign of fuel/oil/fluid leak.</span>
+                </label>
+            </div>
+        </div>
+    </div>
+    
+    <div class="checklist-section" id="section5">
+        <h3>5. MAIN LANDING GEARS AND WHEEL WELL</h3>
+        <div class="checklist-content">
+            <div class="checklist-item">
+                <label class="checkbox-label">
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                    <span>Check LH and RH landing gears for leaks & ensure correct extension of the Oleo.</span>
+                </label>
+            </div>
+            <div class="checklist-item">
+                <label class="checkbox-label">
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                    <span>Check Tires and wheels for proper condition and inflation.</span>
+                </label>
+            </div>
+            <div class="checklist-item">
+                <label class="checkbox-label">
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                    <span>Check Brakes, wear indicators.</span>
+                </label>
+            </div>
+            <div class="checklist-item">
+                <label class="checkbox-label">
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                    <span>Check wheel well area for leaks, loose / missing fasteners & fairings, light etc.</span>
+                </label>
+            </div>
+        </div>
+    </div>
+    
+    <div class="checklist-section" id="section6">
+        <h3>6. AFT FUSELAGE & EMPENNAGE</h3>
+        <div class="checklist-content">
+            <div class="checklist-item">
+                <label class="checkbox-label">
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                    <span>Check aft fuselage general condition and Air Cond. Pack Ram Air Inlet (Dorsal Fin NACA Vent).</span>
+                </label>
+            </div>
+            <div class="checklist-item">
+                <label class="checkbox-label">
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                    <span>Check APU Intake and exhaust.</span>
+                </label>
+            </div>
+            <div class="checklist-item">
+                <label class="checkbox-label">
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                    <span>Check Vertical Stabilizer along with Deicing Boots, Rudder, Horizontal stabilizer along with Deicing Boots, elevators for proper condition and security.</span>
+                </label>
+            </div>
+            <div class="checklist-item">
+                <label class="checkbox-label">
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                    <span>Check Accumulator Pressure (Min 1500 P.S.I. for first flight of the day and Min 1000 P.S.I. for subsequent flights).</span>
+                </label>
+            </div>
+            <div class="checklist-item">
+                <label class="checkbox-label">
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                    <span>Check aft Cabin Service/Emergency Exit Egress Light/Emergency Exit and Aft Cabin Passenger/Emergency Exit Egress Light/Emergency Exit, Navigation Light and Strobe Light for proper condition and security.</span>
+                </label>
+            </div>
+            <div class="checklist-item">
+                <label class="checkbox-label">
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                    <span>Check drain mast is clean.</span>
+                </label>
+            </div>
+            <div class="checklist-item">
+                <label class="checkbox-label">
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                    <span>Check static dischargers (for presence and damage).</span>
+                </label>
+            </div>
+            <div class="checklist-item">
+                <label class="checkbox-label">
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                    <span>Check Aft Baggage Door and cargo compartments for any fluid spillage, security of lining & ceiling panels.</span>
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div class="checklist-section" id="section7">
+        <h3>7. COCKPIT</h3>
+        <div class="checklist-content">
+            <div class="checklist-item">
+                <label class="checkbox-label">
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                    <span>Scan cockpit instrument panels for any abnormal indication/configuration.</span>
+                </label>
+            </div>
+            <div class="checklist-item">
+                <label class="checkbox-label">
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                    <span>Scan the CB panels in the cockpit for appropriate position.</span>
+                </label>
+            </div>
+            <div class="checklist-item">
+                <label class="checkbox-label">
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                    <span>Check crew oxygen pressure is sufficient to satisfy dispatch requirement.</span>
+                </label>
+            </div>
+            <div class="checklist-item">
+                <label class="checkbox-label">
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                    <span>Check Landing Gear Alternate Release Door and Landing Gear Alternate Extension Door are completely closed before flight.</span>
+                </label>
+            </div>
+            <div class="checklist-item">
+                <label class="checkbox-label">
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                    <span>Check the landing Gear Extension Inhibit switch is set to NORMAL with the Red Guard closed.</span>
+                </label>
+            </div>
+            <div class="checklist-item">
+                <label class="checkbox-label">
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                    <span>Check hydraulic reservoirs quantity on MFD, quantity indications should be at least 60%. If less on any of the three hydraulic reservoirs, consult MCC before release to service.</span>
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div class="checklist-section" id="section8">
+        <h3>8. PASSENGER CABIN</h3>
+        <div class="checklist-content">
+            <div class="checklist-item">
+                <label class="checkbox-label">
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                    <span>Carryout General Visual Inspection for any obvious damage/abnormalities.</span>
+                </label>
+            </div>
+            <div class="checklist-item">
+                <label class="checkbox-label">
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                    <span>Check serviceability of all interior Emergency Lights.</span>
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div class="checklist-section" id="section9">
+        <h3>9. REFUELING</h3>
+        <div class="checklist-content">
+            <div class="checklist-item">
+                <label class="checkbox-label">
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                    <span>Carry out fuel sampling check for water and other contaminants before refueling and refuel the aircraft observing all appropriate refueling precautions.</span>
+                </label>
+            </div>
+            <div class="checklist-item">
+                <label class="checkbox-label">
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                    <span>Make a entry in Aircraft Technical Log Sector Record (i.e.TLP) for the arrival, uplift & departure Hydraulic, Oil and Fuel quantity before release of aircraft.</span>
+                </label>
+            </div>
+            <div class="checklist-item">
+                <label class="checkbox-label">
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                    <span>If there is no uplift required then "NIL" should be recorded in TLP.</span>
+                </label>
+            </div>
+            <div class="checklist-item">
+                <label class="checkbox-label">
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                    <span>All relevant TLP column should be duly filled up as per current LMP.</span>
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div class="checklist-section" id="section10">
+        <h3>10. DEPARTURE CHECKS</h3>
+        <div class="checklist-content">
+            <div class="checklist-item">
+                <label class="checkbox-label">
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                    <span>Remove all landing gear lock pins and landing gear door safety pins (if installed) and stow them in designated location on forward passenger door.</span>
+                </label>
+            </div>
+            <div class="checklist-item">
+                <label class="checkbox-label">
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                    <span>Nose Gear ground lock is fully flush with fuselage.</span>
+                </label>
+            </div>
+            <div class="checklist-item">
+                <label class="checkbox-label">
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                    <span>Ensure all Pitot Static covers, any blanks are removed (if installed) before departure.</span>
+                </label>
+            </div>
+            <p class="note">Note: Make an entry in regard of item "a,b,c" above in Technical Log to clear entry raised for Item d (i), (ii) and (iii) above of Arrival Checks.</p>
+            <div class="checklist-item">
+                <label class="checkbox-label">
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                    <span>All panels are closed and latched.</span>
+                </label>
+            </div>
+            <div class="checklist-item">
+                <label class="checkbox-label">
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                    <span>Cargo compartment nets are lashed properly.</span>
+                </label>
+            </div>
+            <div class="checklist-item">
+                <label class="checkbox-label">
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                    <span>Ensure pax & Cargo door seals are not damaged prior to closing the doors. (Remove locks if installed).</span>
+                </label>
+            </div>
+            <div class="checklist-item">
+                <label class="checkbox-label">
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                    <span>All doors closed properly prior to final departure and crew informed. (Remove locks if installed).</span>
+                </label>
+            </div>
+            <div class="checklist-item">
+                <label class="checkbox-label">
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                    <span>The cabin and cargo door handles are flush with the fuselage after closure.</span>
+                </label>
+            </div>
+            <div class="checklist-item">
+                <label class="checkbox-label">
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                    <span>MEL items revoked /carried forward in an appropriate manner.</span>
+                </label>
+            </div>
+            <div class="checklist-item">
+                <label class="checkbox-label">
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                    <span>Tech Log is duly filled up and signed.</span>
+                </label>
+            </div>
+            <div class="checklist-item">
+                <label class="checkbox-label">
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                    <span>Toilet and potable water serviced. (as required).</span>
+                </label>
+            </div>
+            <div class="checklist-item">
+                <label class="checkbox-label">
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                    <span>Ensure chocks are removed prior to departure.</span>
+                </label>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const sections = document.querySelectorAll('.checklist-section h3');
+    sections.forEach(section => {
+        section.addEventListener('click', () => {
+            const parent = section.parentElement;
+            parent.classList.toggle('active');
+        });
+    });
+
+    const checkboxes = document.querySelectorAll('.checkbox-label input[type="checkbox"]');
+    checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', () => {
+            const label = checkbox.closest('.checkbox-label');
+            if (checkbox.checked) {
+                label.classList.add('strikethrough');
+            } else {
+                label.classList.remove('strikethrough');
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
