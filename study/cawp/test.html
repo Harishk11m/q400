@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAWP</title>
+    <style>
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(14, 1fr);
+            width: 90%; /* Adjust width as needed */
+            border: 1px solid #ccc;
+        }
+
+        .grid-item {
+            width: 95px;
+            height: 55px;
+            padding: 8px;
+            text-align: center;
+            border: 1px solid #eee;
+            box-sizing: border-box;
+            font-size: 0.8em; /* Adjust font size as needed */
+            cursor: pointer; /* Indicate clickable items */
+        }
+
+        .cautionLight {
+            background-color: black;
+            color: orange;
+        }
+
+        .warningLight {
+            background-color: black;
+            color: red;
+            font-weight: bold;
+        }
+
+        #pdf-container {
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            width: 80%; /* Adjust as needed */
+            height: 600px; /* Adjust as needed */
+            margin-left: auto;
+            margin-right: auto;
+            display: none; /* Hidden by default */
+        }
+
+        /* --- Media Query for Mobile Devices ---
+        */
+        @media (max-width: 600px) {
+            .grid-container {
+                grid-template-columns: repeat(5, 1fr);
+                width: 100%; /* Use full width for better mobile experience */
+            }
+            .grid-item {
+                width: auto; /* Adjust width automatically */
+                height: 65px;
+                font-size: 0.7em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="grid-container" id="indicatorGrid">
+        <div class="grid-item cautionLight" data-pdf="pitch_trim.pdf">PITCH TRIM</div>
+        <div class="grid-item cautionLight" data-pdf="l_ac_bus.pdf">L AC BUS</div>
+        <div class="grid-item cautionLight" data-pdf="pitot_heat_stby.pdf">PITOT HEAT STBY</div>
+        <div class="grid-item cautionLight" data-pdf="ice_detect_fail.pdf">ICE DETECT FAIL</div>
+        <div class="grid-item cautionLight" data-pdf="flt_compt_duct_hot.pdf">FLT COMPT DUCT HOT</div>
+        <div class="grid-item cautionLight" data-pdf="hyd_iso_vlv_1.pdf">#1 HYS ISO VLV</div>
+        <div class="grid-item cautionLight" data-pdf="pec_1.pdf">#1 PEC</div>
+        <div class="grid-item cautionLight" data-pdf="eng_fuel_press_1.pdf">#1 ENG FUEL PRESS</div>
+        <div class="grid-item cautionLight" data-pdf="eng_fuel_press_2.pdf">#2 ENG FUEL PRESS</div>
+        <div class="grid-item cautionLight" data-pdf="pec_2.pdf">#2 PEC</div>
+        <div class="grid-item cautionLight" data-pdf="roll_splr_inbd_gnd.pdf">ROLL SPLR INBD GND</div>
+        <div class="grid-item cautionLight" data-pdf="roll_splr_outbd_gnd.pdf">ROLL SPLR OUTBD GND</div>
+        <div class="grid-item cautionLight" data-pdf="stall_syst_fail_1.pdf">#1 STALL SYST FAIL</div>
+        <div class="grid-item cautionLight" data-pdf="flt_data_recorder.pdf">FLT DATA RECORDER</div>
+
+        <div class="grid-item cautionLight" data-pdf="elevator_feel.pdf">ELEVATOR FEEL</div>
+        <div class="grid-item cautionLight" data-pdf="r_ac_bus.pdf">R AC BUS</div>
+        <div class="grid-item cautionLight" data-pdf="pitotheat_1.pdf">PITOT HEAT 1</div>
+        <div class="grid-item cautionLight" data-pdf="pitot_heat_2.pdf">PITOT HEAT 2</div>
+        <div class="grid-item cautionLight" data-pdf="cabin_duct_hot.pdf">CABIN DUCT HOT</div>
+        <div class="grid-item cautionLight" data-pdf="hyd_iso_vlv_2.pdf">#2 HYD ISO VLV</div>
+        <div class="grid-item cautionLight" data-pdf="bleed_hot_1.pdf">#1 BLEED HOT</div>
+        <div class="grid-item cautionLight" data-pdf="eng_hyd_pump_1.pdf">#1 ENG HYD PUMP</div>
+        <div class="grid-item cautionLight" data-pdf="eng_hyd_pump_2.pdf">#2 ENG HYD PUMP</div>
+        <div class="grid-item cautionLight" data-pdf="bleed_hot_2.pdf">#2 BLEED HOT</div>
+        <div class="grid-item cautionLight" data-pdf="stby_hyd_pump_hot_1.pdf">#1 STBY HYD PUMP HOT</div>
+        <div class="grid-item cautionLight" data-pdf="splr_outbd.pdf">SPLR OUTBD</div>
+        <div class="grid-item cautionLight" data-pdf="stall_syst_fail_2.pdf">#2 STALL SYST FAIL</div>
+        <div class="grid-item cautionLight" data-pdf="gpws.pdf">GPWS</div>
+
+        <div class="grid-item cautionLight" data-pdf="elevator_asymmetry.pdf">ELEVATOR ASYMMETRY</div>
+        <div class="grid-item cautionLight" data-pdf="dc_bus.pdf">DC BUS</div>
+        <div class="grid-item cautionLight" data-pdf="eng_adpt_heat_1.pdf">ENG ADPT HEAT 1</div>
+        <div class="grid-item cautionLight" data-pdf="eng_adpt_heat_2.pdf">ENG ADPT HEAT 2</div>
+        <div class="grid-item cautionLight" data-pdf="cabin_pack_hot.pdf">CABIN PACK HOT</div>
+        <div class="grid-item cautionLight" data-pdf="stby_battery.pdf">STBY BATTERY</div>
+        <div class="grid-item cautionLight" data-pdf="dc_gen_hot_1.pdf">#1 DC GEN HOT</div>
+        <div class="grid-item cautionLight" data-pdf="dc_gen_1.pdf">#1 DC GEN</div>
+        <div class="grid-item cautionLight" data-pdf="dc_gen_2.pdf">#2 DC GEN</div>
+        <div class="grid-item cautionLight" data-pdf="dc_gen_hot_2.pdf">#2 DC GEN HOT</div>
+        <div class="grid-item cautionLight" data-pdf="roll_splr_inbd_hyd.pdf">ROLL SPLR INBD HYD</div>
+        <div class="grid-item cautionLight" data-pdf="roll_splr_outbd_hyd.pdf">ROLL SPLR OUTBD HYD</div>
+        <div class="grid-item cautionLight" data-pdf="pusher_syst_fail.pdf">PUSHER SYST FAIL</div>
+        <div class="grid-item cautionLight" data-pdf="parking_brake.pdf">PARKING BRAKE</div>
+
+        <div class="grid-item cautionLight" data-pdf="elevator_press.pdf">ELEVATOR PRESS</div>
+        <div class="grid-item cautionLight" data-pdf="l_tru.pdf">L TRU</div>
+        <div class="grid-item cautionLight" data-pdf="wshld_ctrl.pdf">WSHLD CTRL</div>
+        <div class="grid-item cautionLight" data-pdf="prop_deice.pdf">PROP DEICE</div>
+        <div class="grid-item cautionLight" data-pdf="flt_compt_pack_hot.pdf">FLT COMPT PACK HOT</div>
+        <div class="grid-item cautionLight" data-pdf="main_battery.pdf">MAIN BATTERY</div>
+        <div class="grid-item cautionLight" data-pdf="ac_gen_hot_1.pdf">#1 AC GEN HOT</div>
+        <div class="grid-item cautionLight" data-pdf="ac_gen_1.pdf">#1 AC GEN</div>
+        <div class="grid-item cautionLight" data-pdf="ac_gen_2.pdf">#2 AC GEN</div>
+        <div class="grid-item cautionLight" data-pdf="ac_gen_hot_2.pdf">#2 AC GEN HOT</div>
+        <div class="grid-item cautionLight" data-pdf="rud_hyd_1.pdf">#1 RUD HYD</div>
+        <div class="grid-item cautionLight" data-pdf="rud_hyd_2.pdf">#2 RUD HYD</div>
+        <div class="grid-item cautionLight" data-pdf="inbd_antiskid.pdf">INBD ANTISKID</div>
+        <div class="grid-item cautionLight" data-pdf="outbd_antiskid.pdf">OUTBD ANTISKID</div>
+
+        <div class="grid-item cautionLight" data-pdf="hyd_pump_3.pdf">#3 HYD PUMP</div>
+        <div class="grid-item cautionLight" data-pdf="r_tru.pdf">R TRU</div>
+        <div class="grid-item cautionLight" data-pdf="wshld_hot.pdf">WSHLD HOT</div>
+        <div class="grid-item cautionLight" data-pdf="deice_timer.pdf">DEICE TIMER</div>
+        <div class="grid-item cautionLight" data-pdf="l_tru_hot.pdf">L TRU HOT</div>
+        <div class="grid-item cautionLight" data-pdf="aux_battery.pdf">AUX BATTERY</div>
+        <div class="grid-item cautionLight" data-pdf="hyd_fluid_hot_1.pdf">#1 HYD FLUID HOT</div>
+        <div class="grid-item cautionLight" data-pdf="eng_fadec_1.pdf">#1 ENG FADEC</div>
+        <div class="grid-item cautionLight" data-pdf="eng_fadec_2.pdf">#2 ENG FADEC</div>
+        <div class="grid-item cautionLight" data-pdf="hyd_fluid_hot_2.pdf">#2 FLUID HOT</div>
+        <div class="grid-item cautionLight" data-pdf="rud_ctrl.pdf">RUD CTRL</div>
+        <div class="grid-item cautionLight" data-pdf="flap_drive.pdf">FLAP DRIVE</div>
+        <div class="grid-item cautionLight" data-pdf="ldg_gear_inop.pdf">LDG GEAR INOP</div>
+        <div class="grid-item cautionLight" data-pdf="wt_on_wheels.pdf">WT ON WHEELS</div>
+
+        <div class="grid-item cautionLight" data-pdf="emer_lts_disarmed.pdf">EMER LTS DISARMED</div>
+        <div class="grid-item cautionLight" data-pdf="internal_doors.pdf">INTERNAL DOORS</div>
+        <div class="grid-item cautionLight" data-pdf="side_wdo_hot.pdf">SIDE WDO HOT</div>
+        <div class="grid-item cautionLight" data-pdf="deice_press.pdf">DEICE PRESS</div>
+        <div class="grid-item cautionLight" data-pdf="r_tru_hot.pdf">R TRU HOT</div>
+        <div class="grid-item cautionLight" data-pdf="avionics.pdf">AVIONICS</div>
+        <div class="grid-item cautionLight" data-pdf="fuel_fltr_bypass_1.pdf">#1 FUEL FLTR BYPASS</div>
+        <div class="grid-item cautionLight" data-pdf="tank_fuel_low_1.pdf">#1 TANK FUEL LOW</div>
+        <div class="grid-item cautionLight" data-pdf="tank_fuel_low_2.pdf">#2 TANK FUEL LOW</div>
+        <div class="grid-item cautionLight" data-pdf="fuel_fltr_bypass_2.pdf">#2 FUEL FLTR BYPASS</div>
+        <div class="grid-item cautionLight" data-pdf="apu.pdf">APU</div>
+        <div class="grid-item cautionLight" data-pdf="flap_power.pdf">FLAP POWER</div>
+        <div class="grid-item cautionLight" data-pdf="nose_steering.pdf">NOSE STEERING</div>
+        <div class="grid-item cautionLight" data-pdf="fuelling_on.pdf">FUELLING ON</div>
+
+        <div class="grid-item warningLight" data-pdf="cabin_press.pdf">CABIN PRESS</div>
+        <div class="grid-item warningLight" data-pdf="check_fire_det.pdf">CHECK FIRE DET</div>
+        <div class="grid-item warningLight" data-pdf="smoke.pdf">SMOKE</div>
+        <div class="grid-item warningLight" data-pdf="touched_runway.pdf">TOUCHED RUNWAY</div>
+        <div class="grid-item warningLight" data-pdf=""></div> <div class="grid-item warningLight" data-pdf=""></div> <div class="grid-item warningLight" data-pdf="eng_oil_press_1.pdf">#1 ENG OIL PRESS</div>
+        <div class="grid-item warningLight" data-pdf="eng_fadec_fail_1.pdf">#1 ENG FADEC FAIL</div>
+        <div class="grid-item warningLight" data-pdf="eng_fadec_fail_2.pdf">#2 ENG FADEC FAIL</div>
+        <div class="grid-item warningLight" data-pdf="eng_oil_press_2.pdf">#2 ENG OIL PRESS</div>
+        <div class="grid-item warningLight" data-pdf="stby_bat_hot.pdf">STBY BAT HOT</div>
+        <div class="grid-item warningLight" data-pdf="aux_bat_hot.pdf">AUX BAT HOT</div>
+        <div class="grid-item warningLight" data-pdf="main_bat_hot.pdf">MAIN BAT HOT</div>
+        <div class="grid-item warningLight" data-pdf="fuselage_doors.pdf">FUSELAGE DOORS</div>
+    </div>
+
+    <div id="pdf-container">
+        <embed id="pdf-viewer" type="application/pdf" width="100%" height="100%"></embed>
+    </div>
+
+    <script>
+        const indicatorGrid = document.getElementById('indicatorGrid');
+        const pdfContainer = document.getElementById('pdf-container');
+        const pdfViewer = document.getElementById('pdf-viewer');
+        const gridItems = document.querySelectorAll('.grid-item');
+
+        gridItems.forEach(item => {
+            item.addEventListener('click', function() {
+                const pdfToShow = this.getAttribute('data-pdf');
+                if (pdfToShow) {
+                    pdfViewer.setAttribute('src', pdfToShow);
+                    pdfContainer.style.display = 'block';
+                } else {
+                    pdfContainer.style.display = 'none'; // Hide if no PDF is linked
+                    pdfViewer.removeAttribute('src');
+                }
+            });
+        });
+
+        // Initially hide the PDF container
+        pdfContainer.style.display = 'none';
+    </script>
+
+</body>
+</html>
