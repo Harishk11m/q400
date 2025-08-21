@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Two-Player Chess</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: #333; /* Dark background for contrast */
+            color: #eee; /* Default text color, overridden for pieces */
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            color: #f0f0f0;
+            margin-bottom: 20px;
+        }
+
+        #turn-indicator {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        #chess-board {
+            display: grid;
+            grid-template-columns: repeat(8, 60px); /* 8 columns, 60px each */
+            grid-template-rows: repeat(8, 60px);    /* 8 rows, 60px each */
+            border: 5px solid #555;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            background-color: #fff; /* Fallback */
+            transition: transform 0.6s ease-in-out; /* Smooth rotation for the board */
+        }
+
+        /* Class to rotate the entire board */
+        #chess-board.rotated-board {
+            transform: rotate(180deg);
+        }
+
+        .square {
+            width: 60px;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2.5em; /* Size of chess pieces */
+            cursor: pointer;
+            user-select: none; /* Prevent text selection */
+        }
+
+        .light {
+            background-color: #f0d9b5; /* Light square color */
+        }
+
+        .dark {
+            background-color: #b58863; /* Dark square color */
+        }
+
+        .piece {
+            transition: transform 0.1s ease-in-out; /* Smooth movement of piece within square */
+        }
+
+        /* Class to counter-rotate pieces when the board is rotated */
+        #chess-board.rotated-board .piece {
+            transform: rotate(180deg); /* Counter-rotate pieces to keep them upright */
+        }
+
+        /* Specific colors for black and white pieces */
+        .piece.white {
+            color: #FFFFFF; /* Changed to pure white for white pieces */
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Subtle shadow for depth */
+        }
+
+        .piece.black {
+            color: #000000; /* Changed to pure black for black pieces */
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5); /* Subtle shadow for depth */
+        }
+
+        /* Highlight for selected piece */
+        .selected {
+            background-color: rgba(0, 255, 255, 0.5) !important; /* Cyan highlight */
+        }
+
+        /* Highlight for possible legal moves */
+        .legal-move {
+            background-color: rgba(0, 255, 0, 0.3) !important; /* Green highlight */
+            border: 2px solid rgba(0, 200, 0, 0.7);
+        }
+
+        .button-container {
+            margin-top: 30px;
+            display: flex; /* Arrange buttons side-by-side */
+            gap: 15px; /* Space between buttons */
+        }
+
+        button {
+            padding: 12px 25px;
+            font-size: 1.1em;
+            border: none;
+            border-radius: 8px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        button:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Two-Player Chess</h1>
+    <div id="turn-indicator">White's Turn</div>
+    <div id="chess-board"></div>
+    <div class="button-container">
+        <button id="undo-button" disabled>Undo Move</button>
+        <button id="reset-button">Reset Game</button>
+    </div>
+
+    <script>
+        // Unicode chess pieces
+        const pieces = {
+            'r': '♜', 'n': '♞', 'b': '♝', 'q': '♛', 'k': '♚', 'p': '♟', // Black
+            'R': '♖', 'N': '♘', 'B': '♗', 'Q': '♕', 'K': '♔', 'P': '♙'  // White
+        };
+
+        // Initial board state (null for empty squares)
+        const initialBoard = [
+            ['r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'],
+            ['p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'],
+            [null, null, null, null, null, null, null, null],
+            [null, null, null, null, null, null, null, null],
+            [null, null, null, null, null, null, null, null],
+            [null, null, null, null, null, null, null, null],
+            ['P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'],
+            ['R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R']
+        ];
+
+        let board = JSON.parse(JSON.stringify(initialBoard)); // Deep copy for mutable board
+        let selectedPiece = null; // Stores { row, col, pieceChar } of the selected piece
+        let legalMoves = []; // Stores legal moves for the currently selected piece
+        let currentPlayer = 'white'; // 'white' or 'black'
+        let moveHistory = []; // Stores previous board states for undo functionality
+
+        const chessBoardDiv = document.getElementById('chess-board');
+        const turnIndicator = document.getElementById('turn-indicator');
+        const resetButton = document.getElementById('reset-button');
+        const undoButton = document.getElementById('undo-button');
+
+        // Helper: Check if coordinates are within board bounds
+        function isValidBoardPosition(row, col) {
+            return row >= 0 && row < 8 && col >= 0 && col < 8;
+        }
+
+        // Helper: Get piece color
+        function getPieceColor(pieceChar) {
+            if (pieceChar === null) return null;
+            return pieceChar === pieceChar.toUpperCase() ? 'white' : 'black';
+        }
+
+        // Helper: Check if a square contains an opponent's piece
+        function isOpponentPiece(row, col, pieceColor) {
+            const targetPiece = board[row][col];
+            return targetPiece !== null && getPieceColor(targetPiece) !== pieceColor;
+        }
+
+        // Helper: Check if a square is empty or contains an opponent's piece
+        function isEmptyOrCapturable(row, col, pieceColor) {
+            const targetPiece = board[row][col];
+            return targetPiece === null || getPieceColor(targetPiece) !== pieceColor;
+        }
+
+        // --- Piece Movement Logic Functions ---
+
+        function getLegalPawnMoves(row, col, pieceChar, currentBoard, pieceColor) {
+            const moves = [];
+            const direction = pieceColor === 'white' ? -1 : 1; // White moves up, Black moves down
+            const startRow = pieceColor === 'white' ? 6 : 1; // White pawns start on row 6, Black on row 1
+
+            // Single square move
+            if (isValidBoardPosition(row + direction, col) && currentBoard[row + direction][col] === null) {
+                moves.push({ row: row + direction, col: col });
+                // Double square move (only from starting position)
+                if (row === startRow && isValidBoardPosition(row + 2 * direction, col) && currentBoard[row + 2 * direction][col] === null) {
+                    moves.push({ row: row + 2 * direction, col: col });
+                }
+            }
+
+            // Captures
+            // Diagonal left
+            if (isValidBoardPosition(row + direction, col - 1) && isOpponentPiece(row + direction, col - 1, pieceColor)) {
+                moves.push({ row: row + direction, col: col - 1 });
+            }
+            // Diagonal right
+            if (isValidBoardPosition(row + direction, col + 1) && isOpponentPiece(row + direction, col + 1, pieceColor)) {
+                moves.push({ row: row + direction, col: col + 1 });
+            }
+            // Note: En passant and promotion are not implemented here for simplicity.
+            return moves;
+        }
+
+        function getLegalRookMoves(row, col, pieceChar, currentBoard, pieceColor) {
+            const moves = [];
+            const directions = [[-1, 0], [1, 0], [0, -1], [0, 1]]; // Up, Down, Left, Right
+
+            for (const [dr, dc] of directions) {
+                for (let i = 1; i < 8; i++) {
+                    const newRow = row + dr * i;
+                    const newCol = col + dc * i;
+
+                    if (!isValidBoardPosition(newRow, newCol)) break; // Out of bounds
+
+                    const targetPiece = currentBoard[newRow][newCol];
+                    if (targetPiece === null) {
+                        moves.push({ row: newRow, col: newCol }); // Empty square
+                    } else {
+                        if (getPieceColor(targetPiece) !== pieceColor) {
+                            moves.push({ row: newRow, col: newCol }); // Capture opponent
+                        }
+                        break; // Blocked by own or opponent's piece
+                    }
+                }
+            }
+            return moves;
+        }
+
+        function getLegalKnightMoves(row, col, pieceChar, currentBoard, pieceColor) {
+            const moves = [];
+            const knightMoves = [
+                [-2, -1], [-2, 1], [-1, -2], [-1, 2],
+                [1, -2], [1, 2], [2, -1], [2, 1]
+            ];
+
+            for (const [dr, dc] of knightMoves) {
+                const newRow = row + dr;
+                const newCol = col + dc;
+
+                if (isValidBoardPosition(newRow, newCol) && isEmptyOrCapturable(newRow, newCol, pieceColor)) {
+                    moves.push({ row: newRow, col: newCol });
+                }
+            }
+            return moves;
+        }
+
+        function getLegalBishopMoves(row, col, pieceChar, currentBoard, pieceColor) {
+            const moves = [];
+            const directions = [[-1, -1], [-1, 1], [1, -1], [1, 1]]; // Diagonals
+
+            for (const [dr, dc] of directions) {
+                for (let i = 1; i < 8; i++) {
+                    const newRow = row + dr * i;
+                    const newCol = col + dc * i;
+
+                    if (!isValidBoardPosition(newRow, newCol)) break;
+
+                    const targetPiece = currentBoard[newRow][newCol];
+                    if (targetPiece === null) {
+                        moves.push({ row: newRow, col: newCol });
+                    } else {
+                        if (getPieceColor(targetPiece) !== pieceColor) {
+                            moves.push({ row: newRow, col: newCol });
+                        }
+                        break; // Blocked
+                    }
+                }
+            }
+            return moves;
+        }
+
+        function getLegalQueenMoves(row, col, pieceChar, currentBoard, pieceColor) {
+            // Queen moves are a combination of Rook and Bishop moves
+            return [
+                ...getLegalRookMoves(row, col, pieceChar, currentBoard, pieceColor),
+                ...getLegalBishopMoves(row, col, pieceChar, currentBoard, pieceColor)
+            ];
+        }
+
+        function getLegalKingMoves(row, col, pieceChar, currentBoard, pieceColor) {
+            const moves = [];
+            const kingMoves = [
+                [-1, -1], [-1, 0], [-1, 1],
+                [0, -1],           [0, 1],
+                [1, -1], [1, 0], [1, 1]
+            ];
+
+            for (const [dr, dc] of kingMoves) {
+                const newRow = row + dr;
+                const newCol = col + dc;
+
+                if (isValidBoardPosition(newRow, newCol) && isEmptyOrCapturable(newRow, newCol, pieceColor)) {
+                    moves.push({ row: newRow, col: newCol });
+                }
+            }
+            // Note: Castling is not implemented here for simplicity.
+            return moves;
+        }
+
+        // Main function to get legal moves for any piece
+        function getLegalMoves(row, col, pieceChar, currentBoard, pieceColor) {
+            const pieceType = pieceChar.toLowerCase();
+            switch (pieceType) {
+                case 'p': return getLegalPawnMoves(row, col, pieceChar, currentBoard, pieceColor);
+                case 'r': return getLegalRookMoves(row, col, pieceChar, currentBoard, pieceColor);
+                case 'n': return getLegalKnightMoves(row, col, pieceChar, currentBoard, pieceColor);
+                case 'b': return getLegalBishopMoves(row, col, pieceChar, currentBoard, pieceColor);
+                case 'q': return getLegalQueenMoves(row, col, pieceChar, currentBoard, pieceColor);
+                case 'k': return getLegalKingMoves(row, col, pieceChar, currentBoard, pieceColor);
+                default: return [];
+            }
+        }
+
+        // --- Core Game Logic ---
+
+        // Function to render the board
+        function renderBoard() {
+            chessBoardDiv.innerHTML = ''; // Clear existing board
+            for (let row = 0; row < 8; row++) {
+                for (let col = 0; col < 8; col++) {
+                    const square = document.createElement('div');
+                    square.classList.add('square');
+                    // Alternate square colors
+                    if ((row + col) % 2 === 0) {
+                        square.classList.add('light');
+                    } else {
+                        square.classList.add('dark');
+                    }
+                    square.dataset.row = row;
+                    square.dataset.col = col;
+
+                    const pieceChar = board[row][col];
+                    if (pieceChar) {
+                        const pieceElement = document.createElement('span');
+                        pieceElement.classList.add('piece');
+                        pieceElement.textContent = pieces[pieceChar];
+                        // Add class based on piece color for styling
+                        const pieceColor = getPieceColor(pieceChar);
+                        if (pieceColor) {
+                            pieceElement.classList.add(pieceColor);
+                        }
+                        square.appendChild(pieceElement);
+                    }
+                    square.addEventListener('click', handleSquareClick);
+                    chessBoardDiv.appendChild(square);
+                }
+            }
+            updateTurnIndicator();
+            updateBoardOrientation(); // Update board orientation after rendering
+            updateUndoButtonState(); // Update undo button state after rendering
+        }
+
+        // Function to update the turn indicator text
+        function updateTurnIndicator() {
+            turnIndicator.textContent = `${currentPlayer.charAt(0).toUpperCase() + currentPlayer.slice(1)}'s Turn`;
+        }
+
+        // Handle clicks on squares
+        function handleSquareClick(event) {
+            const clickedSquare = event.currentTarget;
+            const row = parseInt(clickedSquare.dataset.row);
+            const col = parseInt(clickedSquare.dataset.col);
+            const pieceOnSquare = board[row][col];
+            const pieceColor = getPieceColor(pieceOnSquare);
+            // const pieceType = pieceOnSquare ? pieceOnSquare.toLowerCase() : null; // No longer needed for specific piece restriction
+
+            // Remove previous highlights
+            removeMoveHighlights();
+
+            // If a piece is currently selected
+            if (selectedPiece) {
+                // If clicked on the same square as selected piece, deselect
+                if (selectedPiece.row === row && selectedPiece.col === col) {
+                    deselectPiece();
+                    return;
+                }
+
+                // If clicked on a square with own piece, select new piece (any piece)
+                if (pieceOnSquare && pieceColor === currentPlayer) { // Removed pieceType restriction
+                    deselectPiece(); // Deselect previous
+                    selectPiece(row, col, pieceOnSquare, clickedSquare);
+                    return;
+                }
+
+                // If clicked on an empty square or opponent's piece, try to move
+                movePiece(row, col, clickedSquare);
+
+            } else {
+                // No piece selected, try to select one (any piece)
+                if (pieceOnSquare && pieceColor === currentPlayer) { // Removed pieceType restriction
+                    selectPiece(row, col, pieceOnSquare, clickedSquare);
+                }
+            }
+        }
+
+        // Select a piece and highlight its legal moves
+        function selectPiece(row, col, pieceChar, squareElement) {
+            deselectPiece(); // Ensure any previously selected piece is deselected
+            selectedPiece = { row, col, pieceChar };
+            squareElement.classList.add('selected');
+
+            const pieceColor = getPieceColor(pieceChar);
+            // Get legal moves for any piece
+            legalMoves = getLegalMoves(row, col, pieceChar, board, pieceColor); // Removed pieceType restriction
+            highlightLegalMoves();
+        }
+
+        // Deselect a piece
+        function deselectPiece() {
+            if (selectedPiece) {
+                const prevSquareElement = chessBoardDiv.children[selectedPiece.row * 8 + selectedPiece.col];
+                prevSquareElement.classList.remove('selected');
+                selectedPiece = null;
+                removeMoveHighlights(); // Remove highlights when deselected
+            }
+        }
+
+        // Highlight squares where the selected piece can move
+        function highlightLegalMoves() {
+            legalMoves.forEach(move => {
+                const targetSquareElement = chessBoardDiv.children[move.row * 8 + move.col];
+                targetSquareElement.classList.add('legal-move');
+            });
+        }
+
+        // Remove all move highlights
+        function removeMoveHighlights() {
+            document.querySelectorAll('.legal-move').forEach(sq => {
+                sq.classList.remove('legal-move');
+            });
+        }
+
+        // Function to save the current board state to history
+        function saveBoardState() {
+            moveHistory.push(JSON.parse(JSON.stringify(board))); // Deep copy the board
+        }
+
+        // Move the selected piece to the new square (simplified logic)
+        function movePiece(newRow, newCol, newSquareElement) {
+            if (!selectedPiece) return;
+
+            // Check if the attempted move is legal
+            const isLegal = legalMoves.some(move => move.row === newRow && move.col === newCol);
+
+            if (!isLegal) {
+                // If not legal, deselect the piece and do nothing
+                deselectPiece();
+                return;
+            }
+
+            // Save the current state before making the move
+            saveBoardState();
+
+            const oldRow = selectedPiece.row;
+            const oldCol = selectedPiece.col;
+            const pieceToMove = selectedPiece.pieceChar;
+
+            // Update the board array
+            board[newRow][newCol] = pieceToMove;
+            board[oldRow][oldCol] = null;
+
+            deselectPiece(); // Deselect after move
+            legalMoves = []; // Clear legal moves
+
+            // Switch turns
+            currentPlayer = currentPlayer === 'white' ? 'black' : 'white';
+            renderBoard(); // Re-render the board to reflect the move and update turn indicator
+        }
+
+        // Function to undo the last move
+        function undoMove() {
+            if (moveHistory.length > 0) {
+                board = moveHistory.pop(); // Restore the previous board state
+                currentPlayer = currentPlayer === 'white' ? 'black' : 'white'; // Revert turn
+                selectedPiece = null; // Clear any selected piece
+                legalMoves = []; // Clear legal moves
+                renderBoard(); // Re-render the board
+            }
+        }
+
+        // Function to update the disabled state of the Undo button
+        function updateUndoButtonState() {
+            undoButton.disabled = moveHistory.length === 0;
+        }
+
+        // Function to rotate the board based on current player
+        function updateBoardOrientation() {
+            if (currentPlayer === 'black') {
+                chessBoardDiv.classList.add('rotated-board');
+            } else {
+                chessBoardDiv.classList.remove('rotated-board');
+            }
+        }
+
+        // Reset the game board
+        function resetGame() {
+            board = JSON.parse(JSON.stringify(initialBoard)); // Reset to initial state
+            selectedPiece = null;
+            legalMoves = [];
+            currentPlayer = 'white';
+            moveHistory = []; // Clear move history
+            renderBoard();
+        }
+
+        // Initialize the game
+        renderBoard();
+        resetButton.addEventListener('click', resetGame);
+        undoButton.addEventListener('click', undoMove); // Add event listener for undo button
+    </script>
+</body>
+</html>

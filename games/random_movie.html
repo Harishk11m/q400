@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bollywood Movie Randomizer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: #f0f0f0;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .container {
+            margin-top: 40px;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            max-width: 500px;
+            width: 90%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        h1 {
+            color: #c0392b; /* A nice red for Bollywood theme */
+            margin-bottom: 20px;
+            font-size: 2.5em;
+        }
+
+        #random-movie-display {
+            font-size: 2.2em;
+            font-weight: bold;
+            color: #f39c12; /* A golden color */
+            margin-bottom: 30px;
+            min-height: 2.2em; /* To prevent layout shift when text appears */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #ecf0f1;
+            padding: 20px;
+            border-radius: 10px;
+            width: 100%;
+            box-sizing: border-box;
+            border: 2px dashed #bdc3c7;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 1.4em;
+            border: none;
+            border-radius: 10px;
+            background-color: #e74c3c; /* Stronger red */
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        button:hover {
+            background-color: #c0392b;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        button:active {
+            transform: translateY(0);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎬 Bollywood Movie Randomizer 🍿</h1>
+        <div id="random-movie-display">Click the button to discover a movie!</div>
+        <button id="get-movie-button">Get New Bollywood Movie</button>
+    </div>
+
+    <script>
+        const bollywoodMovies = [
+            "Sholay", "Dilwale Dulhania Le Jayenge", "Lagaan", "3 Idiots",
+            "Dangal", "Gully Boy", "Barfi!", "Bajrangi Bhaijaan",
+            "Taare Zameen Par", "Swades", "Andaz Apna Apna", "Hera Pheri",
+            "Chak De! India", "Queen", "Padmaavat", "Uri: The Surgical Strike",
+            "Kabir Singh", "War", "Dil Chahta Hai", "Zindagi Na Milegi Dobara",
+            "Rang De Basanti", "Jodhaa Akbar", "My Name Is Khan", "Raazi",
+            "Newton", "Kahaani", "Special 26", "A Wednesday!",
+            "Golmaal (1979)", "Jaane Bhi Do Yaaro", "Padosan", "Anand",
+            "Mughal-e-Azam", "Mother India", "Guide", "Pyaasa",
+            "Mr. India", "Kabhi Khushi Kabhie Gham...", "Kal Ho Naa Ho",
+            "Kuch Kuch Hota Hai", "Gadar: Ek Prem Katha", "Devdas",
+            "Jism", "Munna Bhai M.B.B.S.", "Om Shanti Om", "Chennai Express",
+            "PK", "Bajirao Mastani", "Sultan", "Tiger Zinda Hai",
+            "Dil Se..", "Veer-Zaara", "Kabhi Alvida Naa Kehna", "Don",
+            "Omkara", "Gangster", "Guru", "Jab We Met",
+            "Fashion", "Singh Is Kinng", "Rab Ne Bana Di Jodi", "Ghajini",
+            "Kaminey", "Love Aaj Kal", "Wake Up Sid", "Paa",
+            "Dabangg", "Once Upon a Time in Mumbaai", "Raajneeti",
+            "Band Baaja Baaraat", "Tees Maar Khan", "Don 2",
+            "Bodyguard", "Rockstar", "The Dirty Picture", "Agneepath",
+            "Talaash", "Student Of The Year", "Dabangg 2", "Race 2", "ABCD: Any Body Can Dance",
+            "Aashiqui 2", "Yeh Jawaani Hai Deewani", "Bhaag Milkha Bhaag",
+            "Krrish 3", "Dhoom 3", "Jai Ho", "2 States", "Heropanti", "Ek Villain",
+            "Kick", "Haider", "Happy New Year", "Baby", "Badlapur", "Dum Laga Ke Haisha", "NH10",
+            "Dil Dhadakne Do", "ABCD 2", "Drishyam",
+            "Brothers", "Hero", "Singh Is Bling", "Shaandaar",
+            "Prem Ratan Dhan Payo", "Tamasha", "Dilwale",
+            "Airlift", "Neerja", "Kapoor & Sons", "Ki & Ka",
+            "Fan", "Baaghi", "Dishoom",
+            "Rustom", "Mohenjo Daro", "Pink", "M.S. Dhoni: The Untold Story",
+            "Ae Dil Hai Mushkil", "Shivaay", "Dear Zindagi", "Befikre",
+            "Raees", "Kaabil", "Jolly LLB 2", "Badrinath Ki Dulhania",
+            "Hindi Medium", "Sachin: A Billion Dreams", "Tubelight", "Jagga Jasoos",
+            "Toilet: Ek Prem Katha", "Bareilly Ki Barfi", "Judwaa 2", "Golmaal Again",
+            "Secret Superstar", "Tiger Zinda Hai", "Pad Man",
+            "Hichki", "Raid", "Baaghi 2", "October",
+            "Veere Di Wedding", "Race 3", "Sanju",
+            "Dhadak", "Stree", "Sui Dhaaga", "Andhadhun",
+            "Badhaai Ho", "Thugs of Hindostan", "Kedarnath", "Simmba",
+            "Manikarnika: The Queen of Jhansi", "Total Dhamaal",
+            "Luka Chuppi", "Badla", "Kesari", "Kalank",
+            "Student Of The Year 2", "De De Pyaar De", "Bharat",
+            "Article 15", "Super 30", "Chhichhore",
+            "Dream Girl", "The Sky Is Pink", "Housefull 4", "Bala",
+            "Pati Patni Aur Woh", "Panipat", "Dabangg 3", "Good Newwz",
+            "Tanhaji", "Chhapaak", "Street Dancer 3D", "Malang",
+            "Bhoot – Part One: The Haunted Ship", "Shubh Mangal Zyada Saavdhan", "Baaghi 3", "Angrezi Medium",
+            "Dil Bechara", "Gunjan Saxena: The Kargil Girl", "Sadak 2",
+            "Laxmii", "Chhalaang", "Coolie No. 1", "Indoo Ki Jawani",
+            "The White Tiger", "Kaagaz", "Mumbai Saga", "Sandeep Aur Pinky Faraar",
+            "Roohi", "Saina", "Pagglait", "Dhamaka",
+            "Haseen Dillbura", "Mimi", "Bell Bottom", "Chehre",
+            "Thalaivii", "Bhoot Police", "Tuesdays & Fridays", "Bunty Aur Babli 2",
+            "Atrangi Re", "83", "Bachchhan Paandey", "Jhund",
+            "Sharmaji Namkeen", "Attack: Part 1", "K.G.F: Chapter 2 (Hindi)", "Jersey",
+            "Runway 34", "Heropanti 2", "Jayeshbhai Jordaar", "Bhool Bhulaiyaa 2",
+            "Nikamma", "Janhit Mein Jaari", "Jugjugg Jeeyo", "Rashtra Kavach Om",
+            "Shamshera", "Vikrant Rona (Hindi)", "Laal Singh Chaddha", "Raksha Bandhan",
+            "Dobaaraa", "Liger", "Brahmastra Part One: Shiva", "Chup",
+            "Dhokha: Round D Corner", "Vikram Vedha", "Godfather (Hindi)", "Goodbye",
+            "Doctor G", "Code Name: Tiranga", "Mili", "Double XL",
+            "Uunchai", "Drishyam 2", "Bhediya", "An Action Hero",
+            "Cirkus", "Pathaan", "Shehzada", "Selfiee",
+            "Tu Jhoothi Main Makkaar", "Bholaa", "Gumraah", "Kisi Ka Bhai Kisi Ki Jaan",
+            "Adipurush", "Satyaprem Ki Katha", "Neeyat", "Rocky Aur Rani Kii Prem Kahaani",
+            "Gadar 2", "OMG 2", "Dream Girl 2", "Jawan",
+            "Jaane Jaan", "The Vaccine War", "Fukrey 3", "Mission Raniganj",
+            "Ganapath", "Tejas", "Pippa", "Tiger 3",
+            "Sam Bahadur", "Animal", "Dunki", "Salaar: Part 1 – Ceasefire (Hindi)",
+            "Merry Christmas", "Main Atal Hoon", "Fighter", "Ruslaan",
+            "Bade Miyan Chote Miyan", "Maidaan", "Mr. & Mrs. Mahi", "Munjya",
+            "Chandu Champion", "Kalki 2898 AD", "Singham Again", "Bhool Bhulaiyaa 3",
+            "Welcome 3", "Housefull 5", "Hera Pheri 3", "Don 3", "War 2",
+            "Tiger Vs Pathaan", "Dil Tera Deewana", "Sangam", "Aradhana", "Mera Gaon Mera Desh",
+            "Bobby", "Deewaar", "Kabhi Kabhie", "Amar Akbar Anthony", "Don (1978)",
+            "Silsila", "Naseeb", "Coolie", "Betaab", "Hero", "Ram Lakhan",
+            "Maine Pyar Kiya", "Ghayal", "Baazigar", "Darr", "Hum Aapke Hain Koun..!",
+            "Karan Arjun", "Dilwale Dulhania Le Jayenge", "Raja Hindustani", "Dil To Pagal Hai",
+            "Kuch Kuch Hota Hai", "Sarfarosh", "Hum Dil De Chuke Sanam", "Taal", "Vaastav",
+            "Kaho Naa... Pyaar Hai", "Mohabbatein", "Mission Kashmir", "Gadar: Ek Prem Katha",
+            "Kabhi Khushi Kabhie Gham...", "Dil Chahta Hai", "Lagaan", "Devdas",
+            "Raaz", "Company", "Kaante", "Chalte Chalte", "Kal Ho Naa Ho", "Munna Bhai M.B.B.S.",
+            "Veer-Zaara", "Main Hoon Na", "Dhoom", "Swades", "Black", "Bunty Aur Babli",
+            "Parineeta", "No Entry", "Salaam Namaste", "Rang De Basanti", "Fanaa",
+            "Krrish", "Don: The Chase Begins Again", "Omkara", "Dhoom 2", "Bhagam Bhag",
+            "Guru", "Namastey London", "Chak De! India", "Heyy Babyy", "Partner",
+            "Jab We Met", "Welcome", "Taare Zameen Par", "Jodhaa Akbar", "Race",
+            "Singh Is Kinng", "Ghajini", "Rab Ne Bana Di Jodi", "Dev.D", "Love Aaj Kal",
+            "3 Idiots", "Wanted", "Paa", "My Name Is Khan", "Raajneeti",
+            "Dabangg", "Golmaal 3", "Once Upon a Time in Mumbaai", "Robot (Hindi Dub)",
+            "Band Baaja Baaraat", "Tees Maar Khan", "Dil Toh Baccha Hai Ji", "Yamla Pagla Deewana",
+            "F.A.L.T.U", "Ready", "Singham", "Zindagi Na Milegi Dobara",
+            "Bodyguard", "Mausam", "Ra.One", "Rockstar", "The Dirty Picture", "Don 2",
+            "Agneepath", "Kahaani", "Housefull 2", "Rowdy Rathore", "Cocktail", "Barfi!",
+            "OMG – Oh My God!", "Student Of The Year", "Talaash", "Dabangg 2",
+            "Race 2", "Special 26", "ABCD: Any Body Can Dance", "Kai Po Che!", "Aashiqui 2",
+            "Yeh Jawaani Hai Deewani", "Bhaag Milkha Bhaag", "Chennai Express", "Grand Masti",
+            "Krrish 3", "Ram-Leela", "Dhoom 3", "Jai Ho", "Gunday", "Queen", "2 States",
+            "Main Tera Hero", "Heropanti", "Ek Villain", "Humpty Sharma Ki Dulhania",
+            "Kick", "Mary Kom", "Haider", "Bang Bang!", "Happy New Year", "PK",
+            "Baby", "Badlapur", "Dum Laga Ke Haisha", "NH10", "Gabbar Is Back", "Tanu Weds Manu Returns",
+            "Dil Dhadakne Do", "ABCD 2", "Bajrangi Bhaijaan", "Drishyam", "Brothers",
+            "Welcome Back", "Singh Is Bling", "Shaandaar", "Prem Ratan Dhan Payo", "Tamasha",
+            "Bajirao Mastani", "Dilwale", "Wazir", "Airlift", "Saala Khadoos", "Neerja",
+            "Kapoor & Sons", "Ki & Ka", "Fan", "Baaghi", "Azhar", "Housefull 3",
+            "Udta Punjab", "Sultan", "Dishoom", "Rustom", "Mohenjo Daro", "Pink",
+            "M.S. Dhoni: The Untold Story", "Ae Dil Hai Mushkil", "Shivaay", "Dear Zindagi", "Befikre",
+            "Dangal", "Raees", "Kaabil", "Jolly LLB 2", "Badrinath Ki Dulhania", "Naam Shabana",
+            "Hindi Medium", "Half Girlfriend", "Sachin: A Billion Dreams", "Bank Chor", "Tubelight",
+            "Jagga Jasoos", "Mubarakan", "Toilet: Ek Prem Katha", "Bareilly Ki Barfi", "A Gentleman",
+            "Poster Boys", "Simran", "Newton", "Bhoomi", "Haseena Parkar", "Judwaa 2",
+            "Chef", "Golmaal Again", "Secret Superstar", "Ittefaq", "Tumhari Sulu",
+            "Tera Intezaar", "Fukrey Returns", "Tiger Zinda Hai", "Padmaavat", "Pad Man",
+            "Aiyaary", "Sonu Ke Titu Ki Sweety", "Hate Story 4", "Hichki", "Raid",
+            "Baaghi 2", "October", "Blackmail", "Missing", "Omerta", "Raazi",
+            "Parmanu: The Story of Pokhran", "Veere Di Wedding", "Race 3", "Bhavesh Joshi Superhero",
+            "Fanney Khan", "Karwaan", "Gold", "Satyameva Jayate", "Happy Phirr Bhag Jayegi",
+            "Yamla Pagla Deewana: Phir Se", "Stree", "Pataakha", "Sui Dhaaga", "Batti Gul Meter Chalu",
+            "Andhadhun", "Badhaai Ho", "Namaste England", "Baazaar", "Thugs of Hindostan",
+            "Mohalla Assi", "Kedarnath", "2.0 (Hindi)", "Simmba", "Uri: The Surgical Strike",
+            "Manikarnika: The Queen of Jhansi", "Gully Boy", "Total Dhamaal", "Luka Chuppi",
+            "Badla", "Photograph", "Kesari", "Mard Ko Dard Nahi Hota", "Notebook",
+            "Kalank", "Student Of The Year 2", "De De Pyaar De", "Bharat", "Kabir Singh",
+            "Article 15", "Super 30", "Judgmentall Hai Kya", "Mission Mangal", "Batla House",
+            "Saaho (Hindi)", "Chhichhore", "Dream Girl", "Section 375", "The Zoya Factor",
+            "Pal Pal Dil Ke Paas", "Prassthanam", "P Se Pyaar F Se Faraar", "Satellite Shankar",
+            "Commando 3", "Pagalpanti", "Hotel Mumbai (Hindi)", "Panipat", "Pati Patni Aur Woh",
+            "Mardaani 2", "Dabangg 3", "Good Newwz", "Tanhaji", "Chhapaak", "Panga",
+            "Street Dancer 3D", "Jawaani Jaaneman", "Malang", "Shikara",
+            "Bhoot – Part One: The Haunted Ship", "Shubh Mangal Zyada Saavdhan", "Baaghi 3",
+            "Angrezi Medium", "Guilty", "Kaamyaab", "Halahal", "Khuda Haafiz",
+            "Dil Bechara", "Lootcase", "Gunjan Saxena: The Kargil Girl", "Sadak 2",
+            "Class of '83", "C/o. Sircar", "Dolly Kitty Aur Woh Chamakte Sitare", "Ramprasad Ki Tehrvi",
+            "Ginny Weds Sunny", "Laxmii", "Chhalaang", "Ludo", "Suraj Pe Mangal Bhari",
+            "Durgamati", "Coolie No. 1", "Indoo Ki Jawani", "Madam Chief Minister",
+            "The White Tiger", "Kaagaz", "Mumbai Saga", "Sandeep Aur Pinky Faraar",
+            "Roohi", "Saina", "Pagglait", "Koi Jaane Na", "Fauji Calling",
+            "Dhamaka", "Ajeeb Daastaans", "Ramprasad Ki Tehrvi", "Sardar Ka Grandson",
+            "Haseen Dillruba", "Mimi", "Toofaan", "Bell Bottom", "Chehre",
+            "Thalaivii", "Bhoot Police", "Tuesdays & Fridays", "Bunty Aur Babli 2",
+            "Hum Do Hamare Do", "Rashmi Rocket", "Sanak", "Bhavai", "Dhamaka",
+            "Sardar Udham", "Shershaah", "Atrangi Re", "Chandigarh Kare Aashiqui", "83",
+            "Bachchhan Paandey", "Jhund", "Sharmaji Namkeen", "Attack: Part 1", "Dasvi",
+            "K.G.F: Chapter 2 (Hindi)", "Jersey", "Runway 34", "Heropanti 2", "Jayeshbhai Jordaar",
+            "Bhool Bhulaiyaa 2", "Anek", "Nikamma", "Janhit Mein Jaari", "Jugjugg Jeevo",
+            "Rashtra Kavach Om", "Shamshera", "Vikrant Rona (Hindi)", "Laal Singh Chaddha",
+            "Raksha Bandhan", "Dobaaraa", "Liger", "Brahmastra Part One: Shiva", "Chup",
+            "Dhokha: Round D Corner", "Vikram Vedha", "Godfather (Hindi)", "Goodbye",
+            "Doctor G", "Code Name: Tiranga", "Mili", "Double XL", "Uunchai",
+            "Freddy", "An Action Hero", "Cirkus", "Pathaan", "Shehzada",
+            "Selfiee", "Tu Jhoothi Main Makkaar", "Bholaa", "Gumraah", "Kisi Ka Bhai Kisi Ki Jaan",
+            "Adipurush", "Satyaprem Ki Katha", "Neeyat", "Rocky Aur Rani Kii Prem Kahaani",
+            "Gadar 2", "OMG 2", "Dream Girl 2", "Jawan", "Jaane Jaan", "The Vaccine War",
+            "Fukrey 3", "Mission Raniganj", "Ganapath", "Tejas", "Pippa", "Tiger 3",
+            "Sam Bahadur", "Animal", "Dunki", "Salaar: Part 1 – Ceasefire (Hindi)",
+            "Merry Christmas", "Main Atal Hoon", "Fighter", "Ruslaan",
+            "Bade Miyan Chote Miyan", "Maidaan", "Mr. & Mrs. Mahi", "Munjya",
+            "Chandu Champion", "Kalki 2898 AD", "Singham Again", "Bhool Bhulaiyaa 3",
+            "Welcome 3", "Housefull 5", "Hera Pheri 3", "Don 3", "War 2",
+            "Tiger Vs Pathaan"
+        ];
+
+        const getMovieButton = document.getElementById('get-movie-button');
+        const randomMovieDisplay = document.getElementById('random-movie-display');
+
+        // Event listener for the button click
+        getMovieButton.addEventListener('click', () => {
+            // Get a random index from the bollywoodMovies array
+            const randomIndex = Math.floor(Math.random() * bollywoodMovies.length);
+            // Display the movie name at the random index
+            randomMovieDisplay.textContent = bollywoodMovies[randomIndex];
+        });
+    </script>
+</body>
+</html>

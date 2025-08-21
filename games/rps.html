@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock, Paper, Scissors</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            margin: 0;
+            text-align: center;
+        }
+
+        .game-container {
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .choices {
+            display: flex;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .choice-button {
+            padding: 15px 25px;
+            font-size: 1.2em;
+            cursor: pointer;
+            border: 2px solid #5cb85c;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        .choice-button:hover {
+            background-color: #5cb85c;
+            color: white;
+            transform: scale(1.05);
+        }
+
+        #result-display {
+            font-size: 1.5em;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        .score-board {
+            display: flex;
+            justify-content: space-around;
+            width: 250px;
+            margin-top: 20px;
+            font-size: 1.1em;
+            font-weight: bold;
+        }
+
+        .score {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .score-value {
+            font-size: 2em;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <h1>Rock, Paper, Scissors</h1>
+        <p>Choose your move:</p>
+        <div class="choices">
+            <button class="choice-button" data-choice="rock">✊ Rock</button>
+            <button class="choice-button" data-choice="paper">✋ Paper</button>
+            <button class="choice-button" data-choice="scissors">✌️ Scissors</button>
+        </div>
+        <div id="result-display"></div>
+        <div class="score-board">
+            <div class="score">
+                <span>You</span>
+                <span id="player-score" class="score-value">0</span>
+            </div>
+            <div class="score">
+                <span>Computer</span>
+                <span id="computer-score" class="score-value">0</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const choices = ['rock', 'paper', 'scissors'];
+        let playerScore = 0;
+        let computerScore = 0;
+
+        const choiceButtons = document.querySelectorAll('.choice-button');
+        const resultDisplay = document.getElementById('result-display');
+        const playerScoreDisplay = document.getElementById('player-score');
+        const computerScoreDisplay = document.getElementById('computer-score');
+
+        choiceButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const playerChoice = button.dataset.choice;
+                playRound(playerChoice);
+            });
+        });
+
+        function playRound(playerChoice) {
+            const computerChoice = choices[Math.floor(Math.random() * choices.length)];
+            const winner = determineWinner(playerChoice, computerChoice);
+
+            if (winner === 'player') {
+                playerScore++;
+                resultDisplay.textContent = `You win! ${playerChoice} beats ${computerChoice}.`;
+                resultDisplay.style.color = '#2ecc71';
+            } else if (winner === 'computer') {
+                computerScore++;
+                resultDisplay.textContent = `You lose! ${computerChoice} beats ${playerChoice}.`;
+                resultDisplay.style.color = '#e74c3c';
+            } else {
+                resultDisplay.textContent = `It's a tie! You both chose ${playerChoice}.`;
+                resultDisplay.style.color = '#3498db';
+            }
+
+            updateScore();
+        }
+
+        function determineWinner(player, computer) {
+            if (player === computer) {
+                return 'tie';
+            }
+            if (
+                (player === 'rock' && computer === 'scissors') ||
+                (player === 'paper' && computer === 'rock') ||
+                (player === 'scissors' && computer === 'paper')
+            ) {
+                return 'player';
+            }
+            return 'computer';
+        }
+
+        function updateScore() {
+            playerScoreDisplay.textContent = playerScore;
+            computerScoreDisplay.textContent = computerScore;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess the Number Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+            margin: 0;
+            text-align: center;
+        }
+
+        .container {
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        input[type="number"] {
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            width: 150px;
+            text-align: center;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #5cb85c;
+            color: white;
+            margin-left: 10px;
+        }
+
+        button:hover {
+            background-color: #4cae4c;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        #guess-history {
+            margin-top: 15px;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Guess the Number!</h1>
+        <p>I have picked a number between 1 and 100. Can you guess what it is?</p>
+        <div>
+            <input type="number" id="guess-input" placeholder="Enter your guess">
+            <button id="submit-button">Submit Guess</button>
+        </div>
+        <div id="result"></div>
+        <p id="guess-history"></p>
+    </div>
+
+    <script>
+        // Game variables
+        const randomNumber = Math.floor(Math.random() * 100) + 1;
+        let guessCount = 0;
+        let guesses = [];
+
+        // DOM elements
+        const guessInput = document.getElementById('guess-input');
+        const submitButton = document.getElementById('submit-button');
+        const resultDisplay = document.getElementById('result');
+        const guessHistoryDisplay = document.getElementById('guess-history');
+
+        // Event listener for the submit button
+        submitButton.addEventListener('click', checkGuess);
+        guessInput.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter') {
+                checkGuess();
+            }
+        });
+
+        function checkGuess() {
+            const userGuess = Number(guessInput.value);
+
+            if (userGuess < 1 || userGuess > 100 || isNaN(userGuess)) {
+                resultDisplay.textContent = 'Please enter a valid number between 1 and 100.';
+                resultDisplay.style.color = '#d9534f';
+                return;
+            }
+
+            guessCount++;
+            guesses.push(userGuess);
+            guessHistoryDisplay.textContent = `Previous guesses: ${guesses.join(', ')}`;
+
+            if (userGuess === randomNumber) {
+                resultDisplay.textContent = `Congratulations! You guessed the number in ${guessCount} guesses.`;
+                resultDisplay.style.color = '#5cb85c';
+                endGame();
+            } else if (userGuess < randomNumber) {
+                resultDisplay.textContent = 'Too low! Try again.';
+                resultDisplay.style.color = '#f0ad4e';
+            } else {
+                resultDisplay.textContent = 'Too high! Try again.';
+                resultDisplay.style.color = '#f0ad4e';
+            }
+            
+            guessInput.value = '';
+            guessInput.focus();
+        }
+
+        function endGame() {
+            guessInput.disabled = true;
+            submitButton.disabled = true;
+        }
+    </script>
+</body>
+</html>
