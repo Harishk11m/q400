@@ -164,6 +164,16 @@
         let currentPlayer = 'white'; // 'white' or 'black'
         let moveHistory = []; // Stores previous board states for undo functionality
 
+        // Global object to track if pieces have moved (for castling)
+        const hasMoved = {
+            whiteKing: false,
+            blackKing: false,
+            whiteRookA: false, // Rook at a1 (col 0)
+            whiteRookH: false, // Rook at h1 (col 7)
+            blackRookA: false, // Rook at a8 (col 0)
+            blackRookH: false  // Rook at h8 (col 7)
+        };
+
         const chessBoardDiv = document.getElementById('chess-board');
         const turnIndicator = document.getElementById('turn-indicator');
         const resetButton = document.getElementById('reset-button');
@@ -196,50 +206,48 @@
 
         function getLegalPawnMoves(row, col, pieceChar, currentBoard, pieceColor) {
             const moves = [];
-            const direction = pieceColor === 'white' ? -1 : 1; // White moves up, Black moves down
-            const startRow = pieceColor === 'white' ? 6 : 1; // White pawns start on row 6, Black on row 1
+            const direction = pieceColor === 'white' ? -1 : 1;
+            const startRow = pieceColor === 'white' ? 6 : 1;
 
             // Single square move
             if (isValidBoardPosition(row + direction, col) && currentBoard[row + direction][col] === null) {
                 moves.push({ row: row + direction, col: col });
-                // Double square move (only from starting position)
+                // Double square move
                 if (row === startRow && isValidBoardPosition(row + 2 * direction, col) && currentBoard[row + 2 * direction][col] === null) {
                     moves.push({ row: row + 2 * direction, col: col });
                 }
             }
 
             // Captures
-            // Diagonal left
             if (isValidBoardPosition(row + direction, col - 1) && isOpponentPiece(row + direction, col - 1, pieceColor)) {
                 moves.push({ row: row + direction, col: col - 1 });
             }
-            // Diagonal right
             if (isValidBoardPosition(row + direction, col + 1) && isOpponentPiece(row + direction, col + 1, pieceColor)) {
                 moves.push({ row: row + direction, col: col + 1 });
             }
-            // Note: En passant and promotion are not implemented here for simplicity.
+            // Note: En passant and promotion are not implemented.
             return moves;
         }
 
         function getLegalRookMoves(row, col, pieceChar, currentBoard, pieceColor) {
             const moves = [];
-            const directions = [[-1, 0], [1, 0], [0, -1], [0, 1]]; // Up, Down, Left, Right
+            const directions = [[-1, 0], [1, 0], [0, -1], [0, 1]];
 
             for (const [dr, dc] of directions) {
                 for (let i = 1; i < 8; i++) {
                     const newRow = row + dr * i;
                     const newCol = col + dc * i;
 
-                    if (!isValidBoardPosition(newRow, newCol)) break; // Out of bounds
+                    if (!isValidBoardPosition(newRow, newCol)) break;
 
                     const targetPiece = currentBoard[newRow][newCol];
                     if (targetPiece === null) {
-                        moves.push({ row: newRow, col: newCol }); // Empty square
+                        moves.push({ row: newRow, col: newCol });
                     } else {
                         if (getPieceColor(targetPiece) !== pieceColor) {
-                            moves.push({ row: newRow, col: newCol }); // Capture opponent
+                            moves.push({ row: newRow, col: newCol });
                         }
-                        break; // Blocked by own or opponent's piece
+                        break;
                     }
                 }
             }
@@ -266,7 +274,7 @@
 
         function getLegalBishopMoves(row, col, pieceChar, currentBoard, pieceColor) {
             const moves = [];
-            const directions = [[-1, -1], [-1, 1], [1, -1], [1, 1]]; // Diagonals
+            const directions = [[-1, -1], [-1, 1], [1, -1], [1, 1]];
 
             for (const [dr, dc] of directions) {
                 for (let i = 1; i < 8; i++) {
@@ -282,7 +290,7 @@
                         if (getPieceColor(targetPiece) !== pieceColor) {
                             moves.push({ row: newRow, col: newCol });
                         }
-                        break; // Blocked
+                        break;
                     }
                 }
             }
@@ -290,7 +298,6 @@
         }
 
         function getLegalQueenMoves(row, col, pieceChar, currentBoard, pieceColor) {
-            // Queen moves are a combination of Rook and Bishop moves
             return [
                 ...getLegalRookMoves(row, col, pieceChar, currentBoard, pieceColor),
                 ...getLegalBishopMoves(row, col, pieceChar, currentBoard, pieceColor)
@@ -301,19 +308,40 @@
             const moves = [];
             const kingMoves = [
                 [-1, -1], [-1, 0], [-1, 1],
-                [0, -1],           [0, 1],
+                [0, -1], [0, 1],
                 [1, -1], [1, 0], [1, 1]
             ];
 
             for (const [dr, dc] of kingMoves) {
                 const newRow = row + dr;
                 const newCol = col + dc;
-
                 if (isValidBoardPosition(newRow, newCol) && isEmptyOrCapturable(newRow, newCol, pieceColor)) {
                     moves.push({ row: newRow, col: newCol });
                 }
             }
-            // Note: Castling is not implemented here for simplicity.
+            
+            // --- Castling logic ---
+            // Simplified check: does not check if king passes through or lands in check.
+            if (pieceColor === 'white' && !hasMoved.whiteKing) {
+                // Kingside Castling (White)
+                if (!hasMoved.whiteRookH && currentBoard[7][5] === null && currentBoard[7][6] === null) {
+                    moves.push({ row: 7, col: 6, isCastling: true, rookFromCol: 7, rookToCol: 5 });
+                }
+                // Queenside Castling (White)
+                if (!hasMoved.whiteRookA && currentBoard[7][1] === null && currentBoard[7][2] === null && currentBoard[7][3] === null) {
+                    moves.push({ row: 7, col: 2, isCastling: true, rookFromCol: 0, rookToCol: 3 });
+                }
+            } else if (pieceColor === 'black' && !hasMoved.blackKing) {
+                // Kingside Castling (Black)
+                if (!hasMoved.blackRookH && currentBoard[0][5] === null && currentBoard[0][6] === null) {
+                    moves.push({ row: 0, col: 6, isCastling: true, rookFromCol: 7, rookToCol: 5 });
+                }
+                // Queenside Castling (Black)
+                if (!hasMoved.blackRookA && currentBoard[0][1] === null && currentBoard[0][2] === null && currentBoard[0][3] === null) {
+                    moves.push({ row: 0, col: 2, isCastling: true, rookFromCol: 0, rookToCol: 3 });
+                }
+            }
+            
             return moves;
         }
 
@@ -382,7 +410,6 @@
             const col = parseInt(clickedSquare.dataset.col);
             const pieceOnSquare = board[row][col];
             const pieceColor = getPieceColor(pieceOnSquare);
-            // const pieceType = pieceOnSquare ? pieceOnSquare.toLowerCase() : null; // No longer needed for specific piece restriction
 
             // Remove previous highlights
             removeMoveHighlights();
@@ -395,8 +422,8 @@
                     return;
                 }
 
-                // If clicked on a square with own piece, select new piece (any piece)
-                if (pieceOnSquare && pieceColor === currentPlayer) { // Removed pieceType restriction
+                // If clicked on a square with own piece, select new piece
+                if (pieceOnSquare && pieceColor === currentPlayer) {
                     deselectPiece(); // Deselect previous
                     selectPiece(row, col, pieceOnSquare, clickedSquare);
                     return;
@@ -406,8 +433,8 @@
                 movePiece(row, col, clickedSquare);
 
             } else {
-                // No piece selected, try to select one (any piece)
-                if (pieceOnSquare && pieceColor === currentPlayer) { // Removed pieceType restriction
+                // No piece selected, try to select one
+                if (pieceOnSquare && pieceColor === currentPlayer) {
                     selectPiece(row, col, pieceOnSquare, clickedSquare);
                 }
             }
@@ -415,13 +442,12 @@
 
         // Select a piece and highlight its legal moves
         function selectPiece(row, col, pieceChar, squareElement) {
-            deselectPiece(); // Ensure any previously selected piece is deselected
+            deselectPiece();
             selectedPiece = { row, col, pieceChar };
             squareElement.classList.add('selected');
 
             const pieceColor = getPieceColor(pieceChar);
-            // Get legal moves for any piece
-            legalMoves = getLegalMoves(row, col, pieceChar, board, pieceColor); // Removed pieceType restriction
+            legalMoves = getLegalMoves(row, col, pieceChar, board, pieceColor);
             highlightLegalMoves();
         }
 
@@ -431,7 +457,7 @@
                 const prevSquareElement = chessBoardDiv.children[selectedPiece.row * 8 + selectedPiece.col];
                 prevSquareElement.classList.remove('selected');
                 selectedPiece = null;
-                removeMoveHighlights(); // Remove highlights when deselected
+                removeMoveHighlights();
             }
         }
 
@@ -452,45 +478,86 @@
 
         // Function to save the current board state to history
         function saveBoardState() {
-            moveHistory.push(JSON.parse(JSON.stringify(board))); // Deep copy the board
+            moveHistory.push({
+                board: JSON.parse(JSON.stringify(board)),
+                hasMoved: JSON.parse(JSON.stringify(hasMoved))
+            });
         }
 
-        // Move the selected piece to the new square (simplified logic)
+        // Move the selected piece to the new square (with castling logic)
         function movePiece(newRow, newCol, newSquareElement) {
             if (!selectedPiece) return;
 
-            // Check if the attempted move is legal
-            const isLegal = legalMoves.some(move => move.row === newRow && move.col === newCol);
+            const move = legalMoves.find(move => move.row === newRow && move.col === newCol);
 
-            if (!isLegal) {
-                // If not legal, deselect the piece and do nothing
+            if (!move) {
                 deselectPiece();
                 return;
             }
 
-            // Save the current state before making the move
             saveBoardState();
 
             const oldRow = selectedPiece.row;
             const oldCol = selectedPiece.col;
             const pieceToMove = selectedPiece.pieceChar;
 
-            // Update the board array
-            board[newRow][newCol] = pieceToMove;
-            board[oldRow][oldCol] = null;
+            // --- Special handling for Castling ---
+            if (move.isCastling) {
+                const rookPiece = board[oldRow][move.rookFromCol];
+                
+                // Move the King
+                board[newRow][newCol] = pieceToMove;
+                board[oldRow][oldCol] = null;
+                
+                // Move the Rook
+                board[move.row][move.rookToCol] = rookPiece;
+                board[oldRow][move.rookFromCol] = null;
+
+                // Update the `hasMoved` flags
+                if (currentPlayer === 'white') {
+                    hasMoved.whiteKing = true;
+                    if (move.rookFromCol === 0) hasMoved.whiteRookA = true;
+                    else hasMoved.whiteRookH = true;
+                } else {
+                    hasMoved.blackKing = true;
+                    if (move.rookFromCol === 0) hasMoved.blackRookA = true;
+                    else hasMoved.blackRookH = true;
+                }
+
+            } else {
+                // Regular move
+                board[newRow][newCol] = pieceToMove;
+                board[oldRow][oldCol] = null;
+
+                // Update the `hasMoved` flags for King and Rooks on a regular move
+                if (pieceToMove.toUpperCase() === 'K') {
+                    if (currentPlayer === 'white') hasMoved.whiteKing = true;
+                    else hasMoved.blackKing = true;
+                } else if (pieceToMove.toUpperCase() === 'R') {
+                    if (currentPlayer === 'white') {
+                        if (oldRow === 7 && oldCol === 0) hasMoved.whiteRookA = true;
+                        if (oldRow === 7 && oldCol === 7) hasMoved.whiteRookH = true;
+                    } else {
+                        if (oldRow === 0 && oldCol === 0) hasMoved.blackRookA = true;
+                        if (oldRow === 0 && oldCol === 7) hasMoved.blackRookH = true;
+                    }
+                }
+            }
 
             deselectPiece(); // Deselect after move
             legalMoves = []; // Clear legal moves
 
             // Switch turns
             currentPlayer = currentPlayer === 'white' ? 'black' : 'white';
-            renderBoard(); // Re-render the board to reflect the move and update turn indicator
+            renderBoard(); // Re-render the board
         }
 
         // Function to undo the last move
         function undoMove() {
             if (moveHistory.length > 0) {
-                board = moveHistory.pop(); // Restore the previous board state
+                const lastState = moveHistory.pop();
+                board = lastState.board; // Restore the previous board state
+                Object.assign(hasMoved, lastState.hasMoved); // Restore the hasMoved flags
                 currentPlayer = currentPlayer === 'white' ? 'black' : 'white'; // Revert turn
                 selectedPiece = null; // Clear any selected piece
                 legalMoves = []; // Clear legal moves
@@ -519,13 +586,20 @@
             legalMoves = [];
             currentPlayer = 'white';
             moveHistory = []; // Clear move history
+            // Reset the `hasMoved` flags
+            hasMoved.whiteKing = false;
+            hasMoved.blackKing = false;
+            hasMoved.whiteRookA = false;
+            hasMoved.whiteRookH = false;
+            hasMoved.blackRookA = false;
+            hasMoved.blackRookH = false;
             renderBoard();
         }
 
         // Initialize the game
         renderBoard();
         resetButton.addEventListener('click', resetGame);
-        undoButton.addEventListener('click', undoMove); // Add event listener for undo button
+        undoButton.addEventListener('click', undoMove);
     </script>
 </body>
 </html>
