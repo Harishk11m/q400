@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cockpit Lights and Reasons</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2 {
+            color: #1a237e;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 10px;
+            margin-top: 25px;
+        }
+        .light-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-left: 5px solid #ff9800;
+            border-radius: 5px;
+            background-color: #fafafa;
+            transition: all 0.3s ease;
+        }
+        .light-item:hover {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+        .light-name {
+            font-weight: bold;
+            color: #3f51b5;
+            flex: 1;
+            padding-right: 20px;
+        }
+        .reason {
+            color: #555;
+            flex: 2;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Cockpit Lights and Reasons</h1>
+    
+    <p>This document outlines various cockpit light indications and their corresponding reasons, categorized for clarity.</p>
+
+    ---
+
+    <h2>Flight Deck Warnings & Indications</h2>
+    
+    <div class="light-item">
+        <div class="light-name">#1 AC GEN CAUTION</div>
+        <div class="reason">Supply is not delivered to the bus.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">#1 AC GEN HOT</div>
+        <div class="reason">AC generator temperature is more than 166°C.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">#1 BLEED HOT</div>
+        <div class="reason">Sensor senses high temperature of the duct line (overpressure, duct leak) in ECS, de-ice system, door seal pressurization, or aircraft pressurization.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">#1 DC GEN</div>
+        <div class="reason">DC generator system may be inoperative; supply is not delivered.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">#1 DC GEN HOT</div>
+        <div class="reason">DC generator temperature is more than 166°C.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">#1 ENG FADEC FAIL</div>
+        <div class="reason">A problem in the engine FADEC, which cannot control the engine.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">#1 ENG FUEL PRESS</div>
+        <div class="reason">Engine fuel pressure is low.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">#1 ENG HYD PUMP</div>
+        <div class="reason">Engine Driven Pump (EDP) pressure is less than 1800 psi.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">#1 ENG OIL PRESS</div>
+        <div class="reason">Engine oil pressure is low.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">#1 ENGINE FADEC</div>
+        <div class="reason">Any problem with the FADEC.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">#1 FUEL FILTER BYPASS</div>
+        <div class="reason">Indicates a signal from the fuel filter impending switch.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">#1 HYD FLUID HOT</div>
+        <div class="reason">Indication of high hydraulic fluid temperature.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">#1 HYD ISO VALVE</div>
+        <div class="reason">Isolation valve is closed, isolating a part of the system.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">#1 PEC</div>
+        <div class="reason">Propeller Electronic Unit (PECU) senses a fault.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">#1 RUD HYD MAINTENANCE</div>
+        <div class="reason">Maintenance action required. Hydraulic pressure is less than 350 psi, and/or CH 1 of the FCECU's LVDT is not moving.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">#1 STALL SYS FAIL</div>
+        <div class="reason">Problem in the stall system.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">#1 STBY HYD PUMP HOT</div>
+        <div class="reason">SPU (Standby Pump Unit) is operating at high temperature.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">#1 TANK FUEL LOW</div>
+        <div class="reason">Left fuel tank collector has less than 139 kg of fuel.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">#2 AC GEN</div>
+        <div class="reason">Temperature is more than 166°C.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">#2 AC GEN HOT</div>
+        <div class="reason">Sensor senses high temperature of the duct line.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">#2 BLEED HOT</div>
+        <div class="reason">Supply is not delivered.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">#2 DC GEN</div>
+        <div class="reason">Temperature is more than 166°C.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">#2 DC GEN HOT</div>
+        <div class="reason">Problem in the engine FADEC, which cannot control the engine.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">#2 ENG FADEC</div>
+        <div class="reason">Any problem with the FADEC.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">#2 ENG FADEC FAIL</div>
+        <div class="reason">EDP pressure is less than 1800 psi.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">#2 ENG FUEL PRESS</div>
+        <div class="reason">Engine oil pressure is low.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">#2 ENG HYD PUMP</div>
+        <div class="reason">Any problem with the FADEC.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">#2 ENG OIL PRESS</div>
+        <div class="reason">Receives a signal from the fuel filter impending switch.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">#2 FUEL FLTR BYPASS</div>
+        <div class="reason">Fuel filter impending switch has been triggered.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">#2 HYD FLUID HOT</div>
+        <div class="reason">Indication of high hydraulic fluid temperature.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">#2 HYD ISO VALVE</div>
+        <div class="reason">Isolation valve is closed, isolating a part of the system.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">#2 PEC</div>
+        <div class="reason">Propeller Electronic Unit senses a fault.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">#2 RUD HYD MAINTENANCE</div>
+        <div class="reason">Hydraulic pressure is less than 350 psi.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">#2 STALL SYS FAIL</div>
+        <div class="reason">Problem in the stall system.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">#2 STBY HYD PUMP HOT</div>
+        <div class="reason">SPU is operating at high temperature.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">#2 TANK FUEL LOW</div>
+        <div class="reason">Right fuel tank collector has less than 139 kg of fuel.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">#3 STBY HYD PUMP MAINTENANCE</div>
+        <div class="reason">System pressure is less than 900 psi, or the DCMP has operated for more than 60 seconds on the ground.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">AUX BATT HOT</div>
+        <div class="reason">Auxiliary battery is not connected to the left main feeder bus for charging.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">AUXILIARY BATTERY</div>
+        <div class="reason">Auxiliary battery-related issue.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">CABIN DUCT HOT</div>
+        <div class="reason">Cabin compartment duct temperature is more than 88°C.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">CABIN PACK HOT</div>
+        <div class="reason">Cabin pack discharge temperature is more than 212°C.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">CABIN PRESS</div>
+        <div class="reason">Cabin pressure is more than 10,000 ft.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">DC BUS</div>
+        <div class="reason">#1 DC GCU or #2 DC GCU has sensed an overcurrent for more than 7 seconds.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">DEICE PRESS</div>
+        <div class="reason">Pressure is not sensed by the TMU; de-ice manifold pressure is less than 12.5 psig as sensed by the low-pressure switch.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">ELEVATOR ASYMMETRY</div>
+        <div class="reason">Difference between two elevators is more than 4.5° (above 185 knots) or 6° (less than 185 knots).</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">ELEVATOR FEEL</div>
+        <div class="reason">FCECU loses control over the feel actuator, fails to excite the actuator LVDT, or sensed signals are not equal.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">ELEVATOR PRESS MAINTENANCE</div>
+        <div class="reason">Maintenance action required; all three systems have high pressure.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">EMER LTS DISARMED</div>
+        <div class="reason">Power supply is not armed.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">ENG ADP HEAT 1</div>
+        <div class="reason">TMU senses that the main adapter heater and nack heater have failed.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">ENG ADPT HEAT 2</div>
+        <div class="reason">TMU senses that the main adapter heater and nack heater have failed.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">FLAP DRIVE</div>
+        <div class="reason">FCU senses hydraulic pressure with no flap selection, difference between flap position selection and indication, or FCU malfunction.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">FLAP POWER</div>
+        <div class="reason">Flap asymmetry, uncommanded movement, or malfunction of position/lever transducers, arming switch, or FCU.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">FLT COMP DUCT HOT</div>
+        <div class="reason">Flight compartment duct temperature is more than 88°C.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">FLT COMP PACK HOT</div>
+        <div class="reason">Flight compartment pack discharge temperature is more than 212°C.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">FLT DATA RECORDER</div>
+        <div class="reason">System may be inoperative; CVR must be operative, and FDR is not operating.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">FUELLING ON</div>
+        <div class="reason">Refuel/defuel panel is open.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">FUSELAGE DOORS WARNING</div>
+        <div class="reason">System may be inoperative; any fuselage door proximity sensor is not pressed.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">GPWS</div>
+        <div class="reason">GPWC is supplying invalid data to the GPWSC.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">ICE DETECT FAIL</div>
+        <div class="reason">Both ice detector probes have failed.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">INBO ANTISKID</div>
+        <div class="reason">System is unable to command and control the inboard antiskid system.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">INTERNAL BAGG DOOR</div>
+        <div class="reason">Switch target is not pressed.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">L AC BUS</div>
+        <div class="reason">Supply is not delivered to the bus due to an overcurrent condition for more than 7 seconds.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">L TRU</div>
+        <div class="reason">TRU is not generating supply.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">LDG GEAR INOP</div>
+        <div class="reason">PSEU (Proximity Sensor Electronic Unit) failure.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">MAIN BATT HOT</div>
+        <div class="reason">Battery temperature is more than 71°C; on the electrical system page, the main battery temp turns red.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">MAIN BATTERY</div>
+        <div class="reason">Battery is not getting charged. EPCU shows fault 33, or K8 drive failure.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">NOSE STEERING INOP</div>
+        <div class="reason">Any problem in the nose steering system.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">OUTBO ANTISKID</div>
+        <div class="reason">Loss of ability to control the outboard spoiler system.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">PARKING BRAKE MAINTENANCE</div>
+        <div class="reason">Maintenance action required; emergency brake is set.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">PITCH TRIM</div>
+        <div class="reason">Either channel has lost control of the pitch trim actuator.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">PITOT HEAT 1</div>
+        <div class="reason">Probe heater has failed.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">PITOT HEAT 2</div>
+        <div class="reason">Probe heater has failed.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">PITOT HEAT STBY</div>
+        <div class="reason">Standby probe heater has failed.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">PROP DEICE</div>
+        <div class="reason">Any reason related to the propeller deicing system.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">PUSHER SYST FAIL</div>
+        <div class="reason">Any problem in the pusher system.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">R AC BUS</div>
+        <div class="reason">Supply is not delivered to the bus.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">R TRU</div>
+        <div class="reason">TRU is not generating supply.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">ROLL SPLR INBO</div>
+        <div class="reason">Hydraulic pressure is less than 900 psi and airspeed is less than 165 knots.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">ROLL SPLR OUTBO</div>
+        <div class="reason">Ground lift dump valve is not operating correctly.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">ROLL SPLR PUTBO</div>
+        <div class="reason">Hydraulic pressure is less than 900 psi and airspeed is less than 165 knots.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">ROLL SPOILER INBO</div>
+        <div class="reason">Ground lift dump valve is not operating correctly.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">RUD CTRL</div>
+        <div class="reason">Both channels cannot control pressure to the PCU; both system pressures are less than 350 psi, or airspeed is invalid.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">SIDE WDO HOT</div>
+        <div class="reason">Side window temperature is more than 60°C.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">SMOKE</div>
+        <div class="reason">Smoke is sensed in any baggage compartment.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">SPLR OUTBO</div>
+        <div class="reason">FCECU does not prevent spoiler operation when airspeed is more than 185 knots, or FCECU prevents spoiler operation when speed is less than 186 knots.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">STBY BATT HOT</div>
+        <div class="reason">Battery temperature is more than 71°C; on the electrical system page, the standby battery temp turns red.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">STBY BATTERY</div>
+        <div class="reason">Battery is not getting charged. EPCU shows fault 29, or K25 drive failure.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">TOUCHED RUNWAY</div>
+        <div class="reason">Sensor in the aft of the fuselage has been pressed.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">WSHLD CTRL</div>
+        <div class="reason">Any problem with the windshield control heating.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">WSHLD HOT</div>
+        <div class="reason">Windshield temperature is more than 60°C.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">WT ON WHEEL MAINTENANCE</div>
+        <div class="reason">Maintenance action required; WOW1 and WOW2 calculations are different, one proximity sensor in each channel has malfunctioned, or nose wheel overtravel is more than 120°.</div>
+    </div>
+    
+    ---
+
+    <h2>ED Message Indicators</h2>
+    
+    <div class="light-item">
+        <div class="light-name">DU BAD CONF</div>
+        <div class="reason">Maintenance action required.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">ED MON FAIL</div>
+        <div class="reason">Maintenance action required.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">FADEC1/DU</div>
+        <div class="reason">Maintenance action required.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">FADEC2/DU</div>
+        <div class="reason">Maintenance action required.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">FADECS/DU</div>
+        <div class="reason">Maintenance action required.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">HOT DISPLAY</div>
+        <div class="reason">Maintenance action required.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">HOT ED</div>
+        <div class="reason">Maintenance action required.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">HOT MFD1</div>
+        <div class="reason">Maintenance action required.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">HOT MFD2</div>
+        <div class="reason">Maintenance action required.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">HOT PFD1</div>
+        <div class="reason">Maintenance action required.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">HOT PFD2</div>
+        <div class="reason">Maintenance action required.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">IOP BAD CONF</div>
+        <div class="reason">Maintenance action required.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">MFD1 LINK FAIL</div>
+        <div class="reason">Maintenance action required.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">MFD2 LINK FAIL</div>
+        <div class="reason">Maintenance action required.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">PFD1 LINK FAIL</div>
+        <div class="reason">Maintenance action required.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">PFD1 MON FAIL</div>
+        <div class="reason">Maintenance action required.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">PFD2 FAIL</div>
+        <div class="reason">Maintenance action required.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">PFD2 LINK FAIL</div>
+        <div class="reason">Maintenance action required.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">PFDS MON FAIL</div>
+        <div class="reason">Maintenance action required.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">POWERPLANT</div>
+        <div class="reason">Maintenance action required.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">RA1 FAIL</div>
+        <div class="reason">Maintenance action required.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">RA2 FAIL</div>
+        <div class="reason">Maintenance action required.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">WOW/IOP 1 FAIL</div>
+        <div class="reason">Maintenance action required.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">WOW/IOP 2 FAIL</div>
+        <div class="reason">Maintenance action required.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">WTG1 FAIL</div>
+        <div class="reason">Maintenance action required.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">WTG2 FAIL</div>
+        <div class="reason">Maintenance action required.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">APU</div>
+        <div class="reason">APU-related warning.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">AVIONICS</div>
+        <div class="reason">Avionics-related issue.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">DEICE TIMER</div>
+        <div class="reason">De-ice timer-related issue.</div>
+    </div>
+    <div class="light-item">
+        <div class="light-name">CHECK FIRE DET MAINTENANCE</div>
+        <div class="reason">Maintenance action required.</div>
+    </div>
+
+</div>
+
+</body>
+</html>
