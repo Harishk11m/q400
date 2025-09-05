@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  body { font-family: sans-serif; line-height: 1.6; padding: 20px; }
+  .qa-container { margin-bottom: 20px; border: 1px solid #ccc; padding: 15px; border-radius: 8px; }
+  .question { font-weight: bold; color: #333; }
+  .answer-list { list-style-type: disc; margin-left: 20px; padding-left: 0; }
+  .answer-list li { margin-bottom: 5px; }
+</style>
+</head>
+<body>
+
+<h1>Aircraft System Q&A</h1>
+
+<div class="qa-container">
+  <p class="question">What happens when the IDS senses ice accumulation?</p>
+  <ul class="answer-list">
+    <li>The words "ICE DETECTED" appear on the Engine Display (ED).</li>
+  </ul>
+</div>
+
+<div class="qa-container">
+  <p class="question">What controls does the IDS have in the flight compartment?</p>
+  <ul class="answer-list">
+    <li>The IDS has no flight compartment controls and operates automatically when 115 V ac power is available.</li>
+  </ul>
+</div>
+
+<div class="qa-container">
+  <p class="question">What components interface with the Electronic Instrument System (EIS) to generate the "ICE DETECTED" message?</p>
+  <ul class="answer-list">
+    <li>The Integrated Flight Cabinets (IFCs) interface with the EIS to generate the advisory message.</li>
+  </ul>
+</div>
+
+<div class="qa-container">
+  <p class="question">On which principle does the Ice Detector Probe (IDP) work?</p>
+  <ul class="answer-list">
+    <li>The ice sensor in the IDP operates on a piezoelectric principle.</li>
+  </ul>
+</div>
+
+<div class="qa-container">
+  <p class="question">What happens to the frequency of the ice sensor when ice accumulates on it?</p>
+  <ul class="answer-list">
+    <li>When ice accumulates on the sensor, the frequency of vibration increases due to an increase in rigidity.</li>
+  </ul>
+</div>
+
+<div class="qa-container">
+  <p class="question">What happens to the natural frequency of the sensor when water or liquid contaminants accumulate?</p>
+  <ul class="answer-list">
+    <li>Water or liquid contaminants increase the diaphragm mass without increasing its stiffness, causing the natural frequency to drop.</li>
+  </ul>
+</div>
+
+<div class="qa-container">
+  <p class="question">What is the function of the signal conditioner?</p>
+  <ul class="answer-list">
+    <li>The signal conditioner reads the signal from the ice sensor and compares its frequency to a stored "Ice Detection Threshold Level Frequency".</li>
+  </ul>
+</div>
+
+<div class="qa-container">
+  <p class="question">If the REF SPEEDS switch is selected to OFF, what message will appear on the ED when ice is detected?</p>
+  <ul class="answer-list">
+    <li>An "ICE DETECTED" message will flash in amber (yellow) in normal video below the SAT indication.</li>
+  </ul>
+</div>
+
+<div class="qa-container">
+  <p class="question">What happens if the REF SPEEDS switch is selected to INCR after ice is initially detected?</p>
+  <ul class="answer-list">
+    <li>The "ICE DETECTED" message will change to reverse white video for 5 seconds.</li>
+  </ul>
+</div>
+
+<div class="qa-container">
+  <p class="question">What happens if the REF SPEEDS switch is selected to INCR and an IDP detects ice after 5 seconds?</p>
+  <ul class="answer-list">
+    <li>The "ICE DETECTED" message will display as steady white.</li>
+  </ul>
+</div>
+
+<div class="qa-container">
+  <p class="question">What message appears when the REF SPEEDS switch is in the INCR position?</p>
+  <ul class="answer-list">
+    <li>An "INCR REF SPEED" message will display in white below the "ICE DETECTED" message, confirming that the Stall Protection System (SPS) is modified for icing conditions.</li>
+  </ul>
+</div>
+
+<div class="qa-container">
+  <p class="question">What happens if both IDPs fail?</p>
+  <ul class="answer-list">
+    <li>The "ICE DETECT FAIL" caution light will come on.</li>
+  </ul>
+</div>
+
+<div class="qa-container">
+  <p class="question">What happens if only one IDP fails?</p>
+  <ul class="answer-list">
+    <li>The caution light will not come on because the system is redundant.</li>
+  </ul>
+</div>
+
+<div class="qa-container">
+  <p class="question">For how long will the "ICE DETECTED" message remain in view?</p>
+  <ul class="answer-list">
+    <li>The message will remain in view for a minimum of 60 seconds.</li>
+  </ul>
+</div>
+
+<div class="qa-container">
+  <p class="question">What happens when one IDP fails?</p>
+  <ul class="answer-list">
+    <li>The failure is reported to the TMU, which stores it as a maintenance message.</li>
+    <li>This message is then displayed on the ESID as "LEFT IDP FAIL" or "RIGHT IDP FAIL" when the Centralized Diagnostic System (CDS) is interrogated.</li>
+  </ul>
+</div>
+
+<div class="qa-container">
+  <p class="question">What is the regulated pressure at which the system operates?</p>
+  <ul class="answer-list">
+    <li>The system operates at a regulated pressure of 18 psig (124 kPag).</li>
+  </ul>
+</div>
+
+<div class="qa-container">
+  <p class="question">When does the Isolation Shut-off Valve (ISOV) normally open?</p>
+  <ul class="answer-list">
+    <li>The ISOV normally opens as soon as 28 Vdc electrical power supply is available, ensuring that deicing air is available to both sides of the aircraft in case of a failure on one side.</li>
+  </ul>
+</div>
+
+<div class="qa-container">
+  <p class="question">How long do the deice cycles last in SLOW and FAST mode?</p>
+  <ul class="answer-list">
+    <li>The deice cycle lasts 3 minutes in SLOW mode and 1 minute in FAST mode.</li>
+  </ul>
+</div>
+
+<div class="qa-container">
+  <p class="question">How many sequences are in a cycle?</p>
+  <ul class="answer-list">
+    <li>The cycle is divided into 6 sequences of inflation and a dwell period.</li>
+    <li>Each sequence consists of inflation of an individual boot for 6 seconds, followed by suck down of that boot.</li>
+  </ul>
+</div>
+
+<div class="qa-container">
+  <p class="question">How is air supplied to the boots?</p>
+  <ul class="answer-list">
+    <li>Air is supplied from the engines through a Pressure Regulating Valve (PRV) with a Check Valve (CV) located in the nacelle.</li>
+  </ul>
+</div>
+
+<div class="qa-container">
+  <p class="question">What happens if one of the supply branches to the tail ruptures?</p>
+  <ul class="answer-list">
+    <li>Check valves prevent the complete loss of pneumatic supply to the tail boots.</li>
+  </ul>
+</div>
+
+<div class="qa-container">
+  <p class="question">What is the function of the Timer and Monitor Unit (TMU) in relation to the DDVs?</p>
+  <ul class="answer-list">
+    <li>The TMU compares the command signal and the Low Pressure Switch (LPS) signal to determine if the DDV operation is normal.</li>
+    <li>If the TMU commands an output to open and the related LPS does not send a signal back, it indicates a fault, such as the DDV not opening or a burst boot.</li>
+  </ul>
+</div>
+
+<div class="qa-container">
+  <p class="question">What happens if the TMU receives a signal from an LPS that has not been commanded?</p>
+  <ul class="answer-list">
+    <li>This indicates that the DDV operation is not normal.</li>
+  </ul>
+</div>
+
+<div class="qa-container">
+  <p class="question">What happens when the TMU senses a DDV fault?</p>
+  <ul class="answer-list">
+    <li>The TMU sends a discrete signal to the Caution and Warning panel, and the DEICE PRESS caution light comes on.</li>
+  </ul>
+</div>
+
+<div class="qa-container">
+  <p class="question">What happens if one Pitot/Static probe or Angle of Attack (AOA) vane heater has no current flow?</p>
+  <ul class="answer-list">
+    <li>The TMU records a failure signal and sends it to the avionics system (Stall Protection Modules 1 and 2).</li>
+  </ul>
+</div>
+
+<div class="qa-container">
+  <p class="question">What is the function of the Non-Heated Check Valves (NHCVs)?</p>
+  <ul class="answer-list">
+    <li>The NHCVs prevent moisture from flowing back into the wing system in the event of a failure.</li>
+    <li>A faulty NHCV would not prevent the de-icing system from functioning.</li>
+  </ul>
+</div>
+
+<div class="qa-container">
+  <p class="question">What is the purpose of the Low-Pressure Switch (LPS) in each DDV?</p>
+  <ul class="answer-list">
+    <li>The LPS closes when the pressure rises above 15 ± 1 psig, sending a signal to the TMU to confirm that the commanded valve has opened and the pressure was sufficient to inflate the boots.</li>
+    <li>The LPS opens when the pressure drops below 11 +2.5/-1 psig, indicating that the valve has operated normally.</li>
+  </ul>
+</div>
+
+<div class="qa-container">
+  <p class="question">What is the normal state of the Isolation Shut-off Valve (ISOV)?</p>
+  <ul class="answer-list">
+    <li>The ISOV is normally closed when not energized and opens automatically when an engine is started.</li>
+    <li>It can be closed by the flight crew to isolate the two sides in the event of a pressure loss.</li>
+  </ul>
+</div>
+
+<div class="qa-container">
+  <p class="question">How does the Dual Distributing Valve (DDV) allow the boots to flatten?</p>
+  <ul class="answer-list">
+    <li>At boot deflation, the electrical valve allows air to flow back to the DDV and exhaust the system through the ejector.</li>
+    <li>Air is removed from the boots using a venturi effect, which allows them to flatten on the leading edge.</li>
+  </ul>
+</div>
+
+<div class="qa-container">
+  <p class="question">What prevents the complete loss of pneumatic supply to the tail boots if a supply branch ruptures?</p>
+  <ul class="answer-list">
+    <li>Check valves prevent the complete loss of pneumatic supply to the tail boots if one of the supply branches ruptures.</li>
+  </ul>
+</div>
+
+<div class="qa-container">
+  <p class="question">What causes the PITOT HEAT 1, PITOT HEAT 2, or PITOT HEAT STBY caution light to come on?</p>
+  <ul class="answer-list">
+    <li>These caution lights come on when there is no current flow into the heating element of one Pitot/Static probe or when the timer is not powered.</li>
+  </ul>
+</div>
+
+<div class="qa-container">
+  <p class="question">What happens when a failure of an Angle of Attack (AOA) vane heater is detected?</p>
+  <ul class="answer-list">
+    <li>A failure signal is recorded in the Timer and Monitor Unit (TMU) and is sent to the avionics system (Stall Protection Modules 1 and 2).</li>
+  </ul>
+</div>
+
+<div class="qa-container">
+  <p class="question">What would a failure of both PRRVs lead to?</p>
+  <ul class="answer-list">
+    <li>A failure of both PRRVs would lead to a total loss of the pneumatic supply and, therefore, the total loss of airframe de-icing.</li>
+  </ul>
+</div>
+
+<div class="qa-container">
+  <p class="question">What is the effect of a PRRV failure?</p>
+  <ul class="answer-list">
+    <li>A failure of one PRRV does not prevent the system from operating normally.</li>
+    <li>However, a failure of both PRRVs would lead to a total loss of the pneumatic supply and, therefore, the total loss of airframe de-icing.</li>
+  </ul>
+</div>
+
+<div class="qa-container">
+  <p class="question">What are the components of the engine intake anti-icing system?</p>
+  <ul class="answer-list">
+    <li>The components are Thermostats, Air Intake Heater; Switches, Heater-Engine Intake; and Relays, Control-Intake Heater.</li>
+  </ul>
+</div>
+
+<div class="qa-container">
+  <p class="question">What conditions must be met for power to be supplied to the heater?</p>
+  <ul class="answer-list">
+    <li>Power is supplied to the heater when all of the following conditions are met: the temperature measured by a thermostat is below +60 °F (+15.6 °C), the related engine oil pressure switch is closed, the ENGINE INTAKE switch light has been pushed, and 115 Vac power is available.</li>
+  </ul>
+</div>
+
+<div class="qa-container">
+  <p class="question">What happens if both heating elements in the engine adapter heater fail?</p>
+  <ul class="answer-list">
+    <li>The related ENG ADPT HEAT 1 or ENG ADPT HEAT 2 caution light on the Caution and Warning panel comes on.</li>
+  </ul>
+</div>
+
+<div class="qa-container">
+  <p class="question">What other de-ice boots operate at the same time as the left nacelle deicer boot?</p>
+  <ul class="answer-list">
+    <li>The left nacelle deicer boot operates at the same time as the inboard horizontal stabilizer deicer boots.</li>
+  </ul>
+</div>
+
+<div class="qa-container">
+  <p class="question">What other de-ice boots operate at the same time as the right nacelle deicer boot?</p>
+  <ul class="answer-list">
+    <li>The right nacelle deicer boot operates at the same time as the outboard horizontal stabilizer deicer boots.</li>
+  </ul>
+</div>
+
+</body>
+</html>

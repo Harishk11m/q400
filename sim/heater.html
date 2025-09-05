@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Intake Control</title>
+<style>
+  body {
+    background-color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    margin: 0;
+    font-family: sans-serif;
+    user-select: none;
+  }
+
+  /* --- AC Toggle Switch Styles --- */
+  .toggle-switch-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+    color: white;
+    font-size: 1.2em;
+  }
+  .toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+    margin-left: 15px;
+  }
+  .toggle-switch input { display: none; }
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+  }
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+  }
+  input:checked + .slider { background-color: #2196F3; }
+  input:checked + .slider:before { transform: translateX(26px); }
+
+  /* --- Main Component Styles --- */
+  .container { text-align: center; }
+  .title {
+    color: white;
+    font-size: 2em;
+    margin-bottom: 20px;
+  }
+  .button-container {
+    background-color: #000;
+    border: 2px solid #555;
+    border-radius: 5px;
+    width: 150px;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  /* FIXED: The top section itself is now the clickable switch */
+  .top-section {
+    display: flex;
+    flex: 1;
+    border-bottom: 2px solid #555;
+    cursor: pointer; 
+  }
+
+  .light-display {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .light-display.left { border-right: 2px solid #555; }
+  
+  .light {
+    font-weight: bold;
+    font-size: 1.5em;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: color 0.2s, background-color 0.2s;
+    /* This prevents the text itself from interfering with the parent click event */
+    pointer-events: none; 
+  }
+
+  /* --- Light States --- */
+  #open-light, #heater-light {
+    background-color: black;
+    color: transparent; /* Invisible text */
+  }
+  #closed-light {
+    background-color: black;
+    color: limegreen;
+  }
+  #open-light.active, #heater-light.active {
+    background-color: black;
+    color: orange;
+  }
+  #closed-light.off {
+    background-color: black;
+    color: transparent; /* Invisible text */
+  }
+</style>
+</head>
+<body>
+
+<div class="toggle-switch-container">
+  AC AVAILABLE
+  <label class="toggle-switch">
+    <input type="checkbox" id="ac-toggle">
+    <span class="slider"></span>
+  </label>
+</div>
+
+<div class="container">
+  <div class="title">ENGINE INTAKE</div>
+  <div class="button-container">
+    <div id="main-switch" class="top-section">
+      <div class="light-display left">
+        <span id="open-light" class="light">OPN</span>
+      </div>
+      <div class="light-display">
+        <span id="heater-light" class="light">HTR</span>
+      </div>
+    </div>
+    <div class="light-display">
+       <span id="closed-light" class="light">CLOSED</span>
+    </div>
+  </div>
+</div>
+
+<script>
+  const acToggle = document.getElementById('ac-toggle');
+  // FIXED: The script now correctly targets the 'main-switch' div
+  const mainSwitch = document.getElementById('main-switch');
+  const openLight = document.getElementById('open-light');
+  const heaterLight = document.getElementById('heater-light');
+  const closedLight = document.getElementById('closed-light');
+
+  let isSwitchActive = false;
+  let activationTimer = null; 
+
+  function activateTopLights() {
+      const isAcAvailable = acToggle.checked;
+      openLight.classList.add('active');
+      if (isAcAvailable) {
+        heaterLight.classList.add('active');
+      } else {
+        heaterLight.classList.remove('active');
+      }
+  }
+  
+  function deactivateAll() {
+      closedLight.classList.remove('off');
+      openLight.classList.remove('active');
+      heaterLight.classList.remove('active');
+  }
+
+  mainSwitch.addEventListener('click', () => {
+    if (activationTimer) {
+      clearTimeout(activationTimer);
+      activationTimer = null;
+      isSwitchActive = false;
+      deactivateAll();
+      return;
+    }
+
+    isSwitchActive = !isSwitchActive;
+
+    if (isSwitchActive) {
+      closedLight.classList.add('off');
+      activationTimer = setTimeout(() => {
+        activateTopLights();
+        activationTimer = null;
+      }, 4000);
+    } else {
+      deactivateAll();
+    }
+  });
+
+  acToggle.addEventListener('change', () => {
+    if (isSwitchActive && !activationTimer) {
+       activateTopLights();
+    }
+  });
+</script>
+
+</body>
+</html>
