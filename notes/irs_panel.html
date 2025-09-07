@@ -1,0 +1,465 @@
+<html>
+<head>
+<title>Aircraft Control Panel</title>
+<style>
+  body { margin: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; background-color: #f0f0f0; }
+  .panel {
+    width: 400px;
+    height: 600px;
+    background-color: #333;
+    border: 5px solid #222;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Arial', sans-serif;
+    color: #eee;
+    font-size: 14px;
+  }
+  .header {
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 15px;
+  }
+  .section {
+    width: 90%;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #555;
+    padding-bottom: 15px;
+  }
+  .section:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 0;
+  }
+  .section-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #ddd;
+    text-align: center;
+  }
+  .controls-group {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .control-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 5px;
+    position: relative;
+  }
+  .knob {
+    width: 40px;
+    height: 40px;
+    background-color: #555;
+    border-radius: 50%;
+    border: 2px solid #777;
+    position: relative;
+    cursor: pointer;
+  }
+  .knob-indicator {
+    width: 4px;
+    height: 18px;
+    background-color: #f00;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform-origin: center top;
+    transform: translate(-50%, -100%) rotate(0deg); /* Default to OFF/12 o'clock */
+    border-radius: 2px;
+  }
+  .knob-label {
+    margin-top: 5px;
+    font-size: 11px;
+    color: #ccc;
+  }
+  .label-top { position: absolute; top: -15px; width: 100%; text-align: center; font-size: 10px; }
+  .label-left { position: absolute; left: -25px; top: 50%; transform: translateY(-50%); font-size: 10px; }
+  .label-right { position: absolute; right: -25px; top: 50%; transform: translateY(-50%); font-size: 10px; }
+  .label-bottom { position: absolute; bottom: -15px; width: 100%; text-align: center; font-size: 10px; }
+
+  .light {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #444;
+    border: 2px solid #777;
+    margin-top: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 10px;
+    color: #000;
+    font-weight: bold;
+  }
+  .light.on {
+    background-color: #0f0; /* Green */
+    box-shadow: 0 0 8px #0f0;
+  }
+  .light.amber {
+    background-color: #ffc107; /* Amber */
+    box-shadow: 0 0 8px #ffc107;
+  }
+  .light.red {
+    background-color: #dc3545; /* Red */
+    box-shadow: 0 0 8px #dc3545;
+  }
+  .push-button {
+    width: 60px;
+    height: 30px;
+    background-color: #555;
+    border: 2px solid #777;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 10px;
+    cursor: pointer;
+    position: relative;
+    color: #ccc;
+  }
+  .push-button.active {
+    background-color: #0f0;
+    box-shadow: inset 0 0 5px rgba(0,255,0,0.5);
+  }
+  .indicator-bar {
+    width: 80%;
+    height: 8px;
+    background-color: #444;
+    border-radius: 4px;
+    margin: 5px 0;
+    position: relative;
+  }
+  .indicator-segment {
+    height: 100%;
+    width: 15%; /* Example segment width */
+    background-color: #0f0;
+    display: inline-block;
+    border-radius: 2px;
+    margin-right: 2px;
+  }
+  .indicator-segment.off {
+    background-color: #666;
+  }
+  .small-label {
+    font-size: 9px;
+    margin-top: 2px;
+    color: #bbb;
+  }
+  .separator {
+    width: 90%;
+    height: 1px;
+    background-color: #555;
+    margin: 15px 0;
+  }
+  .caution-text {
+    font-size: 10px;
+    color: #f00;
+    text-align: center;
+    margin-top: 10px;
+  }
+  .note-text {
+    font-size: 8px;
+    color: #aaa;
+    margin-top: 5px;
+  }
+
+  /* Specific control layouts */
+  .airframe-select-group {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: flex-end;
+    margin-bottom: 10px;
+  }
+  .airframe-mode {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+  }
+  .airframe-manual {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+  }
+  .props-group {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    align-items: center;
+    margin-top: 10px;
+  }
+  .engine-intake-group {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin-top: 15px;
+  }
+  .engine-button-pair {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .engine-button {
+    width: 70px;
+    height: 40px;
+    background-color: #555;
+    border: 2px solid #777;
+    border-radius: 5px;
+    margin-bottom: 3px;
+    font-size: 9px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    color: #ccc;
+  }
+  .engine-button.on {
+    background-color: #0f0;
+    box-shadow: inset 0 0 5px rgba(0,255,0,0.5);
+  }
+  .engine-button span:first-child { font-weight: bold; }
+
+  .pitot-static-group {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin-top: 15px;
+    align-items: center;
+  }
+  .pitot-knob-container {
+    display: flex;
+    align-items: center;
+  }
+
+  .windshield-group {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    align-items: flex-end;
+  }
+  .windshield-knob-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .windshield-knob {
+    position: relative;
+  }
+  .wiper-knob {
+    position: relative;
+  }
+
+  /* Arrows and lines */
+  .line-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Make lines non-interactive */
+  }
+  .line {
+    position: absolute;
+    background-color: #0f0;
+    height: 1px;
+  }
+  .line-vertical {
+    width: 1px;
+    background-color: #0f0;
+  }
+  .arrowhead {
+    width: 0;
+    height: 0;
+    border-left: 3px solid transparent;
+    border-right: 3px solid transparent;
+    position: absolute;
+  }
+  .arrow-up { border-bottom: 5px solid #0f0; top: -5px; left: -2px; }
+  .arrow-down { border-top: 5px solid #0f0; bottom: -5px; left: -2px; }
+  .arrow-left { border-right: 5px solid #0f0; left: -5px; top: -2px; }
+  .arrow-right { border-left: 5px solid #0f0; right: -5px; top: -2px; }
+
+  /* Specific line positioning (adjust these based on precise image analysis) */
+  /* Example: Vertical line from "TAIL" bar to center junction */
+  .line1 { top: 100px; left: 50%; height: 30px; transform: translateX(-50%); }
+  /* Example: Horizontal line from "WING" to AIRFRAME MANUAL SELECT knob */
+  .line2 { top: 170px; left: 180px; width: 40px; }
+  /* Many more lines would be needed */
+</style>
+</head>
+<body>
+
+<div class="panel">
+  <div class="header">ICE PROTECTION</div>
+
+  <div class="section">
+    <div class="airframe-select-group">
+      <div class="airframe-mode">
+        <div class="knob-label label-top">AIRFRAME MODE SELECT</div>
+        <div class="control-item">
+          <span class="knob-label label-left">OFF</span>
+          <span class="knob-label label-top" style="left: 100%; transform: translateX(-50%); top: -10px;">SLOW</span>
+          <span class="knob-label label-right">FAST</span>
+          <div class="knob" style="transform: rotate(-30deg);">
+            <div class="knob-indicator" style="transform: translate(-50%, -100%) rotate(-30deg);"></div>
+          </div>
+          <div class="knob-label">MANUAL</div>
+        </div>
+      </div>
+      <div class="airframe-manual">
+        <div class="knob-label label-top">AIRFRAME MANUAL SELECT</div>
+        <div class="control-item">
+          <span class="knob-label label-left">OFF</span>
+          <span class="knob-label label-top" style="left: 100%; transform: translateX(-50%); top: -10px;"></span>
+          <span class="knob-label label-right"></span>
+          <div class="knob" style="transform: rotate(0deg);">
+            <div class="knob-indicator" style="transform: translate(-50%, -100%) rotate(0deg);"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="indicator-bar" style="width: 80px; margin: 0 auto 5px auto;"><span class="small-label" style="position: absolute; top: -15px; left: 50%; transform: translateX(-50%);">TAIL</span><div class="indicator-segment"></div><div class="indicator-segment off"></div><div class="indicator-segment"></div><div class="indicator-segment off"></div></div>
+    <div class="indicator-bar" style="width: 120px; margin: 0 auto 10px auto;"><span class="small-label" style="position: absolute; top: -15px; left: 50%; transform: translateX(-50%);">WING</span><div class="indicator-segment"></div><div class="indicator-segment"></div><div class="indicator-segment off"></div><div class="indicator-segment off"></div><div class="indicator-segment"></div></div>
+
+    <div class="props-group">
+      <div class="control-item">
+        <div class="light on"></div>
+        <div class="small-label">PROPS</div>
+      </div>
+      <div class="control-item">
+        <div class="light on"></div>
+        <div class="small-label">PROPS</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="controls-group">
+      <div class="control-item">
+        <span class="knob-label label-top">TEST</span>
+        <span class="knob-label label-left">OFF</span>
+        <span class="knob-label label-right">ON</span>
+        <div class="knob" style="transform: rotate(-45deg);">
+          <div class="knob-indicator" style="transform: translate(-50%, -100%) rotate(-45deg);"></div>
+        </div>
+        <div class="small-label">PROP</div>
+      </div>
+      <div class="engine-intake-group">
+        <div class="engine-button-pair">
+          <div class="push-button engine-button on"><span>OPN</span><span>HTR</span></div>
+          <div class="small-label">CLOSED</div>
+        </div>
+        <div class="section-title" style="margin-top: -5px;">ENGINE INTAKE</div>
+        <div class="engine-button-pair">
+          <div class="push-button engine-button on"><span>OPN</span><span>HTR</span></div>
+          <div class="small-label">CLOSED</div>
+        </div>
+      </div>
+      <div class="control-item">
+        <span class="knob-label label-top">REF SPEEDS</span>
+        <span class="knob-label label-left">OFF</span>
+        <span class="knob-label label-right">INCR</span>
+        <div class="knob" style="transform: rotate(-90deg);">
+          <div class="knob-indicator" style="transform: translate(-50%, -100%) rotate(-90deg);"></div>
+        </div>
+      </div>
+    </div>
+    <div class="pitot-static-group">
+      <div class="control-item">
+        <div class="light amber">ISO</div>
+        <div class="small-label">BOOT AIR</div>
+        <div class="small-label">NORM</div>
+      </div>
+      <div class="section-title" style="margin-top: 0;">PITOT STATIC</div>
+      <div class="pitot-knob-container">
+        <div class="control-item" style="margin-right: 10px;">
+          <span class="knob-label label-left">STBY</span>
+          <div class="knob" style="transform: rotate(-45deg);">
+            <div class="knob-indicator" style="transform: translate(-50%, -100%) rotate(-45deg);"></div>
+          </div>
+        </div>
+        <div class="control-item">
+          <span class="knob-label label-left">OFF</span>
+          <span class="knob-label label-top" style="left: 100%; transform: translateX(-50%); top: -10px;">1</span>
+          <span class="knob-label label-right">2</span>
+          <div class="knob" style="transform: rotate(-10deg);">
+            <div class="knob-indicator" style="transform: translate(-50%, -100%) rotate(-10deg);"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">WINDSHIELD</div>
+    <div class="windshield-group">
+      <div class="windshield-knob-container">
+        <span class="knob-label label-top">HEAT</span>
+        <div class="control-item windshield-knob">
+          <span class="knob-label label-left">OFF</span>
+          <span class="knob-label label-top" style="left: 100%; transform: translateX(-50%); top: -10px;">WARM UP</span>
+          <span class="knob-label label-right">NORM</span>
+          <div class="knob" style="transform: rotate(-10deg);">
+            <div class="knob-indicator" style="transform: translate(-50%, -100%) rotate(-10deg);"></div>
+          </div>
+        </div>
+      </div>
+      <div class="windshield-knob-container">
+        <span class="knob-label label-top">WIPER</span>
+        <div class="control-item wiper-knob">
+          <span class="knob-label label-left">OFF</span>
+          <span class="knob-label label-top" style="left: 100%; transform: translateX(-50%); top: -10px;">LOW</span>
+          <span class="knob-label label-right">HIGH</span>
+          <div class="knob" style="transform: rotate(-70deg);">
+            <div class="knob-indicator" style="transform: translate(-50%, -100%) rotate(-70deg);"></div>
+          </div>
+          <div class="knob-label">PARK</div>
+        </div>
+      </div>
+      <div class="control-item">
+        <span class="knob-label label-top">PLT SIDE</span>
+        <div class="push-button on">WDO/HT</div>
+        <span class="knob-label label-left">ON</span>
+        <span class="knob-label label-right">OFF</span>
+      </div>
+    </div>
+    <div class="caution-text">CAUTION DO NOT SELECT</div>
+    <div class="caution-text">WARM UP/NORM IF SAT >20°C</div>
+    <div class="note-text">83910461-972</div>
+  </div>
+
+  <div class="line-container">
+    <div class="line line-vertical" style="top: 80px; left: 50%; height: 50px; transform: translateX(-0.5px);"></div>
+
+    <div class="line line-vertical" style="top: 240px; left: 25%; height: 30px; transform: translateX(-0.5px);"></div>
+    <div class="arrowhead arrow-down" style="top: 260px; left: 25%; transform: translateX(-2.5px);"></div>
+
+    <div class="line line-vertical" style="top: 240px; left: 75%; height: 30px; transform: translateX(-0.5px);"></div>
+    <div class="arrowhead arrow-down" style="top: 260px; left: 75%; transform: translateX(-2.5px);"></div>
+
+    <div class="line" style="top: 155px; left: 300px; width: 25px; transform: rotate(10deg); transform-origin: left center;"></div>
+    <div class="arrowhead arrow-right" style="top: 155px; left: 320px;"></div>
+
+    <div class="line" style="top: 185px; left: 300px; width: 20px; transform: rotate(-10deg); transform-origin: left center;"></div>
+    <div class="arrowhead arrow-right" style="top: 185px; left: 315px;"></div>
+
+  </div>
+</div>
+
+</body>
+</html>

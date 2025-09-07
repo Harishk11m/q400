@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ice and Rain Protection System Notes</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .prose h1 {
+            font-size: 1.875rem; /* 30px */
+            font-weight: 700;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #e5e7eb;
+            padding-bottom: 0.5rem;
+        }
+        .prose h2 {
+            font-size: 1.5rem; /* 24px */
+            font-weight: 600;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .prose h3 {
+            font-size: 1.25rem; /* 20px */
+            font-weight: 600;
+            margin-top: 1.25rem;
+            margin-bottom: 0.75rem;
+        }
+        .prose p, .prose li {
+            line-height: 1.75;
+        }
+        .prose ul {
+            list-style-type: disc;
+            padding-left: 1.5rem;
+        }
+        .prose strong {
+            font-weight: 600;
+        }
+        .prose-img {
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+        .fixed-iframe {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            width: 350px;
+            height: 250px;
+            border-radius: 0.5rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -2px rgb(0 0 0 / 0.1);
+            border: 1px solid #e2e8f0;
+            z-index: 100;
+            background-color: #ffffff;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <div class="container mx-auto max-w-4xl px-4 py-8">
+        <article class="prose prose-lg max-w-none bg-white p-6 sm:p-8 rounded-lg shadow-md">
+            <!-- This is the main container for the content -->
+            <h1>Ice Detection System</h1>
+
+            <h2>1. All Components</h2>
+            <h3>List of System Components</h3>
+            <p>The Ice and Rain Protection System (IRPS) has the sub-systems that follow:</p>
+            <ul>
+                <li>Airframe De-icing Systems</li>
+                <li>Air Intake De-icing</li>
+                <li>Pitot and Static Anti-Icing System</li>
+                <li>Windshield and Windows Ice and Rain Protection</li>
+                <li>Propellers Ice Protection</li>
+                <li>Ice Detection System</li>
+            </ul>
+            <p>The Ice Detection System (IDS) has the component that follows:</p>
+            <ul>
+                <li>Probe, Ice Detector</li>
+            </ul>
+
+            <h3>Probe, Ice Detector (IDP)</h3>
+            <p>The IDS uses two Ice Detector Probes (IDPs) that are installed on the left and right side of the front fuselage. The system advises the flight crew of icing conditions when ice accumulation is greater than 0.02 in. (0.5 mm) on one of the probes. This deices the probe so that it can detect the ice again. The electro-thermal de-icing heater dissipates 300 W when supplied with 115 V ac. The de-icing heater can de-ice the entire probe and all parts exposed to the airflow in less than 15 seconds. In cases of very severe icing conditions, when the entire probe is not completely de-iced after 45 ±4 seconds, the heater cycles off and on. If the sensor temperature exceeds 60 ±5 °C (140 ±9 °F) the de-icing heater stops, and will be started again when the temperature is below the overheat threshold. This protects the sensor’s internal parts from damage due to overheating.</p>
+            <p>Each IDP interfaces with the systems that follow:</p>
+            <ul>
+                <li>Caution and Warning Panel</li>
+                <li>IFC</li>
+                <li>Timer Monitor Unit (TMU).</li>
+            </ul>
+            <p>The Integrated Flight Cabinets (IFCs) interface with the Electronic Instrument System (EIS) to generate the ICE DETECTED advisory message.</p>
+
+            <h2>2. Indications, Controls and all</h2>
+            <h3>Controls</h3>
+            <p>The IDS have no flight compartment control.</p>
+            <p>The message will also flash until the propeller de-ice control switch is selected to ON.</p>
+            <p>If the REF SPEEDS switch is selected to OFF and when one of the IDP detects ice, an ICE DETECTED message flashes in amber(yellow) in normal video on the ED just below the SAT indication. If the REF SPEEDS switch is selected to INCR after one of the IDP initially detects ice, then the ICE DETECTED message will change to reverse white video for 5s. If the REF SPEEDS switch is selected to INCR and one of the IDP detects ice after 5s, then the ICE DETECTED message will display steady white.</p>
+
+            <h3>Indications</h3>
+            <p>When ice accumulation is sensed the words ICE DETECTED appear on the Engine Display (ED). IDPs indicate a signal condition that ice is accumulating on the aircraft. The signal condition provides an ICE DETECTED message on the ED. The frequency change is electronically converted to supply the electrical signal that causes the ice condition indication on the ED page of the Engine Systems Integrated Display (ESID).</p>
+            <p>Only one advisory message is shown when ice is sensed by one or both IDPs. Discrete information comes from either sensor through Input / Output Processor (IOP1 or IOP2). The ICE DETECTED message is out of view when no ice is detected. The ICE DETECTED message will remain in view for a minimum of 60 ±5 seconds.</p>
+            <p>If the REF SPEEDS switch is selected to INCR, it will display an INCR REF SPEED message in white below the ICE DETECTED message. This confirms that the Stall Protection System (SPS) is modified for icing conditions.</p>
+            <p>The ICE DETECT FAIL caution light ⚠️ comes on only when both Ice Detector Probes (IDPs) fail. Because the system is redundant, a single probe failure will not activate the light.</p>
+            <p>Failure of one IDP is reported to the TMU. The TMU stores the failure as a maintenance message that will be displayed on the ESID when the Centralized Diagnostic System (CDS) is interrogated. The displayed message is “LEFT IDP FAIL” or “RIGHT IDP FAIL” for the related left or right IDP failure.</p>
+
+            <h2>Ice Detection System (IDS) Operation</h2>
+            <p>The Ice Detection System (IDS) provides early detection and indication of aircraft icing conditions. The system automatically operates when the 115 V ac power is available.</p>
+            <p>The ice sensor operates on a piezoelectric principle within the IDP. It continuously vibrates at its natural resonant frequency and when ice accumulates on the ice sensor, the frequency of vibration increases due to an increase in rigidity. Water or liquid contaminants increase the diaphragm mass without increasing its stiffness, causing the natural frequency to drop.</p>
+            <p>The signal supplied by the ice sensor is read by a signal conditioner, which compares the frequency to the “Ice Detection Threshold Level Frequency” stored in memory. If the signal from the sensor exceeds the “Ice Threshold Level”, there is an “ICE” output of the Ice Detector. It causes the heater circuit of the IDP to de-ice the sensor. The sensor is then ready for a new ice detection cycle.</p>
+            <p>The left and right IDPs are directly powered from the related 115 V ac variable frequency left bus and 115 V ac variable frequency right bus, through 5A circuit breakers labeled L ICE DET and R ICE DET.</p>
+
+            <h1>AIRFRAME DEICING SYSTEM</h1>
+
+            <h2>1. All Components</h2>
+            <h3>List of System Components</h3>
+            <p>The Aircraft Pneumatic De-icing System includes the components that follow:</p>
+            <ul>
+                <li>Unit, Timer and Monitor</li>
+                <li>Valves, Pressure Regulating and Relief</li>
+                <li>Valve, Isolation Shut-off</li>
+                <li>Valves, Dual Distributing</li>
+                <li>Check Valves, Non-heated</li>
+                <li>Restrictor</li>
+                <li>Switches, Low Pressure Warning</li>
+                <li>Valves, Automatic Drain</li>
+                <li>Transducers, Pressure</li>
+                <li>Check Valves, Heated</li>
+                <li>Selector, Airframe Auto</li>
+                <li>Selector, Airframe Manual</li>
+                <li>Switch, Boot Air</li>
+                <li>De-Ice Boots and Hoses, Outboard Wing</li>
+                <li>De-Ice Boots and Hoses, Nacelle</li>
+                <li>De-Ice Boots and Hoses, Inboard Wing</li>
+                <li>De-Ice Boots and Hoses, Horizontal Stabilizer</li>
+                <li>De-Ice Boots and Hoses, Vertical Stabilizer</li>
+                <li>Lines, Pneumatic De-icing</li>
+            </ul>
+
+            <h3>Component Detailed Descriptions</h3>
+            <h4>Unit, Timer and Monitor (TMU)</h4>
+            <p>The Timer and Monitor Unit (TMU) sequences the Dual Distributing Valve (DDV), also referred to as Heated Dual Distributing Valve (HDDV) operation according to a pre-defined cycle. It commands the DDV to distribute air supply through one of its outputs. After the inflation cycle time, it commands the DDV to let air flow back and exhaust through the ejector. During this cycle, the timer monitors the operation of the low-pressure switches incorporated in each DDV output to confirm the operation of the DDV. The timer controls the de-icing cycles according to the selected operating mode, SLOW or FAST, and also controls the heaters of all heated equipment of the de-icing system. The Static Air Temperature (SAT) information through an ARINC link with the avionics is used to activate the heaters. When Static Air Temperature (SAT) falls below a pre-set value, the heaters are activated; when Static Air Temperature (SAT) rises above this value, the heaters are de-activated.</p>
+            <p>The Timer and Monitor Unit (TMU) also monitors the two Engine Intake Adapter Heaters and automatically activates the spare heater when a main heater has failed.</p>
+            <p>The Timer and Monitor Unit (TMU) monitors the following Air Data Sensor Heaters:</p>
+            <ul>
+                <li>Two (2) 115V AC Pitot /Static Probes</li>
+                <li>One (1) 28V DC Pitot /Static Probe (Standby)</li>
+                <li>Two (2) 115V AC Angle of Attack (AOA) Sensors.</li>
+            </ul>
+            <p>The TMU compares the command signal and the Low Pressure Switch (LPS) signal to determine if the DDV operation is normal.</p>
+            <p>If the TMU commands one output to open and the related LPS does not send a signal back to the TMU, the fault is as follows:</p>
+            <ul>
+                <li>The Dual Distribution Valve output did not open</li>
+                <li>Or a boot has burst and pressure cannot increase.</li>
+            </ul>
+            <p>If the TMU receives a signal from a LPS associated with an output that has not been commanded, then the DDV operation is not normal. In both cases, the TMU sends a discrete signal to the Caution and Warning panel and the DEICE PRESS caution light comes on.</p>
+            <p>The timer also stores maintenance messages in Random Access Memory (RAM). When interrogated, it sends these messages to the flight compartment through the Aeronautical Radio Incorporated (ARINC) link with the avionics.</p>
+            <p>A failure signal is recorded in the Timer and Monitor Unit (TMU) and is sent to the avionics system (Stall Protection Modules 1 and 2) when no current flows into the heating element of one Angle of Attack (AOA) vane.</p>
+            
+            <h4>Valves, Pressure Regulating and Relief (PRRV)</h4>
+            <p>Each part of the system is supplied with bleed air from the engines. The Pressure Regulating and Relief Valve (PRRV) regulates the pressure according to the bleed flow and provides regulated air supply to the system. Pressure regulation is done with a diaphragm which opens or closes to provide the de-icing system with a constant pressure. In the event of overpressure in the system, the relief port will allow pressure to decrease in the equipment. A failure of one PRRV does not prevent the system from operating normally. Failure of both PRRVs would lead to a total loss of the pneumatic supply and therefore the total loss of airframe de-icing.</p>
+            
+            <h4>Valve, Isolation Shut-off (ISOV)</h4>
+            <p>The Isolation Shut-off Valve (ISOV) is normally closed when not energized. When an engine is started, it is energized and then opens automatically. In the event of a loss of pressure in the system, it may be closed by the flight crew to isolate the two sides. Isolation is electrically commanded using the BOOT AIR ISO switch on the ICE PROTECTION control panel. A failure of the ISOV (fails open) does not prevent the system from operating normally. If a duct ruptures, and the ISOV ‘has failed open, this will cause the loss of air supply. If the two sides of the system cannot be isolated, this combination of failures would lead to a total loss of airframe de-icing including the empennage.</p>
+            
+            <h4>Valves, Dual Distributing (DDV)</h4>
+            <p>The Dual Distributing Valve (DDV), also referred to as Heated Dual Distributing Valve (HDDV) must be commanded by the flight crew. The DDV is supplied with air from the system and distributes it to the boots through two separate electrical valves. Each valve is commanded separately, one after the other, according to timer sequencing or manual operation. The Low-Pressure Switch (LPS) incorporated on each DDV output closes when the pressure rises above 15 ± 1 psig (103.4 ±6.89 kPa) at boot inflation which sends a signal to the Timer and Monitor Unit (TMU). This signal is used to confirm that the commanded valve has opened normally and that pressure was sufficient to inflate the boots normally. At boot deflation, the electrical valve allows air to flow back to the DDV and to exhaust the system through the ejector. The LPS opens when pressure is less than  11 +2.5/−1 psig (75.8 ±17.2/−6.89 kPa)  indicating to the timer that the commanded valve has operated normally. Air from the boots is removed using a venturi effect. This allows the boots to flatten on the leading edge when they are not inflated. The Dual Distributing Valve (DDV) is heated to prevent the electrical valves and the ejector from freezing and to avoid moisture on the connector.</p>
+            
+            <h4>Check Valves, Non-heated</h4>
+            <p>The Non-Heated Check Valves (NHCVs) prevent moisture from flowing back in the wing system in the event of a failure. A faulty NHCV would not prevent the de-icing system from functioning.</p>
+            
+            <h4>Restrictor</h4>
+            <p>The restrictor lets air flow from one side of the aft system to the other side. It provides the necessary communication between the two parts of the system to ensure that the tail is correctly de-iced in the event of a failure upstream of one of the Heated Check Valves (HCVs). It also reduces the amount of air loss in case of a failure downstream of one of the HCVs, which allows partial de-icing of the tail.</p>
+            
+            <h4>Switches, Low Pressure Warning (LPWS)</h4>
+            <p>The Low-Pressure Warning Switch (LPWS) senses low pressure in the system. The LPWS is closed when the pressure inside the system is below 15 ±1 psig (103.4 ±6.89 kPa) and opens when the pressure exceeds 12.5 psig (86.2 kPa). When the LPWS is closed, it sends signals to the Caution and Warning Panel to illuminate the DEICE PRESS caution light. The LPWS signal is also sent to the Timer and Monitor Unit (TMU) for maintenance purposes. Two LPWS’s are installed in front of the front spar, in the wing to body fairing area.</p>
+            
+            <h4>Valves, Automatic Drain (ADV)</h4>
+            <p>The heated automatic drain valves (ADV) are installed at a low point in the deicer pressure lines. There is one ADV located prior to the dual distributing valves. There are two in the aft equipment bay located between the heated check valves and the aft DDVs. The Automatic Drain Valve (ADV) collects the water that has condensed in the system. The valve drains the water when the pressure in the system drops below 3 psig (20.7 kPa) at engine shutdown. When pressure in the system rises above 3 psig (20.7kPa), the valve closes to avoid leakage. The ADV is heated to prevent trapped water from freezing and restricting pipe flow. The ADV is heated automatically by the TMU to prevent trapped water from freezing and restricting flow.</p>
+            
+            <h4>Transducers, Pressure</h4>
+            <p>There are two pressure transducers for the airframe pneumatic deicing system, each installed in the wing to body fairing area near the low pressure warning switch forward of the front spar. The left and right pressure manifold, each have a pressure transducer connected to one side of the dual indicator in the flight compartment. The pressure transducers are sensors that measure pressure and send signals for display on a dual indicator in the flight compartment.</p>
+            
+            <h4>Check Valves, Heated (HCV)</h4>
+            <p>The Heated Check Valve (HCV) lets air flow into the aft part of the de-icing system. It prevents air from flowing back to the wing system in the event of a failure upstream of the Check Valve (CV). This will ensure that the tail is still correctly de-iced when a failure occurs in one side of the wing system. The airframe pneumatic deicing system has three HCVs. Two HCVs are used for the deicing on the tail. They are located in the Aft Equipment Bay. One HCV is for the door seal system supply which is tapped from the left manifold, located in the left wing root fairing. In the event that one HCV fails open, the tail system is still operational. If one HCV fails closed it will not prevent the tail system from operating normally, but the other DDV is no longer supplied with pneumatic supply and the tail section is not completely de-iced. If the second HCV fails closed air would no longer be supplied to the tail section.</p>
+            
+            <h4>De-Ice Boots and Hoses</h4>
+            <p>Nineteen pneumatically inflatable rubber deicing boots are bonded to the airframe structure on the wing and tail leading edges. Rubber blankets (boots) cover the area where ice accumulation is anticipated. Within these boots are narrow tubes that can be inflated with compressed air.</p>
+            
+            <h5>Outboard Wing - De-Ice Boots and Hoses</h5>
+            <p>Ten de-ice boots (five on each wing) are located on the outboard wing leading edges. The two outermost outboard wing de-ice boots are interconnected and will inflate/deflate together. The next adjacent set of outboard de-ice boots located towards the nacelles are interconnected and will inflate/deflate at the same time. The left innermost outboard wing de-ice boot is interconnected with the right inboard wing de-ice boot and will inflate/deflate together. Similarly, the right innermost outboard wing de-ice boot is interconnected with the left inboard wing de-ice boot.</p>
+            
+            <h5>Nacelle - De-Ice Boots and Hoses</h5>
+            <p>Two nacelle de-ice boots (one per nacelle) form the air intake lips to remove ice build-up. The air for the nacelle de-ice boots is independently supplied. The left nacelle deicer boot operates at the same time as the inboard horizontal stabilizer deicer boots. The right nacelle deicer boot operates at the same time as the outboard horizontal stabilizer deicer boots.</p>
+            
+            <h5>Inboard Wing - De-Ice Boots and Hoses</h5>
+            <p>Two inboard wing de-ice boots are located (one per wing) between the nacelle and fuselage. The left inboard wing de-ice boot is interconnected with the inner right outboard de-ice boot and will inflate/deflate at the same time. The right inboard wing de-ice boot is interconnected with the inner left outboard de-ice boot and will inflate/deflate together. Inflation of the tubes, cracks the ice allowing it to be removed by the airflow.</p>
+            
+            <h5>Horizontal Stabilizer - De-Ice Boots and Hoses</h5>
+            <p>Four de-ice boots cover the horizontal stabilizer leading edge to shed ice accumulation. The horizontal stabilizer boots are supplied with air from two separate tubes with fail-safe design considerations. The two outboard horizontal stabilizer deicer boots are interconnected with lower vertical stabilizer deicer boot. They operate together. The two inboard horizontal stabilizer deicer boots are interconnected with the upper vertical stabilizer deicer boot. They will operate together.</p>
+            
+            <h5>Vertical Stabilizer - De-Ice Boots and Hoses</h5>
+            <p>The vertical stabilizer deicer boot is a single boot that is divided into two sections, covers the vertical stabilizer leading edge to shed ice accumulation. The upper section of the vertical stabilizer de-ice boot is interconnected and will inflate/deflate at the same time with the outer right horizontal stabilizer boot. The lower section of the vertical stabilizer de-ice boot is interconnected and will inflate/deflate at the same time with the inner left horizontal stabilizer de-ice boot.</p>
+            
+            <h4>Pneumatic De-icing Lines</h4>
+            <p>The Pneumatic De-icing System consists of two “L” –shaped manifolds, 0.75 in. diameter. The left manifold has a 0.25 in. branch pipe which supplies air to the Door Seal System.</p>
+
+            <h2>2. Indications, Controls and all</h2>
+            <h3>Controls and Switches</h3>
+            <div class="my-4 text-center">
+                 <img src="https://placehold.co/400x650/e0e0e0/333333?text=ICE+PROTECTION+Panel" alt="ICE PROTECTION Control Panel" class="mx-auto prose-img">
+                 <p class="text-sm text-gray-500 mt-2">ICE PROTECTION Control Panel (Ref: 83910461-972)</p>
+            </div>
+            
+            <h4>Selector, Airframe Auto (AIRFRAME MODE SELECT switch)</h4>
+            <p>The AIRFRAME MODE SELECT switch selects the operational mode:</p>
+            <ul>
+                <li>MAN</li>
+                <li>OFF</li>
+                <li>SLOW</li>
+                <li>FAST</li>
+            </ul>
+            <p>This switch commands the Timer and Monitor Unit (TMU) to control the automatic operation of the deicing system by regulating the inflation sequence of the pneumatic boots.</p>
+            
+            <h4>Selector, Airframe Manual (AIRFRAME MANUAL SELECT switch)</h4>
+            <p>Manually selecting specific boot. This switch has 8 positions, 6 positions for the 6 phases of the airframe deicing cycle and two for the OFF position.</p>
+            
+            <h4>Switch, Boot Air</h4>
+            <p>The BOOT AIR ISO switch - Isolate left and right side system, if either side bursts.</p>
+
+            <h3>Indications</h3>
+            <p>The detection of the boot inflation is done by the Low Pressure Switch (LPS) in the Dual Distributing Valve (DDV). As any de-icing boot inflates an advisory light comes on to show that the related boot is inflated.</p>
+            <p>Correct operation of all de-icing boots is compulsory for operation under icing conditions. It may be necessary to check their operation by advisory lights or by looking at the boots in the event a system malfunction is encountered.</p>
+            
+            <h4>Dual Pressure Indicator</h4>
+            <p>The dual pressure indicator is installed in the flight compartment on the copilot’s side console. The two pneumatic manifolds pressure transducers are connected to the dual pressure indicator. The Dual Pressure Indicator receives 28 VDC from the left and right secondary buses. The Indicator also supplies the excitation to the two pressure transducers.</p>
+            
+            <h4>Caution Lights</h4>
+            <p>When no current flows into the heating element of one pitot / static probe or when the timer is not powered a PITOT HEAT 1, PITOT HEAT 2 or PITOT HEAT STBY caution light comes on. When the LPWS is closed, it sends signals to the Caution and Warning Panel to illuminate the DEICE PRESS caution light.</p>
+            
+            <h2>3. Operations</h2>
+            <h3>Introduction and General Description</h3>
+            <p>The airframe deicing system uses engine bleed air to operate a series of inflatable/deflatable boots. The inflating and deflating action of the boots removes the accumulation of ice on the leading edges of the aircraft. Bleed air from the engines is supplied to the pneumatic de-icing boots to shed ice accumulation from the critical surfaces which would otherwise decrease aircraft performance.</p>
+            <p>The airframe de-icing system is divided into two identical subsystems, one subsystem per engine. Each subsystem uses bleed air from its related engine to inflate boots on the leading edges of the wings, horizontal stabilizer, vertical stabilizer and nacelle air intakes. The inflation of the boots removes the accumulated ice from these surfaces. Both subsystems are connected to each other through an Isolation Shut-Off Valve (ISOV). The rear parts of the subsystems (in the aft fuselage) are also connected by a restrictor. The Isolation Shut-off Valve (ISOV) and the restrictor connect the left and right systems. Normally, the ISOV opens as soon as 28 Vdc electrical power supply is available. This makes sure that deicing air is available to both sides of the aircraft in the event of a failure on one side of the system.</p>
+            <p>A means of draining water is provided to avoid water accumulation inside the system or inside the boots, to prevent ice build-up and a decrease in aircraft performance.</p>
+            
+            <h3>Operational Principle</h3>
+            <p>The IRPS operates with regulated engine bleed air. The deice system pneumatic regulator automatically maintains the manifold pressure at 18 psi. This 18 psi is used to supply the pressurized air to the pneumatic deice boots through the DDV. The system is regulated at 18+1.5/−1 psig (124 +10.34/−6.89 kPa) . Bleed air from both engines is supplied to the boots causing them to inflate. The inflation of the boots breaks away the accumulated ice from the aircraft and sheds it into the airflow.</p>
+            <p>Each DDV has two solenoids which operate independently to supply pressurized air to two separate deice boot groups. When the solenoids are not energized the same air is ejected from the DDV to create a -3.2 psig suction in the deice boots. The negative pressure will make sure they remain deflated.</p>
+            
+            <h3>Modes of Operation</h3>
+            <h4>Automatic Modes (FAST and SLOW)</h4>
+            <p>In the automatic modes (FAST and SLOW), the airframe is deiced according to a predefined cycle controlled by the TMU. The cycle is divided into 6 sequences of inflation and a dwell period. Each sequence consists of inflation of an individual boot for 6 seconds followed by suck down of that boot (dwell period) until the next cycle. When in SLOW mode, the deice cycle lasts 3 minutes (183 ±2.5 seconds). When in FAST mode, the deice cycle lasts 1 minute (63 ±2.5 seconds). The deicing system heaters are still controlled by the TMU using the SAT data. When the AIRFRAME MODE SELECT switch is set to SLOW or FAST (automatic modes), manual operation of the de-icing system is inhibited from the AIRFRAME MANUAL SELECT switch.</p>
+            
+            <h4>Manual Mode (MANUAL Position)</h4>
+            <p>When the AIRFRAME MODE SELECT switch is in the MANUAL position, individual boots can be inflated using the second switch labelled AIRFRAME MANUAL SELECT. Inflation of a single boot or a series of boots is possible by rotating the AIRFRAME MANUAL SELECT switch to the desired boot settings. When MANUAL mode is selected, the deicing equipment heaters are turned on but are no longer controlled by the TMU.</p>
+            
+            <h4>Manual Operation (OFF Position)</h4>
+            <p>In the OFF mode, automatic deicing is inhibited and only manual deicing is permitted as in the MANUAL mode but the TMU controls the deicing system heaters.</p>
+            <p>When the AIRFRAME MODE SELECT switch is in the MANUAL or OFF position, 28 Vdc is supplied from the right essential bus through a 5A circuit breaker. This circuit breaker is located at the K8 position and is labelled AIRFRAME MANUAL CONT. Individual boot selection is possible in these modes. Automatic boot inflation and manual boot inflation switches are tied together, disabling the automatic mode in the MANUAL or OFF position.</p>
+
+            <h3>Boot Inflation Sequence</h3>
+            <p>The sequence consists of 6 boot inflation cycles of 6 seconds. The boot inflation sequence is as follows:</p>
+            <ol class="list-decimal pl-6">
+                <li>Outermost pair of outboard wing de-ice boots on left and right wing</li>
+                <li>Central pair of outboard wing de-ice boots on left and right wing</li>
+                <li>Right innermost outboard wing de-ice boot and left inboard wing de-ice boot</li>
+                <li>Left innermost outboard wing de-ice boot and right inboard wing de-ice boot</li>
+                <li>Left and right innermost horizontal stabilizer de-ice boot, upper vertical stabilizer de-ice boot, and No.1 engine intake deice boot</li>
+                <li>Left and right outermost horizontal stabilizer de-ice boot, lower vertical stabilizer de-ice boot, and No. 2 engine intake deice boot</li>
+            </ol>
+            
+            <!-- Remaining sections will follow the same pattern -->
+            <h1>ENGINE ANTI ICE</h1>
+            
+            <h2>1. All Components</h2>
+            <h3>List of System Components</h3>
+            <p>The engine intake anti-icing system contains the components that follow:</p>
+            <ul>
+                <li>Thermostats, Air Intake Heater</li>
+                <li>Switches, Heater-Engine Intake</li>
+                <li>Relays, Control-Intake Heater</li>
+            </ul>
+
+            <h3>Component Detailed Descriptions</h3>
+            <h4>Engine Intake Adapters</h4>
+            <p>The engine intake adapters are located on each engine inlet front case. The engine adapter heater has two 1000W heating elements (one main and one spare). Each heater has an individual power and ground connection. The heating elements are embedded in epoxy fiberglass and installed on the inner surface of the intake adapter. The heaters are insulated using stay foam polyurethane and are sealed with polysulfide.</p>
+            <h4>Thermostats, Air Intake Heater</h4>
+            <p>There are two thermostats, one for each adaptor, located on a plate attached to the skin below the pilot’s seat between stingers 31P and 32P at X-54.00.</p>
+            <p>On aircraft with Mod Sum 4-126402 OR SB84-30-10 incorporated, there are two thermostats, one for each adaptor, located on the skin between the stingers 26P and 27P at X-54.00.</p>
+            <p>Transfer tape is used to bond the thermostats to the inside surface of the fuselage skin.</p>
+            <p>The thermostat is a thermal and mechanical switch which is energized closed when the Outside Air Temperature (OAT) is 60 ±4°F (15 ±2 °C) and opens when the Outside Air Temperature (OAT) is 2 to 5 °F (1 to 3 °C) above 60 ±4 °F (15 ±2 °C).</p>
+            <h4>Relays, Control-Intake Heater</h4>
+            <p>The TMU monitors the current in the main circuit of the heater. The TMU detects a current below 1 A or above 12 ±0.5 A, a fault message is sent to the TMU for maintenance purposes. The TMU also automatically activates the heater selection relay to the spare heater circuit.</p>
+
+            <h2>2. Indications, Controls and all</h2>
+            <h3>Controls and Switches</h3>
+            <h4>Heater-Engine Intake Switches</h4>
+            <p>The engine intake adapter heater circuits are activated by the pilot through the selection of the ENGINE INTAKE switch lights on the ICE PROTECTION control panel. Each circuit is selected separately through the respective switch lights.</p>
+            <p>The engine intake adapter heater circuit is energized when an ENGINE INTAKE switch light (on the ICE PROTECTION control panel) is pushed. It will become active if the thermostats are below 16°C.</p>
+            <p>The left and right systems operate independently, therefore, depending on thermostat tolerance and sensing of fuselage temperature, the lights may not come on exactly at the same time while still operating within the acceptable system tolerance.</p>
+
+            <h3>Indications</h3>
+            <p>When the heaters are powered, the HTR lights on the ENGINE INTAKE switch lights on the ICE PROTECTION control panel come on.</p>
+            <p>The OPN or CLOSED lights shows the position of the related bypass doors.</p>
+            <p>If both heating elements in the engine adapter heater fail, the related ENG ADPT HEAT 1 or ENG ADPT HEAT 2 caution light on the Caution and Warning panel comes on.</p>
+            <p>If failure of the main heating circuit is sensed by the TMU, it is posted on the IRPS page of the Central Diagnostic System (CDS) as follows for maintenance purposes:</p>
+            <ul>
+                <li>L ENG ADPT HEATER 1 FAIL</li>
+                <li>R ENG ADPT HEATER 1 FAIL.</li>
+            </ul>
+
+            <h2>3. Operations</h2>
+            <h3>Introduction and General Description</h3>
+            <p>The engine intake anti-icing system has two electrically heated engine adapters, one per engine, to prevent ice build-up on the engine air inlets. Each heated adapter is controlled from the ENGINE INTAKE switch lights on the ICE PROTECTION panel.</p>
+
+            <h3>Operational Logic</h3>
+            <p>Power is supplied to the heater through a relay when all of the conditions that follow are met:</p>
+            <ul>
+                <li>Temperature measured by a thermostat in the fuselage is below +60 °F (+15.6 °C)</li>
+                <li>Related engine oil pressure switch is closed</li>
+                <li>ENGINE INTAKE switch light has been pushed</li>
+                <li>115 Vac power is available.</li>
+            </ul>
+            
+            <h3>TMU Monitoring and Automatic Switching</h3>
+            <p>The Timer and Monitor Unit (TMU) monitors current intensity to the heater. If an abnormal current flow into the main heater (below 1.0 A or above 12 ±0.5 A) is sensed, the TMU activates a relay to switch to the spare heater.</p>
+
+            <h3>Bypass Door Operation</h3>
+            <p>When the ENGINE INTAKE switch light is pushed, the bypass doors of the related engine opens to evacuate ice pieces shed from nacelle inlet components.</p>
+            
+            <h3>Electrical Power Supply</h3>
+            <p>The left ENGINE INTAKE switch light is electrically powered by the 28 Vdc left secondary bus bar and the right switch light by the 28 Vdc right secondary bus bar.</p>
+            <p>The left engine adapter heater is energized by the 115 Vac B phase left variable frequency bus bar, and the right heater by the 115 Vac B phase right variable frequency bus bar. Protection is through 10A circuit breakers labeled INTK LIP HTR ENG 1 (left) and INTK LIP HTR ENG 2 (right).</p>
+            
+            <!-- PITOT STATIC Section -->
+            <h1>PITOT STATIC</h1>
+            <h2>1. All Components</h2>
+            <h3>List of System Components</h3>
+            <p>The pitot-static and angle of attack anti-icing system includes the component that followings:</p>
+            <ul>
+                <li>Three control switches</li>
+                <li>The IRPS timer and monitor unit</li>
+                <li>Caution and warning panel indicator lights</li>
+                <li>The three Pitot/static probes.</li>
+                <li>The two Angle of Attack transducers.</li>
+            </ul>
+
+            <h3>Component Detailed Descriptions</h3>
+            <h4>Pitot-Static Probes (3 total)</h4>
+            <p>The Dash 8 Series 400 does not have dedicated pitot probes and static ports but uses three integrated pitot and static probes.</p>
+            <p>The No.1 probe is located below the pilot’s windshield. It is directly connected to the number one Air Data Unit (ADU) only and does not supply inputs to any barometric indicators or instruments.</p>
+            <p>The No. 2 probe is located below the copilot’s windshield. The No. 2 probe is directly connected to the No. 2 Air Data Unit (ADU). Cross-side connections link the No. 1 and 2 static systems for static source error correction.</p>
+            <p>The No. 3 (standby) probe is located below the bottom aft corner of the copilot’s side window. The No. 3 probe is connected only to the standby barometric altimeter and standby airspeed indicator on the engine instrument panel, and to the cabin pressure controller in the overhead console.</p>
+            <p>Each probe has an internal heater element for anti-ice protection. The Air Data Unit (ADU) converts the barometric pressures to digital data for use by various systems and for pilot display through the Primary Flight Display (PFD).</p>
+            
+            <h4>Angle of Attack (AOA) Transducers (2 total)</h4>
+            <p>Two angle of attack (AOA) transducers are located on the forward fuselage below the lower aft corner of each side window.</p>
+            
+            <h2>2. Indications, Controls and all</h2>
+            <h3>Controls and Switches</h3>
+            <p>The system includes three control switches. The Pitot and Static Anti-Ice system is controlled manually with the selection of each PITOT STATIC switch to the STBY, 1 and/or 2 (on) position.</p>
+
+            <h3>Indications</h3>
+            <h4>Pitot-Static Heater Indications</h4>
+            <p>When the probe heater is selected on and the heater electrical current is out of specified limits, or if the heating is not activated, the Timer Monitor Unit (TMU) senses a defective heater and the respective PITOT HEAT 1, PITOT HEAT 2, or STBY PITOT caution light on the Caution and Warning Panel comes on.</p>
+            <p>Fault codes are stored in the Timer Monitor Unit (TMU) for maintenance purposes. The maintenance messages associated with the fault codes are:</p>
+            <ul>
+                <li>PITOT 1 FAIL</li>
+                <li>PITOT 2 FAIL</li>
+                <li>PITOT STBY FAIL.</li>
+            </ul>
+
+            <h4>Angle of Attack (AOA) Heater Indications</h4>
+            <p>Failure of an angle of attack vane heater or the corresponding TMU monitoring module causes a signal to be sent to the Stall Protection Module (SPM).</p>
+            <p>An AOA vane heater failure will cause one of the following indications to appear:</p>
+            <ul>
+                <li>#1 Stall</li>
+                <li>#2 Stall and</li>
+                <li>PUSHER SYST FAIL</li>
+            </ul>
+            <p>If the Stall Protection Module (SPM) senses a ground signal (AOA heater failed) on connector P1A-A1 pin 327, the SPM will bring on the #2 STALL SYST FAIL and the PUSHER SYST FAIL caution lights.</p>
+            
+            <h2>3. Operations</h2>
+            <h3>Introduction</h3>
+            <p>Three pitot-static probes and two angle of attack vanes incorporate electrical heating elements to prevent icing. Icing can cause incorrect pitot or static measurements or stall protection calculations.</p>
+            
+            <h3>System Monitoring and Integration</h3>
+            <p>The Timer Monitor Unit (TMU) monitors the current of the pitot-static probe and Angle of Attack vanes heaters. The Timer Monitor Unit (TMU) senses a defective heater and sends the fault code to the Air Data Units (ADUs). Selection of pneumatic de-icing using the AIRFRAME MODE SELECT Switch or AIRFRAME MANUAL Switch is sent to each Stall Protection Module (SPM).</p>
+            <p>Pitot-static heat is routed through and monitored by the airframe Ice and Rain Protection System (IRPS) Timer Monitor Unit (TMU).</p>
+
+            <h3>Electrical Power Supply</h3>
+            <p>The No. 1 and 2 probes are energized using 115 Vac from their related left and right variable frequency busses through 7.5 A circuit breakers labeled PITOT HEAT 1 and PITOT HEAT 2. The Standby Pitot-Static probe is energized from the 28 Vdc Right Essential Bus.</p>
+            <p>The Left and Right 115 Vac power supply is transmitted through the Ice and Rain Protection System (IRPS) Timer Monitor Unit (TMU) to the Left and Right Pitot-Static probe and Angle of Attack Vanes respectively. The TMU monitors the current to the Heaters. The Right Essential 28 Vdc electrical power supply is transmitted through the Ice and Rain Protection System (IRPS) Timer Monitor Unit (TMU) to the Standby Pitot-Static probe.</p>
+
+            <h3>Pitot - Static & AOA Vane Anti-icing - System Operation</h3>
+            <h4>Pitot-Static Heater Operation</h4>
+            <p>The pitot heaters stay on until the switch is set to the off position or the Electrical bus is de-energized. The operation of the Pitot 2 anti-ice system is described; the Pitot 1 anti-ice system is similar. The right pitot/static heater operates when the actions that follow occur:</p>
+            <p>The PITOT STATIC 2 switch on the IRPS panel is set to the position which provides the signals that follow:</p>
+            <ul>
+                <li>The CB PITOT HEAT 2 supplies 115 VAC through the switch selection to the IRPS panel connector P100 pin ‘D’ to the TMU connector P4 pin ‘B’</li>
+                <li>The selection also supplies a ground signal through the switch selection to the IRPS panel connector P101 pin 30 to the TMU connector P3 pin ‘p’ to show the TMU that the Pitot 2 heat is selected on</li>
+                <li>This action causes the TMU to energize the right pitot/static probe heater</li>
+                <li>This TMU supplies 115 VAC out from its connector P4 pin ‘A’ to the right pitot/static probe connector P2 pin ‘A’</li>
+                <li>The TMU monitors the current out from PITOT 2 PWR OUT pin ‘A’ for heater operation</li>
+                <li>When the TMU senses correct heater operation, it outputs an open circuit signal out from its connector P3 pin ‘U’ to the caution and warning panel connector P3 pin 3 which causes the PITOT HEAT 2 caution light to go out and also send the signal to the #2 ADU connector P1-A2 pin 7 (fault codes)</li>
+                <li>(If the TMU senses a heater fail (current < 1 A or >12.5A), the TMU will send a ground signal out from pin ‘U’ to cause the caution light to come on.</li>
+            </ul>
+            
+            <h4>Angle of Attack (AOA) Heater Operation</h4>
+            <p>The Angle of Attack (AOA) vane heaters are energized at all times when AC power is supplied to the A/C busses. The AOA heaters stay on until the A/C is de-energized or the 115 VAC breakers are pulled. The operation of the AOA anti-ice heater has internal controls.</p>
+            <p>The AOA 1 heater is energized with signals that follow:</p>
+            <ul>
+                <li>The TMU is energized when DC power is applied.</li>
+                <li>The CB, L AOA VANE HTR supplies 115 VAC to the TMU connector P1 pin ‘C’.</li>
+                <li>This TMU supplies 115 VAC out from its connector P1 pin ‘D’ to the right AOA probe connector PJ1-A3 pin 7.</li>
+                <li>The TMU also monitors the current out from AOA 1 PWR OUT pin ‘D’ for heater operation.</li>
+                <li>When the TMU senses correct heater operation, it outputs an open circuit signal out from its connector P3 pin ‘L’ to the Stall Protection Module (SPM) connector P1A-A1 pin 327 which the SPM monitors.</li>
+            </ul>
+            
+            <!-- WINDSHIELD ANTI ICING Section -->
+            <h1>WINDSHIELD ANTI ICING</h1>
+            <h2>1. All Components</h2>
+            <h3>List of System Components</h3>
+            <p>The Windshield and Windows Ice and Rain Protection has the components that follow:</p>
+            <ul>
+                <li>Controllers, Anti−Icing</li>
+                <li>Selector, Windshield Heat</li>
+                <li>Switch, Pilot Side Window</li>
+                <li>Relays, Control</li>
+                <li>Windshield Wiper System</li>
+                <li>Assembly, Motor</li>
+                <li>Arm, Wiper</li>
+                <li>Blade, Wiper</li>
+                <li>Selector, Control−Wiper</li>
+            </ul>
+            <p>The windshield anti−icing system includes the components that follow:</p>
+            <ul>
+                <li>One (1) windshield heater</li>
+                <li>Two (2) temperature sensors</li>
+                <li>Seven (7) relays</li>
+                <li>Two (2) Anti−Ice Controllers (AIC).</li>
+            </ul>
+
+            <h3>Component Detailed Descriptions</h3>
+            <h4>Heated Windows</h4>
+            <p>Both windshields and the pilot’s side window have electronically controlled heater elements laminated into the panels to keep the windows at a predetermined temperature to prevent icing and misting.</p>
+            <h4>Windshield Wiper System</h4>
+            <p>The pilot’s and copilot’s windshield wiper systems are symmetrical but completely independent from each other. Each system has a two speed, dc motor fitted to a mechanical converter which drives a wiper arm and blade. The wipers are able to remove any amount of rain which may fall on to the windshields during taxiing, taking off, landing and at airspeeds upto 200 kt (370.6 km/h).</p>
+            <h4>Controllers, Anti−icing (AIC)</h4>
+            <p>Two  Anti−Ice Controllers (AICs)  control heater operation to prevent ice accumulating on the windshields and the pilot’s side window. The AICs activate the heaters using relays. The relays are used to isolate the AICs from the high current flow required for heating. When the windshield control is in the OFF position, the deactivation relay is controlled using the overheat temperature sensor. The activation relay stays open regardless of the normal temperature sensor information. In the  WARM−UP  or NORM  modes, the Anti−Ice Controller (AIC) uses the normal temperature sensor information to control the activation relay and the overheat temperature sensor to control the deactivation relay. The left AIC is powered by the 28V DC left secondary bus. The right AIC is powered by the 28V DC right secondary bus. The Anti−Ice Controllers (AICs) are installed in the midsection of the wardrobe on the Electrical Equipment Panel (zone 225).</p>
+            <h4>Selector, Windshield Heat</h4>
+            <p>The windshield mode selector labelled WINDSHIELD HEAT OFF/WARM UP/NORM on the WINDSHIELD panel operates the pilot and co-pilot windshield heaters.</p>
+            <h4>Switch, Pilot Side Window</h4>
+            <p>The side window toggle switch labelled PLT SIDE WDO/HT on the WINDSHIELD wiper control panel operates the pilot’s side window heater.</p>
+            <h4>Relays, Control</h4>
+            <p>Control of the heaters is done by temperature sensors installed in the windshields and the pilot’s side window. When the pilot’s or copilot’s windshield temperature is less than 93±6 °F (34 ±2 °C) or the pilot’s side window temperature is less than 86 ±11 °F (30 ±2 °C) , the related Anti−Ice Controller (AIC) activates the related activation relay that supplies 115 VAC to the heater. When the windshield temperature is above  108 ±6 °F (42 ±3 °C) or the pilot side window temperature is above 101 ±7 °F (38 ±4 °C), the AIC deactivates the deactivation relay which opens the circuit and shuts off the power to the heater. The overheat relays fail (unpowered) in the open position to prevent overheat. In the event the normal heating control fails, the AIC uses the overheat temperature sensor to control the heater. In an overheat condition (temperature above 140 ±5 °F (60 ±3 °C) for windshield or above 126 ±4 °F (52 ±2 °C)  for the pilot’s side window), the AIC deactivates both relays and shuts off the heating. On aircraft without SB 84−24−12 incorporated, the overheat indication of the AIC for windshields activates above  126 ±4 °F (52 ±2 °C).</p>
+
+            <h2>2. Indications, Controls and all</h2>
+            <h3>Controls and Switches</h3>
+            <p>The windshield anti−icing system is controlled by an overhead switch labelled  HEAT  located on the WINDSHIELD wiper control panel. The pilot’s side window anti−icing is controlled using a two−position toggle switch labelled  PLT SIDE WDO/HT also located on the WINDSHIELD wiper control panel. A single rotary switch, located on the WINDSHIELD wiper control panel in the overhead console, operates both motor/converters.</p>
+            <h4>Heater-Engine Intake Switches</h4>
+            <p>When the HEAT selector is set to NORM mode the both windshields are heated with full electrical power. This selection causes the WARM UP relay to de-energize and change from a series connection to an independent connection on the related bus. When the PLT SIDE WDO/HT switch is selected ON, the right AIC energizes the side window relay, which supplies the pilot side window heater with 115 VAC phase A right bus power.</p>
+
+            <h3>Indications</h3>
+            <p>If either AIC fails, the WSHLD CTRL caution light will come on. If the HEAT selector is in the OFF position the WSHLD CTRL caution light is prevented from coming on.</p>
+            <p>A failure of either windshield heat controller causes the WSHLD CTRL caution light to come on.</p>
+            <p>An overheat condition of the pilot’s or copilot’s windshield is shown by the WSHLD HOT caution light coming on.</p>
+            <p>An overheat condition of the windshields causes the WSHLD HOT caution light to come on.</p>
+            <p>An overheat condition for the pilot side window is shown by the SIDE WDO HOT caution light coming on.</p>
+            <p>An overheat condition for the pilot side window causes the SIDE WDO HOT caution light to come on.</p>
+            <p>Failure messages are recorded in the Timer and Monitor Unit (TMU) for maintenance purposes. Two maintenance messages related to the failures are RIGHT AIC FAIL and LEFT AIC FAIL.</p>
+
+            <h2>3. Operations</h2>
+            <h3>Introduction</h3>
+            <p>The windshield anti−icing system prevents ice formation on the windshields and the pilot’s side window. The windshield wiper system removes rain water to obtain an adequate zone of vision through the pilot’s and co-pilot’s windshields. The windshield anti−icing system prevents ice formation on both windshields and the pilot’s side window. The windows are electrothermally anti−iced.</p>
+
+            <h3>Operational Logic</h3>
+            <p>The windshield and pilot’s side window heaters are controlled by the  Anti−Ice Controller (AIC) . The AIC sends signals to operate the related windshield heater relay.</p>
+            <p>The WARM UP mode prevents thermal shocks to the windshield. To avoid this damage, the warm up relay decreases the electrical power supply to the windshield heaters by 50%. This is achieved when the WARM UP  mode activates the warm−up relay which places both windshields in a serial connection. When the  WARM UP  mode is selected, each Anti−Ice Controller (AIC) uses the normal temperature sensor information to activate its related windshield heater. Power for the serial connection is taken from the pilot windshield power supply. In the  OFF and NORM modes, the windshields are connected in parallel.</p>
+            <p>When the NORM mode is selected, both windshields are heated with full electrical power. When the NORM mode is selected, the WARMUP relay is deactivated and switches from a serial connection to an independent connection on the related bus.</p>
+            <p>When ON  is selected [for the pilot side window], the right Anti−Ice Controller (AIC) energizes the side window relay, which supplies the pilot’s side window heater with 115V AC phase A power.</p>
+
+            <!-- WIPER Section -->
+            <h1>WIPER</h1>
+            <h2>1. All Components</h2>
+            <h3>List of System Components</h3>
+            <p>The windshield wiper system has the components that follow:</p>
+            <ul>
+                <li>Assembly, Motor</li>
+                <li>Arm, Wiper</li>
+                <li>Blade, Wiper</li>
+                <li>Selector, Control−Wiper</li>
+            </ul>
+
+            <h3>Component Detailed Descriptions</h3>
+            <h4>General System Layout</h4>
+            <p>The pilot’s and copilot’s windshield wiper systems are symmetrical but completely independent from each other. The two motor/converter units are installed in front of the forward pressure bulkhead. The motor/converters are independent from each other and operate the wiper arms for the pilot’s and copilot’s windshields. This configuration ensures that in the event of failure of either unit, the remaining unit will supply an unobstructed forward view for one pilot.</p>
+            <h4>Assembly, Motor</h4>
+            <p>Two motor/converter assemblies are located forward of the front pressure bulkhead, one on each side of the aircraft centreline. Each system has a two speed, DC motor fitted to a mechanical converter which drives a wiper arm and blade.</p>
+            <p>Each motor/converter assembly includes the components that follow:</p>
+            <ul>
+                <li>DC motor with two field windings</li>
+                <li>Park switch</li>
+                <li>Converter gearbox.</li>
+            </ul>
+            <p>The converter gearbox changes the rotary motion of the motor to an oscillating motion at the wiper blade arm.</p>
+            <p>The left windshield wiper system is powered from the L SECONDARY bus through a 10 A circuit breaker (S7) labeled PLT W/S WIPER. The right windshield wiper system is powered from the R SECONDARY bus through a 10 A circuit breaker (A6) labeled COPLT W/S WIPER. The motors are also protected by a permanent grounding contact to the aircraft structure. The assembly has radio noise filters to suppress interference.</p>
+            <h4>Arm, Wiper</h4>
+            <p>The wiper arm (and wiper blade) is installed on the converter output shaft adjusting sleeve with a washer, nut and cotter pin. A bolt, washer, nut and cotter pin secure the adjusting sleeve in the hub arm. The wiper arm is attached to the hub and includes a tension spring. A trigger and detent within the arm facilitate removal and installation of the arm and blade assembly by keeping the blade away from the windshield. An ice detector spigot is riveted to the wiper arm attachment and is illuminated by lights located in and controlled from the flight compartment. NOTE : Ice detectors spigots give visual indication of the formation of ice on the windshield wipers.</p>
+            <h4>Blade, Wiper</h4>
+            <p>The wiper blade is attached to the arm with a nut, washers, and cotter pin.</p>
+            <h4>Selector, Control−Wiper</h4>
+            <p>Both the pilot’s and copilot’s wipers are controlled by a single rotary switch labeled WIPER, located on the WINDSHIELD wiper control panel of the overhead console. The Wiper Control Selector is a rotary switch with the following four positions:</p>
+            <ul>
+                <li>PARK</li>
+                <li>OFF</li>
+                <li>LOW</li>
+                <li>HIGH</li>
+            </ul>
+            <p>The pilot’s wiper can also be controlled by a single push−button switch labelled  ALTERNATE PILOT WIPER located on the pilot side panel. It will activate the pilot’s side windshield wiper in case of failure of normal wiper control. The WIPER control selector is electrically powered from the L SECONDARY bus through a 1 A circuit breaker (R7) labeled PLT WS/HT CONT. The selector is also powered from the R SECONDARY bus through a 1A circuit breaker (B6) labeled COPLT WS PLT WDO HT. The ALTERNATE PILOT WIPER switch is electrically powered from the L SECONDARY bus through a 10 A circuit breaker (S7) labelled PLT WS WIPER.</p>
+
+            <h2>2. Indications, Controls and all</h2>
+            <h3>Controls and Switches</h3>
+            <p>A single rotary switch, located on the WINDSHIELD wiper control panel in the overhead console, operates both motor/converters.</p>
+            <h4>Control-Wiper Selector (WIPER Switch)</h4>
+            <p>Both the pilot’s and copilot’s wipers are controlled by a single rotary switch labeled WIPER, located on the WINDSHIELD wiper control panel of the overhead console. The rotary WIPER switch on the WINDSHIELD wiper control panel operates the motor/converter units. The switch has the positions that follow:</p>
+            <ul>
+                <li>PARK</li>
+                <li>OFF</li>
+                <li>LOW</li>
+                <li>HIGH.</li>
+            </ul>
+            <h4>Alternate Pilot Wiper Selector (ALTERNATE PILOT WIPER Switch)</h4>
+            <p>The alternate pilot wiper operation is controlled by the ALTERNATE PILOT WIPER switch installed on the pilot’s side console. Power is supplied from the left secondary bus. The ALTERNATE PILOT WIPER switch on the pilot’s side console, operates the pilot’s motor convertor unit through the K1 relay. The relay for the alternate wiper is in the pilot’s side console.</p>
+            <h4>Ice Detector Light Switches</h4>
+            <p>The W/S WIPER ICE DETECT LIGHT switches, located on the pilot’s and copilot’s side consoles, operate the ice detector lights in the flight compartment.</p>
+
+            <h3>Indications</h3>
+            <p>Ice detectors, illuminated by lights in the flight compartment, give a visual indication of the formation of ice on the windshield wipers.</p>
+
+            <h2>3. Operations</h2>
+            <h3>Introduction</h3>
+            <p>The windshield wiper system removes rain water to obtain an adequate zone of vision through the pilot’s and copilot’s windshields. The wipers are able to remove any amount of rain which may fall on the windshields during taxiing, taking off, landing and at airspeeds upto 200 kt (370.6 km/h).</p>
+
+            <h3>Operational Principles</h3>
+            <p>The motor/converters are supplied with electrical power from the L and R SECONDARY buses.</p>
+            <h4>Speed Control (WIPER Switch)</h4>
+            <p>With the WIPER switch set to LOW, the two field windings in each motor are connected in series by the related switch section contacts and the motors rotate at a low speed.</p>
+            <p>With the WIPER switch set to HIGH, the two field winding in each motor are connected in parallel by the associated switch section contacts and the motors rotate at a high speed.</p>
+            <p>With the WIPER switch set to OFF from the HIGH or LOW position, electrical power is removed from the motor field windings and the wiper blades stop anywhere in their cycle.</p>
+            <p>Selection of LOW or HIGH activates both wipers at the appropriate speed. Selection for LOW or HIGH to OFF stops the blades at their existing position.</p>
+            <h4>Park Mode (WIPER Switch)</h4>
+            <p>The wiper blades are placed into a parked position when the WIPER switch is set to the momentary PARK position. The wipers are designed to park off the windshield when not in use.</p>
+            <p>When the WIPER switch is held in the PARK position, the motor field windings are connected in series and the motors rotate at a slow speed. When the wiper arm reaches the parked position, the park switches are mechanically closed, shorting out the armatures and stopping the motors in the parked position. The WIPER switch is then released and returns to the OFF position, removing power to the motor circuits.</p>
+            <p>When the switch is held at the spring-loaded PARK position, the blades start to operate at low speed until they reach the bottom of their travel, where they will automatically stop at the park position.</p>
+            <h4>Alternate Mode (ALTERNATE PILOT WIPER Switch)</h4>
+            <p>When the ALTERNATE PILOT WIPER switch is pushed ON, the K1 relay is energized. The energized contacts of K1 relay supply 28V dc electrical power to the pilot’s windshield wiper motor convertor. The energized contacts of the K1 relay also connect the two field windings of the pilot’s windshield wiper motor in the parallel. This causes the motor to turn with the high-speed which operates the pilot’s wiper at the high-speed mode.</p>
+            <p>When you push the ALTERNATE PILOT WIPER switch to OFF (usual position), the electrical power is removed from the motor and the wiper blades stop immediately in their position.</p>
+            <p>When selected to the ON position with the push button, the pilot's windshield wiper will operate at high speed.</p>
+            <p>The ALTERNATE PILOT WIPER switch has priority over the WIPER switch. When you set the WIPER switch to LOW and push the ALTERNATE PILOT WIPER switch to the ON position:</p>
+            <ul>
+                <li>The pilot’s wiper will operate at a high speed</li>
+                <li>The copilot’s wiper will operate at a low speed.</li>
+            </ul>
+
+            <!-- PROP DE ICE Section -->
+            <h1>PROP DE ICE</h1>
+            <h2>1. All Components</h2>
+            <h3>List of System Components</h3>
+            <p>The propeller de-icing system has the components that follow:</p>
+            <ul>
+                <li>Assembly, Bracket - De-icing Brush Block</li>
+                <li>Control, De-icing Timer Monitor</li>
+                <li>Switch, Control-Propeller Heater</li>
+            </ul>
+            
+            <h3>Component Detailed Descriptions</h3>
+            <h4>Heater Mat</h4>
+            <p>The heater mat is attached into a rebate along the leading edge of the blade on the inboard section below the radius, where centrifugal force at cruise Np is too low to shed ice at the critical thickness. The heater mat is made of layers of Neoprene rubber enclosing a resistant wire element. The inner rubber layer is flame retardant to give protection to the heater and blade.</p>
+            <h4>Sliprings</h4>
+            <p>Sliprings transfer the blade heater power across the rotating/static Interface using the brushes of the brush block. Three slip rings are installed into an insulating ring contained within an aluminum housing. The housing is attached to the spinner back plate by a series of bolts on the outer diameter. The rings have a cross-section of 10 mm wide by 5 mm thick, with 3 mm of the thickness allowed for wear and refacing. Also attached to the outer diameter of the housing are seven steel targets used to generate the electrical pulses for the control system pulse probe.</p>
+            <h4>Assembly, Bracket−De−icing Brush Block</h4>
+            <p>The brush block contains the spring-loaded brushes that transfers de-icing power from the airframe to the rotating propeller using sliprings. The block is a molded composite material with external and internal covers and contains the parts that follow:</p>
+            <ul>
+                <li>Receptacle for the connection of the airframe harness.</li>
+                <li>Six brushes arranged with two brushes per slip ring position, brush size 8 mm wide by 18 mm long with a length of 20 mm, and a maximum allowable length for wear of 11 mm.</li>
+                <li>Three terminal studs for connection of the incoming three phase power wiring from the receptacle, and also the connection for the two brush leads per slip ring position.</li>
+                <li>Six brush/spring cavities.</li>
+                <li>Two brush/spring retaining covers.</li>
+                <li>A terminal housing cover.</li>
+            </ul>
+            <h4>Control, De−icing Timer Monitor (TMCU)</h4>
+            <p>There are two identical Timer Monitor Control Units (TMCU), one for each propeller. The TMCU is an anodized aluminum box measuring 7.25 x 5.75 x 5in. (184 x 146 x 127 mm) maximum dimensions, and weighs 6.4 lb (2.9 kg). There are cooling fins on two sides of the box to dissipate the heat generated within the unit on the inner surfaces. The TMCU is cooled by air convection, conduction and radiation. The location of the TMCU in the aircraft does not allow it to be cooled by forced air. It is installed onto the aircraft structure by 4 bolts through the baseplate. These attachment points are also the unit bonding points to the airframe. One foot of the TMCU is Alocromed to achieve the electrical bonding requirements between the case and the aircraft frame. The TMCUs are located adjacent to each other under the aircraft cabin floor at station X375. The TMCUs are connected to the aircraft systems and propeller by two connectors, installed on the top of the unit. The ac power connector has the connections that follow:</p>
+            <ul>
+                <li>To the aircraft ac bus through the isolator contactor</li>
+                <li>To the propeller blade heaters using the brushes and sliprings</li>
+            </ul>
+            <p>The other connector, connects all the system switches and indicators to the Integrated Flight Cabinet (IFC) through an ARINC 429 data bus, to receive and transmit data.</p>
+            <h4>Isolator Contactors</h4>
+            <p>The isolator contactors are installed below the floor panels in the center of the fuselage. When the contactors are energized, they provide a three-phase variable frequency AC current to their related TMCU. Isolator contactor 3061−K1 is for the left propellers deice system and 3061−K2 is for the right propellers deice system. For safety reasons, an aircraft-mounted isolation contactor is placed between the three-phase power supply from the TMCU and the propeller when deicing is not demanded or if there is a potentially damaging failure. The TMCU controls the operation of the contactor.</p>
+
+            <h2>2. Indications, Controls and all</h2>
+            <h3>Controls and Switches</h3>
+            <h4>Switch, Control−Propeller Heater</h4>
+            <p>A rotary switch labeled  PROP−TEST/OFF/ON , located in the flight compartment on the overhead panel, controls the power to the heater. In the TEST position, the propellers are cycled through one time for a period of seven seconds each. The test cannot be initialized again for 30 seconds to complete the OFF cycle. The propeller speed (Np) must be greater than 400 rpm for the test function to operate. The contactor coil is wired such that it can only be enabled when the propeller heater control switch is in the ON or TEST position.</p>
+            <h4>Calibration Switch</h4>
+            <p>The calibration procedure is activated using a push-button switch located on the top face of the unit. These two functions are also provided by a remote switch and indicator installed on the aircraft maintenance panel.</p>
+
+            <h3>Indications</h3>
+            <h4>Advisory Lights</h4>
+            <p>Two advisory lights, one for each propeller, are located on the ICE PROTECTION control panel and indicate propeller heater function to the flight crew. During the on cycle, the left or right propeller indicator on the ICE PROTECTION control panel comes on for the duration of the ON cycle.</p>
+            <h4>Caution Lights</h4>
+            <p>Faults are indicated in the flight compartment with the illumination of the MASTER CAUTION indicator on the glare shield panel and the PROP DEICE caution light on the overhead Caution and Warning Panel (one indicator for both propellers).</p>
+            <h4>Calibration LED</h4>
+            <p>A Light Emitting Diode (LED), also installed on the top face [of the TMCU], comes on to indicate that the calibration has been completed successfully.</p>
+            <h4>Maintenance Messages</h4>
+            <p>English language fault messages are transmitted by the TMCU on an ARINC 429 DITS bus upon request from the Centralized Diagnostic System (CDS) as indicated by activation of a discrete input signal when the propeller is rotating below 400 rpm.</p>
+
+            <h3>System Interfaces</h3>
+            <p>The system interfaces with:</p>
+            <ul>
+                <li>Integrated flight cabinet (IFC)</li>
+                <li>FADEC Local (for Oil Px.) through the ECIU</li>
+                <li>Proximity sensing electronic unit (PSEU)</li>
+                <li>TMCU remote</li>
+            </ul>
+
+            <h2>3. Operations</h2>
+            <h3>Introduction and General Description</h3>
+            <p>The Propeller is built with an integral electro-thermal de-icing system embodied in the leading of each propeller blade. The heating cycle alternates between the propellers to shed ice buildup during each cycle.</p>
+            <p>Ice detection is not available for the propeller de-icing system, therefore to avoid excessive build-up of ice, the pilot must select propeller heat ON when flying through known icing conditions. When heat is selected ON, all six blades on one propeller are heated at one time, then the propeller on the other side is heated.</p>
+
+            <h3>Operational Principle</h3>
+            <p>The propeller de-ice system is manually selected and automatically controlled when the PROP selector is set to the ON or TEST positions. The PROPS indicator on the ICE PROTECTION panel will illuminate when power is applied to the blade heaters. The prop de-ice operates until the selector is set to the off position. The operation of the left engine prop de-ice is described; the right side is similar.</p>
+            <p>The propeller de-icing system monitors the propeller speed (Np) and Total Air Temperature (TAT). Power is supplied to the heater in a cyclic sequence by the Timer Monitor Control Unit (TMCU) with the 'on' time set, which weakens the ice bond and allows the lower centrifugal forces to displace the ice. The 'off' period time allows a small layer of ice to build up and give a mass that can be shed during the on cycle.</p>
+            <p>An output signal from one TMCU to the other TMCU allows synchronization to prevent the two heaters from operating at the same time.</p>
+
+            <h3>TMCU Control Logic</h3>
+            <p>The TMCU distributes electrical heating power to the propellers to give a correct of five ice shedding timer cycles under different TAT conditions. It also monitors the propeller heaters for open or short circuits. The TMCU contains discrete solid state power switches for cycling power from a three phase variable frequency 115 VAC supply to de-ice elements installed on the propeller blades. The TMCU activates the propeller blade heaters when the conditions that follow are met:</p>
+            <ul>
+                <li>TAT must be at or below 41 °F (5 °C).</li>
+                <li>Propeller is rotating (Np) greater than 400 rpm.</li>
+                <li>Propeller Heater Control Switch must be ON.</li>
+            </ul>
+            <p>The power switches are controlled by the TMCU in response to air temperature data received on an ARINC 429 DITS (Digital Information Travel System) bus. The TAT and propeller speed (Np) conditions are transmitted to the TMCU microprocessor by the ARINC 429 data bus from the Integrated Flight Cabinet (IFC). When the propeller heater control switch is selected ON a discrete Pilot De-ice Demand (PDD) signal passes into a buffer circuit for interfacing to the processor.</p>
+            <p>When all conditions are met for the activation of the de-icing system, the processor calculates the system ON and OFF timing cycles from a “lookup table”, which are dependent upon TAT data temperature bands. Default cycle timing will be provided in the event of an ARINC bus failure or data integrity error.</p>
+            <p>The processor then sends a signal to the isolator contactor coil through a contactor drive circuit to close the ac supply contactor and make ac power available to the TMCU. After approximately 30m sec the processor sends a signal to the solid-state switches (Silicon Controlled Rectifiers−SCR) firing control circuit to turn the solid-state switches (SCRs) ON and OFF and supply power to the blade heaters.</p>
+            <p>A watchdog timer circuit makes sure that the microprocessor operates within designed specifications through all dc power conditions. If a refresh signal is not received in a pre-set timing window (i.e. 50 to 100m sec), the watchdog timer circuit resets the microprocessor. If the microprocessor does not start normal behavior, it is switched off by the watchdog circuit.</p>
+
+            <h3>Fault Monitoring and Test Modes</h3>
+            <p>The TMCU performs continuous passive fault monitoring of the propeller de-ice system. An active pilot-initiated test mode is available to support pre-flight functional test. Nominal blade heater resistance is measured during a manually initiated calibration sequence and recorded in Non-Volatile Memory (NVM). The calibration data will be used during the passive fault monitoring and pre-flight functional test to monitor the blade heater elements. A fault indicator output discrete signal indicates when a system fault is sensed by the TMCU. The isolation contactor drive signal is disabled by the TMCU when a fault which limits continued safe operation of the system is sensed. All detected faults will be recorded in NVM.</p>
+            <p>A test mode (calibration) is available on the aircraft maintenance panel. It is able to test blade heater resistance and is recorded in Non-Volatile Memory for CDS retrieval. (TASK 30-61-00-720-801 Functional Test of the Propellers De-icing System). (see appendix).</p>
+        </article>
+    </div>
+</body>
+</html>
+
